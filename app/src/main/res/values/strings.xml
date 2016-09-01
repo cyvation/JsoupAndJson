@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">JsoupDemo</string>
+
+
+    <string-array name="Top100">
+
+        <item>Việt Nam</item>
+        <item>Âu Mỹ</item>
+        <item>Châu Á</item>
+        <item>Hòa Tấu</item>
+
+    </string-array>
+</resources>
