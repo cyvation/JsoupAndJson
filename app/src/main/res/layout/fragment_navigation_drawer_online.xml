@@ -1,0 +1,297 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.online.NavigationDrawerOnlineFragment">
+
+    <LinearLayout
+        android:id="@+id/ll_header_onl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_drawer_height"
+        android:layout_marginBottom="@dimen/nav_drawer_margin_bottom"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_header_onl">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/nav_drawer_item_margin_left"
+            android:layout_marginRight="@dimen/nav_drawer_item_margin_left"
+            android:orientation="vertical">
+
+            <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:text="@string/nav_subtitle_zing_mp3"
+                android:textColor="@color/text_gray_color"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/ll_voice_serch"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_voice_search"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_microphone" />
+
+                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/nav_voice_search"
+                    android:textColor="@color/text_dark_gray_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_search"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img__search"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_search" />
+
+                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/nav_search"
+                    android:textColor="@color/text_dark_gray_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_hot_music"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_hot_music"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_hot_music" />
+
+                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/nav_hot_music"
+                    android:textColor="@color/text_dark_gray_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_rank"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_rank"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_rank" />
+
+                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/nav_rank"
+                    android:textColor="@color/text_dark_gray_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_albums"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_albums"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_albums" />
+
+                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/nav_albums"
+                    android:textColor="@color/text_dark_gray_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_artists"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_artists"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_artists" />
+
+                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/nav_artists"
+                    android:textColor="@color/text_dark_gray_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_top_ten"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_top_ten"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_top_ten" />
+
+                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/nav_top_10"
+                    android:textColor="@color/text_dark_gray_color" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_divider_height"
+                android:layout_marginTop="@dimen/nav_drawer_margin_bottom"
+                android:background="#3b000000" />
+            <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:text="@string/nav_subtitle_tools"
+                android:textColor="@color/text_gray_color"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/ll_option_lyric_screen"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_lyric_every_where"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_lyric_every_where" />
+
+                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/nav_lyric_on_screen"
+                    android:textColor="@color/text_dark_gray_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_option_suggested_apps"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_suggested_apps"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_suggested_apps" />
+
+                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="Suggested Apps"
+                    android:textColor="@color/text_dark_gray_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_option_settings"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_settings"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_settings" />
+
+                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/nav_item_settings"
+                    android:textColor="@color/text_dark_gray_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_option_exit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_exit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_exit" />
+
+                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="Exit"
+                    android:textColor="@color/text_dark_gray_color" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</RelativeLayout>

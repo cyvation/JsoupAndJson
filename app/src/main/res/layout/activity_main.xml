@@ -3,9 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".activity.HomeActivity">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/toolbar"/>
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:id="@+id/rl_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+        </RelativeLayout>
+
+        <fragment
+
+            android:id="@+id/frg_nav_drawer_onl"
+            android:name="com.edu.gvn.jsoupdemo.fragment.online.NavigationDrawerOnlineFragment"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            tools:layout="@layout/fragment_navigation_drawer_online" />
+
+        <fragment
+            android:id="@+id/frg_nav_drawer_off"
+            android:name="com.edu.gvn.jsoupdemo.fragment.offline.NavigationDrawerOfflineFragment"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            tools:layout="@layout/fragment_navigation_drawer_offline" />
+
+    </android.support.v4.widget.DrawerLayout>
 
 </RelativeLayout>
