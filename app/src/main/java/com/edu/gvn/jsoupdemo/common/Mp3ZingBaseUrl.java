@@ -5,7 +5,7 @@ package com.edu.gvn.jsoupdemo.common;
  */
 public class Mp3ZingBaseUrl {
     public static final String BASE_ZING_MP3 = "http://mp3.zing.vn/";
-
+    public static final String LINK_SONG = "link/song";
     /*
     Hot music
      */
