@@ -1,6 +1,8 @@
 package com.edu.gvn.jsoupdemo.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +11,7 @@ import android.widget.Toast;
 
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.fragment.online.NavigationDrawerOnlineFragment;
+import com.edu.gvn.jsoupdemo.fragment.online.SearchFragment;
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationDrawerOnlineFragment.GetNavItemClickListener {
@@ -25,9 +28,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
         setContentView(R.layout.activity_main);
 
         setupToolbar();
-
         setNavOnlFragment();
-
     }
 
     private void setNavOnlFragment() {
@@ -49,6 +50,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
             case R.id.ll_voice_serch:
                 break;
             case R.id.ll_search:
+                replaceFragment(new SearchFragment());
+                mOnlineFragment.closeNavDrawer();
                 break;
             case R.id.ll_hot_music:
                 break;
@@ -71,5 +74,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
 
 
         }
+    }
+
+
+    public void replaceFragment(Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.rl_parent,fragment);
+        transaction.commit();
     }
 }

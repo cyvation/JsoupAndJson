@@ -4,8 +4,12 @@ package com.edu.gvn.jsoupdemo.common;
  * Created by HuuTho on 9/4/2016.
  */
 public class Mp3ZingBaseUrl {
-    public static final String BASE_ZING_MP3 = "http://mp3.zing.vn/";
+    public static final String BASE_ZING_MP3 = "http://mp3.zing.vn";
     public static final String LINK_SONG = "link/song";
+    public static final String LINK_ALBUMS= "link/album";
+    public static final String LINK_AVATAR ="view-source:http://image.mp3.zdn.vn/thumb/165_165";
+
+    public static final String LINK_SEARCH="http://ac.mp3.zing.vn/complete?type=artist,album,video,song&num=3&callback=jQuery21005823772231107524_1473818636580&query=";
     /*
     Hot music
      */

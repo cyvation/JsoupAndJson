@@ -87,8 +87,6 @@ public class NavigationDrawerOnlineFragment extends Fragment implements View.OnC
                 super.onDrawerSlide(drawerView, slideOffset);
                 mDrawerLayout.setScrimColor(Color.TRANSPARENT);
                 float moveFactor = mFragment.getWidth() * slideOffset;
-                //   TranslateAnimation translate  = new TranslateAnimation(0.0f,moveFactor,0.0f,0.0f);
-                //  translate.setFillAfter(false);
                 mActivity.findViewById(R.id.rl_parent).setTranslationX(moveFactor);
             }
         };
