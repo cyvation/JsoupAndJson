@@ -1,7 +1,6 @@
 package com.edu.gvn.jsoupdemo.fragment.online.hotmusic;
 
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,12 +11,11 @@ import com.edu.gvn.jsoupdemo.R;
 
 /**
  * A simple {@link Fragment} subclass.
- *
  */
-public class VietNamHot extends Fragment {
+public class KoreaHotFragment extends Fragment {
 
 
-    public VietNamHot() {
+    public KoreaHotFragment() {
         // Required empty public constructor
     }
 
@@ -26,7 +24,7 @@ public class VietNamHot extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_viet_nam_hot, container, false);
+        return inflater.inflate(R.layout.fragment_hotmusic_koreahot, container, false);
     }
 
 }

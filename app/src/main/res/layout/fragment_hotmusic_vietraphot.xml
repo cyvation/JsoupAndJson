@@ -1,0 +1,30 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.online.hotmusic.VietRapHotFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/hotmusic_koreahotmusic_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Viet-rap" />
+
+    <TextView
+        android:id="@+id/hotmusic_koreahotmusic_age"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Viet-rap" />
+    <TextView
+        android:id="@+id/hotmusic_koreahotmusic_cty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Viet-rap" />
+    <TextView
+        android:id="@+id/hotmusic_koreahotmusic_address"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Viet-rap" />
+
+</FrameLayout>

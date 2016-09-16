@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -47,9 +48,14 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_search, container, false);
         mListSearch = (ListView) v.findViewById(R.id.list_search);
-        mListSearch.setAdapter(mAdapter);
         mEditSearch = (EditText) v.findViewById(R.id.edt_search);
+        return v;
+    }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setRequestFocusEdittext();
         mEditSearch.addTextChangedListener(new TextWatcher() {
 
             private Timer timer = new Timer();
@@ -91,8 +97,13 @@ public class SearchFragment extends Fragment {
                 }, DELAY);
             }
         });
-        return v;
+        mListSearch.setAdapter(mAdapter);
     }
 
-
+    public void setRequestFocusEdittext(){
+        mEditSearch.requestFocus();
+        if (mEditSearch.requestFocus()){
+            mActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+    }
 }

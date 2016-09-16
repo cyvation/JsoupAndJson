@@ -6,17 +6,9 @@
     tools:context=".activity.HomeActivity">
 
 
-
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
-
-    <LinearLayout
-        android:layout_below="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/rl_parent"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -39,9 +31,12 @@
             android:layout_height="match_parent"
             android:layout_gravity="end"
             tools:layout="@layout/fragment_navigation_drawer_offline" />
-
-
     </android.support.v4.widget.DrawerLayout>
 
-
+    <LinearLayout
+        android:id="@+id/rl_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:orientation="vertical" />
 </RelativeLayout>

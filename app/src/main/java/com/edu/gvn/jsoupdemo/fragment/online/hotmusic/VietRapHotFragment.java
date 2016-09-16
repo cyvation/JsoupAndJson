@@ -14,10 +14,10 @@ import com.edu.gvn.jsoupdemo.R;
  * A simple {@link Fragment} subclass.
  *
  */
-public class VietRapHot extends Fragment {
+public class VietRapHotFragment extends Fragment {
 
 
-    public VietRapHot() {
+    public VietRapHotFragment() {
         // Required empty public constructor
     }
 
@@ -26,7 +26,7 @@ public class VietRapHot extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_viet_rap_hot, container, false);
+        return inflater.inflate(R.layout.fragment_hotmusic_vietraphot, container, false);
     }
 
 }
