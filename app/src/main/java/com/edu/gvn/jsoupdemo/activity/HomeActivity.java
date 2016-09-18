@@ -11,9 +11,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.edu.gvn.jsoupdemo.R;
+import com.edu.gvn.jsoupdemo.fragment.online.AlbumFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.NavigationDrawerOnlineFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.SearchFragment;
-import com.edu.gvn.jsoupdemo.fragment.online.hotmusic.HotMusicFragment;
+import com.edu.gvn.jsoupdemo.fragment.online.hot.HotMusicFragment;
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationDrawerOnlineFragment.GetNavItemClickListener {
@@ -65,6 +66,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
             case R.id.ll_artists:
                 break;
             case R.id.ll_albums:
+                replaceFragment(new AlbumFragment());
+                mOnlineFragment.closeNavDrawer();
                 break;
             case R.id.ll_top_ten:
                 break;
@@ -83,9 +86,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
 
 
     public void replaceFragment(Fragment fragment) {
+        String backStackName = fragment.getClass().getName();
+        String tag = backStackName;
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.rl_parent, fragment);
-        transaction.addToBackStack(null);
+        transaction.addToBackStack(backStackName);
         transaction.commit();
     }
 

@@ -106,9 +106,9 @@ public class Mp3ZingBaseUrl {
     /*
     BXH
      */
-    public static final String BXH_VN = "http://mp3.zing.vn/bang-xep-hang/bai-hat-Viet-Nam/IWZ9Z08I.html";
-    public static final String BXH_US = "http://mp3.zing.vn/bang-xep-hang/bai-hat-Au-My/IWZ9Z0BW.html";
-    public static final String BXH_KOREA = "http://mp3.zing.vn/bang-xep-hang/bai-hat-Han-Quoc/IWZ9Z0BO.html";
+    public static final String BXH_VN = "bang-xep-hang/bai-hat-Viet-Nam/IWZ9Z08I.html";
+    public static final String BXH_US = "bang-xep-hang/bai-hat-Au-My/IWZ9Z0BW.html";
+    public static final String BXH_KOREA = "bang-xep-hang/bai-hat-Han-Quoc/IWZ9Z0BO.html";
 
 
 }
