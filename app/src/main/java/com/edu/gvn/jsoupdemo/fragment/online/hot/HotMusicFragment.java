@@ -46,9 +46,7 @@ public class HotMusicFragment extends Fragment implements View.OnClickListener {
         mTabVn.setOnClickListener(this);
         mTabKorea.setOnClickListener(this);
         mTabRapVn.setOnClickListener(this);
-
-        ((HomeActivity)getActivity()).addFragment(this,new VietNamFragment(),R.id.child_fragment);
-
+        ((HomeActivity)getActivity()).replaceFragment(this,new VietNamFragment(),R.id.child_fragment);
         return mView;
     }
 

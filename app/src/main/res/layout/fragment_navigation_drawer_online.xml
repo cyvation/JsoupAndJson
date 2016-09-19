@@ -1,7 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="280dp"
     android:layout_height="match_parent"
+    android:layout_gravity="left"
+    android:background="@color/white"
     tools:context=".fragment.online.NavigationDrawerOnlineFragment">
 
     <LinearLayout
@@ -15,10 +17,10 @@
     </LinearLayout>
 
     <ScrollView
-        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ll_header_onl">
+        android:layout_below="@+id/ll_header_onl"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -193,10 +195,11 @@
                 android:layout_height="@dimen/nav_divider_height"
                 android:layout_marginTop="@dimen/nav_drawer_margin_bottom"
                 android:background="#3b000000" />
+
             <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
                 android:layout_width="wrap_content"
-                android:layout_marginTop="3dp"
                 android:layout_height="@dimen/nav_item_height"
+                android:layout_marginTop="3dp"
                 android:gravity="center_vertical"
                 android:text="@string/nav_subtitle_tools"
                 android:textColor="@color/text_gray_color"
