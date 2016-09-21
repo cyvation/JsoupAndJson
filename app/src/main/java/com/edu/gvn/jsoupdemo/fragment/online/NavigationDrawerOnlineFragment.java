@@ -3,6 +3,7 @@ package com.edu.gvn.jsoupdemo.fragment.online;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -58,7 +59,7 @@ public class NavigationDrawerOnlineFragment extends Fragment implements View.OnC
         inflateView.findViewById(R.id.ll_option_settings).setOnClickListener(this);
         inflateView.findViewById(R.id.ll_option_exit).setOnClickListener(this);
 
-        mFragment = inflateView ;
+        mFragment = inflateView;
         return inflateView;
     }
 
@@ -82,9 +83,9 @@ public class NavigationDrawerOnlineFragment extends Fragment implements View.OnC
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                //     mDrawerLayout.setScrimColor(Color.TRANSPARENT);
-                //    float moveFactor = mFragment.getWidth() * slideOffset;
-                //    mActivity.findViewById(R.id.rl_parent).setTranslationX(moveFactor);
+                     mDrawerLayout.setScrimColor(Color.TRANSPARENT);
+                    float moveFactor = mFragment.getWidth() * slideOffset;
+                    getActivity().findViewById(R.id.rl_parent).setTranslationX(moveFactor);
             }
         };
 
@@ -99,7 +100,7 @@ public class NavigationDrawerOnlineFragment extends Fragment implements View.OnC
     }
 
     public void closeNavDrawer() {
-        mDrawerLayout.closeDrawer(Gravity.START);
+        mDrawerLayout.closeDrawer(Gravity.LEFT);
     }
 
 

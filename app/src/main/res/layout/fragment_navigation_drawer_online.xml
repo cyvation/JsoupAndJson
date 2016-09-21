@@ -13,6 +13,11 @@
         android:layout_marginBottom="@dimen/nav_drawer_margin_bottom"
         android:background="@color/colorPrimary"
         android:orientation="vertical">
+        <ImageView
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/background_nav"/>
 
     </LinearLayout>
 

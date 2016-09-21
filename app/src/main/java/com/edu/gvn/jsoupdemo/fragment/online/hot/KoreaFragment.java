@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edu.gvn.jsoupdemo.R;
-import com.edu.gvn.jsoupdemo.adapter.HotMusicAdapter;
+import com.edu.gvn.jsoupdemo.adapter.HotOrAlbumMusicAdapter;
 import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
 import com.edu.gvn.jsoupdemo.model.online.HotMusicModel;
 import com.edu.gvn.jsoupdemo.network.XmlParser.HotMusicParserAsync;
@@ -26,9 +26,10 @@ public class KoreaFragment extends Fragment {
 
     private static final String TAG = VietNamFragment.class.getSimpleName();
     private RecyclerView mListAlbumHot;
-    private HotMusicAdapter mAdapter;
+    private HotOrAlbumMusicAdapter mAdapter;
     private HotMusicParserAsync mHotMusicAsync;
     private ArrayList<HotMusicModel> mData = new ArrayList<>();
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -45,7 +46,7 @@ public class KoreaFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new HotMusicAdapter(getActivity(), mData);
+        mAdapter = new HotOrAlbumMusicAdapter(getActivity(), mData);
     }
 
 

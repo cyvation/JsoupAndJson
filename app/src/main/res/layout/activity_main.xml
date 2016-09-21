@@ -4,10 +4,10 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4a4ae1"
-    tools:context=".activity.HomeActivity">
+      tools:context=".activity.HomeActivity">
 
     <RelativeLayout
+        android:id="@+id/main_with_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -42,8 +42,6 @@
             android:id="@+id/frg_nav_drawer_onl"
             layout="@layout/fragment_navigation_drawer_online" />
     </RelativeLayout>
-
-
 
 </android.support.v4.widget.DrawerLayout>
 

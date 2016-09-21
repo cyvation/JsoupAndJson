@@ -18,14 +18,14 @@ import java.util.ArrayList;
 /**
  * Created by HuuTho on 9/18/2016.
  */
-public class HotMusicAdapter extends RecyclerView.Adapter<HotMusicAdapter.ViewHolder> {
+public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusicAdapter.ViewHolder> {
 
     private ArrayList<HotMusicModel> mData;
     private Context context;
     private LayoutInflater inflater;
 
 
-    public HotMusicAdapter(Context context,ArrayList<HotMusicModel> mData) {
+    public HotOrAlbumMusicAdapter(Context context, ArrayList<HotMusicModel> mData) {
         this.mData = mData;
         this.context = context;
 

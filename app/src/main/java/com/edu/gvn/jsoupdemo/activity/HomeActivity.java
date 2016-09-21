@@ -1,6 +1,7 @@
 package com.edu.gvn.jsoupdemo.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,9 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.edu.gvn.jsoupdemo.R;
-import com.edu.gvn.jsoupdemo.fragment.online.AlbumFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.NavigationDrawerOnlineFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.SearchFragment;
+import com.edu.gvn.jsoupdemo.fragment.online.album.AlbumCategoryFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.hot.HotMusicFragment;
 
 
@@ -50,7 +51,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
 
     @Override
     public void onItemClick(View v) {
-        navigationDrawerOnlineFragment.closeNavDrawer();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                navigationDrawerOnlineFragment.closeNavDrawer();
+            }
+        },600);
+
         switch (v.getId()) {
             case R.id.ll_voice_serch:
                 break;
@@ -77,9 +84,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
                 break;
             case R.id.ll_albums:
                 if (!isFishLoad)
-                    replaceFragment(new AlbumFragment());
+                    replaceFragment(new AlbumCategoryFragment());
                 else {
-                    addFragment(new AlbumFragment());
+                    addFragment(new AlbumCategoryFragment());
                     isFishLoad = false;
                 }
 
@@ -114,6 +121,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
         }
 
     }
+
+
 
     public void replaceFragment(Fragment fragment) {
         String backStackName = fragment.getClass().getName();

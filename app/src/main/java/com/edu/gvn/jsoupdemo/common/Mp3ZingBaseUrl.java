@@ -45,10 +45,6 @@ public class Mp3ZingBaseUrl {
     public static final String ALBUMS_ASIAN_JAPAN = "http://mp3.zing.vn/the-loai-album/Nhat-Ban/IWZ9Z08Z.html";
     public static final String ALBUMS_ASIAN_CHINA = "http://mp3.zing.vn/the-loai-album/Hoa-Ngu/IWZ9Z08U.html";
 
-    // option
-    public static final String ALBUMS_NOI_BAT = "?sort=hot";
-    public static final String ALBUMS_NGHE_NHIEU = "?sort=total_play"; // default
-    public static final String ALBUMS_MOI_NHAT = "?sort=release_date";
 
     /*
         Artists
