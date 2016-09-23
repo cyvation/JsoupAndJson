@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
-import com.edu.gvn.jsoupdemo.model.online.HotMusicModel;
+import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -20,12 +20,12 @@ import java.util.ArrayList;
  */
 public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusicAdapter.ViewHolder> {
 
-    private ArrayList<HotMusicModel> mData;
+    private ArrayList<AlbumModel> mData;
     private Context context;
     private LayoutInflater inflater;
 
 
-    public HotOrAlbumMusicAdapter(Context context, ArrayList<HotMusicModel> mData) {
+    public HotOrAlbumMusicAdapter(Context context, ArrayList<AlbumModel> mData) {
         this.mData = mData;
         this.context = context;
 
@@ -40,8 +40,8 @@ public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusic
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        HotMusicModel model = mData.get(position);
-        String desc = model.getDesc();
+        AlbumModel model = mData.get(position);
+        String desc = model.getTitle();
         int lastIndexDash = desc.lastIndexOf("-");
         String title = desc.substring(0, lastIndexDash - 1);
         String content = desc.substring(lastIndexDash + 1);
@@ -69,7 +69,7 @@ public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusic
         }
     }
 
-    public void addData(ArrayList<HotMusicModel> data){
+    public void addData(ArrayList<AlbumModel> data){
         mData.clear();
         mData.addAll(data);
         notifyDataSetChanged();

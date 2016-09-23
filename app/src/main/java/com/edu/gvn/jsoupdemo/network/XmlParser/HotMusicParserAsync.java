@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
-import com.edu.gvn.jsoupdemo.model.online.HotMusicModel;
+import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,12 +17,12 @@ import java.util.ArrayList;
 /**
  * Created by HuuTho on 9/18/2016.
  */
-public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<HotMusicModel>> {
+public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<AlbumModel>> {
 
     private static final String TAG = HotMusicParserAsync.class.getSimpleName();
 
     public interface GetDataCallback {
-        void getData(ArrayList<HotMusicModel> data);
+        void getData(ArrayList<AlbumModel> data);
     }
 
     private GetDataCallback callback;
@@ -32,8 +32,8 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<HotMu
     }
 
     @Override
-    protected ArrayList<HotMusicModel> doInBackground(String... params) {
-        ArrayList<HotMusicModel> data = new ArrayList<>();
+    protected ArrayList<AlbumModel> doInBackground(String... params) {
+        ArrayList<AlbumModel> data = new ArrayList<>();
 
         StringBuilder url = new StringBuilder();
         url.append(Mp3ZingBaseUrl.BASE_ZING_MP3).append("/").append(params[0]);
@@ -67,8 +67,8 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<HotMu
                         String a_href = a.attr("href");
                         String title = a.attr("title");
 
-                        HotMusicModel hotMusicModel = new HotMusicModel(a_href, img_src, title);
-                        data.add(hotMusicModel);
+                        AlbumModel albumModel = new AlbumModel(a_href, img_src, title);
+                        data.add(albumModel);
 
                         Log.i(TAG, "doInBackground: " + title);
                     }
@@ -85,11 +85,11 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<HotMu
     }
 
     @Override
-    protected void onPostExecute(ArrayList<HotMusicModel> hotMusicModels) {
-        super.onPostExecute(hotMusicModels);
-        if (hotMusicModels.size() != 0) {
-            callback.getData(hotMusicModels);
-            Log.i(TAG, "onPostExecute: " + hotMusicModels.size());
+    protected void onPostExecute(ArrayList<AlbumModel> albumModels) {
+        super.onPostExecute(albumModels);
+        if (albumModels.size() != 0) {
+            callback.getData(albumModels);
+            Log.i(TAG, "onPostExecute: " + albumModels.size());
         }
     }
 }

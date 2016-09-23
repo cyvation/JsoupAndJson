@@ -24,6 +24,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
     private Toolbar mToolbar;
     private NavigationDrawerOnlineFragment navigationDrawerOnlineFragment;
 
+    private Handler handler ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
         setupToolbar();
         setNavOnlFragment();
 
+
+
+
     }
+
 
     private void setNavOnlFragment() {
         navigationDrawerOnlineFragment = new NavigationDrawerOnlineFragment();

@@ -3,7 +3,7 @@ package com.edu.gvn.jsoupdemo.network.XmlParser;
 import android.os.AsyncTask;
 
 import com.edu.gvn.jsoupdemo.adapter.GenderAlbumAdapter;
-import com.edu.gvn.jsoupdemo.model.online.HotMusicModel;
+import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,12 +17,12 @@ import java.util.ArrayList;
  * Created by hnc on 21/09/2016.
  */
 
-public class GenderAlbumAsync extends AsyncTask<String, Void, ArrayList<HotMusicModel>> {
+public class GenderAlbumAsync extends AsyncTask<String, Void, ArrayList<AlbumModel>> {
 
     private static final String TAG = GenderAlbumAsync.class.getSimpleName();
 
     public interface GenderAlbumDataCallback {
-        void callBack(ArrayList<HotMusicModel> data);
+        void callBack(ArrayList<AlbumModel> data);
     }
 
     private GenderAlbumDataCallback getData;
@@ -32,8 +32,8 @@ public class GenderAlbumAsync extends AsyncTask<String, Void, ArrayList<HotMusic
     }
 
     @Override
-    protected ArrayList<HotMusicModel> doInBackground(String... params) {
-        ArrayList<HotMusicModel> mdata = new ArrayList<>();
+    protected ArrayList<AlbumModel> doInBackground(String... params) {
+        ArrayList<AlbumModel> mdata = new ArrayList<>();
         StringBuilder urlBuilder = new StringBuilder();
         urlBuilder.append(params[0]);
         urlBuilder.append("?page=");
@@ -52,13 +52,13 @@ public class GenderAlbumAsync extends AsyncTask<String, Void, ArrayList<HotMusic
                     String title = a.attr("title");
                     String srcImage = img.attr("src");
 
-                    HotMusicModel hotMusicModel = new HotMusicModel(href, srcImage, title);
-                    hotMusicModel.setView(String.valueOf(GenderAlbumAdapter.TYPE_VIEW));
-                    mdata.add(hotMusicModel);
+                    AlbumModel albumModel = new AlbumModel(href, srcImage, title);
+                    albumModel.setView(String.valueOf(GenderAlbumAdapter.TYPE_VIEW));
+                    mdata.add(albumModel);
                 }
             }
 
-            mdata.add(new HotMusicModel("","",""));
+            mdata.add(new AlbumModel("","",""));
 
             return mdata;
         } catch (IOException e) {
@@ -68,10 +68,10 @@ public class GenderAlbumAsync extends AsyncTask<String, Void, ArrayList<HotMusic
     }
 
     @Override
-    protected void onPostExecute(ArrayList<HotMusicModel> hotMusicModels) {
-        super.onPostExecute(hotMusicModels);
-        if (hotMusicModels!=null&&hotMusicModels.size()!=0){
-            getData.callBack(hotMusicModels);
+    protected void onPostExecute(ArrayList<AlbumModel> albumModels) {
+        super.onPostExecute(albumModels);
+        if (albumModels !=null&& albumModels.size()!=0){
+            getData.callBack(albumModels);
         }
     }
 }

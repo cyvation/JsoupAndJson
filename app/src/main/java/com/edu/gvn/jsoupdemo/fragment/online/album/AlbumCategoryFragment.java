@@ -20,8 +20,7 @@ public class AlbumCategoryFragment extends Fragment implements View.OnClickListe
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_album, container, false);
-
+        View v = inflater.inflate(R.layout.fragment_category_album, container, false);
 
         v.findViewById(R.id.vn_vpop).setOnClickListener(this);
         v.findViewById(R.id.vn_country).setOnClickListener(this);
@@ -52,6 +51,7 @@ public class AlbumCategoryFragment extends Fragment implements View.OnClickListe
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
 
 
@@ -70,58 +70,59 @@ public class AlbumCategoryFragment extends Fragment implements View.OnClickListe
                 ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_NHAC_DANCE_VIET));
                 break;
             case R.id.vn_nhacthieunhi:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_NHAC_THIEU_NHI));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_NHAC_THIEU_NHI));
                 break;
             case R.id.vn_rap_hiphop:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_RAP_HIPHOP));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_RAP_HIPHOP));
                 break;
             case R.id.vn_red:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_NHAC_CACH_MANG));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_NHAC_CACH_MANG));
                 break;
             case R.id.vn_rock:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_ROCK_VIET));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_ROCK_VIET));
                 break;
             case R.id.vn_romance:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_NHAC_TRU_TINH));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_NHAC_TRU_TINH));
                 break;
             case R.id.vn_trinhcongson:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_NHAC_TRINH));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_VN_NHAC_TRINH));
                 break;
             case R.id.us_blue_jazz:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_BLUES_JAZZ));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_BLUES_JAZZ));
                 break;
             case R.id.us_country:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_COUNTRY));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_COUNTRY));
                 break;
             case R.id.us_edm:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_ELECTRONIC_DANCE));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_ELECTRONIC_DANCE));
                 break;
             case R.id.us_pop:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_POP));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_POP));
                 break;
             case R.id.us_rap_hiphop:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_RAP_HIPHOP));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_RAP_HIPHOP));
                 break;
             case R.id.us_rb_soul:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_R_B_SOUL));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_R_B_SOUL));
                 break;
             case R.id.us_rock:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_ROCK));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_ROCK));
                 break;
             case R.id.us_trance:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_TRANCE_HOUSE_TECHNO));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_US_TRANCE_HOUSE_TECHNO));
                 break;
             case R.id.asia_korea:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_ASIAN_KOREA));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_ASIAN_KOREA));
                 break;
             case R.id.asia_japan:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_ASIAN_JAPAN));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_ASIAN_JAPAN));
                 break;
             case R.id.asia_china:
-                ((HomeActivity) getActivity()).replaceFragment( GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_ASIAN_CHINA));
+                ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(Mp3ZingBaseUrl.ALBUMS_ASIAN_CHINA));
                 break;
         }
     }
+
 
 
 }

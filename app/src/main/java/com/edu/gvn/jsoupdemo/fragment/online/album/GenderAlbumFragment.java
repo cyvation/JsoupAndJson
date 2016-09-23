@@ -12,8 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edu.gvn.jsoupdemo.R;
+import com.edu.gvn.jsoupdemo.activity.HomeActivity;
 import com.edu.gvn.jsoupdemo.adapter.GenderAlbumAdapter;
-import com.edu.gvn.jsoupdemo.model.online.HotMusicModel;
+import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.edu.gvn.jsoupdemo.network.XmlParser.GenderAlbumAsync;
 
 import java.util.ArrayList;
@@ -28,13 +29,12 @@ public class GenderAlbumFragment extends Fragment {
 
     private RecyclerView mListAlbum;
     private GenderAlbumAdapter mAlbumAdapter;
-    private ArrayList<HotMusicModel> mData;
+    private ArrayList<AlbumModel> mGenderAlbumData;
 
     private String urlAlbum;
     private int indexPage = 1;
 
     public static GenderAlbumFragment newInstance(String urlAlbum) {
-        Log.i(TAG, "newInstance: " + urlAlbum);
         GenderAlbumFragment fragment = new GenderAlbumFragment();
         Bundle args = new Bundle();
         args.putString(KEY_ALBUM, urlAlbum);
@@ -55,10 +55,9 @@ public class GenderAlbumFragment extends Fragment {
             urlAlbum = getBundleInstance(getArguments());
         }
 
-        Log.i(TAG, "onCreate: " + urlAlbum);
-        mData = new ArrayList<>();
+        mGenderAlbumData = new ArrayList<>();
         sendRequestAlbum(urlAlbum, indexPage);
-        mAlbumAdapter = new GenderAlbumAdapter(getActivity(), mData);
+        mAlbumAdapter = new GenderAlbumAdapter(getActivity(), mGenderAlbumData);
     }
 
     @Override
@@ -73,7 +72,7 @@ public class GenderAlbumFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         int numberColumn = 2;
-        mListAlbum.setLayoutManager(new GridLayoutManager(getActivity(),numberColumn));
+        mListAlbum.setLayoutManager(new GridLayoutManager(getActivity(), numberColumn));
         mListAlbum.setAdapter(mAlbumAdapter);
         mListAlbum.setDrawingCacheEnabled(true);
         mListAlbum.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
@@ -82,6 +81,16 @@ public class GenderAlbumFragment extends Fragment {
             public void onLoadListener() {
                 indexPage++;
                 sendRequestAlbum(urlAlbum, indexPage);
+            }
+        });
+
+
+        mAlbumAdapter.setOnItemClickListener(new GenderAlbumAdapter.GenderAlbumOnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Log.i(TAG, "onItemClick: " + position +"--");
+
+                ((HomeActivity)getActivity()).replaceFragment(DetailAlbumFragment.newInstance(mGenderAlbumData.get(position)));
             }
         });
     }
@@ -93,10 +102,10 @@ public class GenderAlbumFragment extends Fragment {
 
     public GenderAlbumAsync.GenderAlbumDataCallback albumDataCallback = new GenderAlbumAsync.GenderAlbumDataCallback() {
         @Override
-        public void callBack(ArrayList<HotMusicModel> data) {
-            if (mData.size() != 0) mData.remove(mData.size() - 1);
+        public void callBack(ArrayList<AlbumModel> data) {
+            if (mGenderAlbumData.size() != 0) mGenderAlbumData.remove(mGenderAlbumData.size() - 1);
 
-            mData.addAll(data);
+            mGenderAlbumData.addAll(data);
             mAlbumAdapter.setNotifiDataChange();
 
         }

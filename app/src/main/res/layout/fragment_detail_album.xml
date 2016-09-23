@@ -1,13 +1,72 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
     tools:context="com.edu.gvn.jsoupdemo.fragment.online.album.DetailAlbumFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/frame_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="250dp">
 
-</FrameLayout>
+
+        <ImageView
+            android:elevation="8dp"
+            android:outlineProvider="bounds"
+            android:src="@mipmap/ic_launcher"
+            android:scaleType="centerCrop"
+            android:id="@+id/fragment_detail_album_image_album"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:elevation="8dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:lines="1"
+                android:ellipsize="start"
+                android:textSize="14sp"
+                android:text="Hihi Đồ ngốc"
+                android:id="@+id/fragment_detail_album_name"
+                android:textColor="@color/white"
+                android:layout_marginLeft="16dp"/>
+
+            <TextView
+                android:textSize="12sp"
+                android:id="@+id/fragment_detail_album_artist_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shipper đẹp trai"
+
+                android:textColor="@color/white"/>
+
+
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/frame_image"
+        android:layout_width="match_parent"
+        android:id="@+id/fragment_detail_album_list_song_of_album"
+        android:layout_height="match_parent"/>
+
+
+</RelativeLayout>

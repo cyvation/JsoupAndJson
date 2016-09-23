@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.adapter.HotOrAlbumMusicAdapter;
 import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
-import com.edu.gvn.jsoupdemo.model.online.HotMusicModel;
+import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.edu.gvn.jsoupdemo.network.XmlParser.HotMusicParserAsync;
 
 import java.util.ArrayList;
@@ -28,14 +28,14 @@ public class VietNamFragment extends Fragment {
     private RecyclerView mListAlbumHot;
     private HotOrAlbumMusicAdapter mAdapter;
     private HotMusicParserAsync mHotMusicAsync;
-    private ArrayList<HotMusicModel> mData = new ArrayList<>();
+    private ArrayList<AlbumModel> mData = new ArrayList<>();
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mHotMusicAsync = new HotMusicParserAsync(new HotMusicParserAsync.GetDataCallback() {
             @Override
-            public void getData(ArrayList<HotMusicModel> data) {
+            public void getData(ArrayList<AlbumModel> data) {
                 mData = data;
                 mAdapter.addData(data);
             }
