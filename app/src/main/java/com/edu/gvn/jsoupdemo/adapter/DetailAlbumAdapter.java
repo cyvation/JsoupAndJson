@@ -21,6 +21,8 @@ public class DetailAlbumAdapter extends RecyclerView.Adapter<DetailAlbumAdapter.
     private Context mContext;
     private LayoutInflater inflater;
     private ArrayList<DetailAlbumModel> mDetailAlbumData;
+    private IReyclerViewItemOnClickListener itemOnClickListener;
+
 
     public DetailAlbumAdapter(Context context, ArrayList<DetailAlbumModel> mDetailAlbumData) {
         this.mContext = context;
@@ -52,6 +54,23 @@ public class DetailAlbumAdapter extends RecyclerView.Adapter<DetailAlbumAdapter.
             super(itemView);
             txtOrder = (TextView) itemView.findViewById(R.id.fragment_detail_album_order);
             txtNameSong = (TextView) itemView.findViewById(R.id.fragment_detail_album_song_name);
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemOnClickListener.onItemClick(v,getAdapterPosition());
+                }
+            });
+
         }
+    }
+
+    public void setItemOnClickListener(IReyclerViewItemOnClickListener itemOnClickListener) {
+        this.itemOnClickListener = itemOnClickListener;
+    }
+
+    public interface IReyclerViewItemOnClickListener {
+        void onItemClick(View v , int position);
     }
 }

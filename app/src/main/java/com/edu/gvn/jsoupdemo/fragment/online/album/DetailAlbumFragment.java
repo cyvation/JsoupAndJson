@@ -20,7 +20,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
+import com.edu.gvn.jsoupdemo.activity.HomeActivity;
 import com.edu.gvn.jsoupdemo.adapter.DetailAlbumAdapter;
+import com.edu.gvn.jsoupdemo.fragment.PlayerFragment;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.edu.gvn.jsoupdemo.model.online.DetailAlbumModel;
 import com.edu.gvn.jsoupdemo.network.XmlParser.DetailAlbumAsync;
@@ -34,7 +36,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.DetailAlbumCallback {
+public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.DetailAlbumCallback, DetailAlbumAdapter.IReyclerViewItemOnClickListener {
     public static final String KEY_ALBUM = "key.album";
     private static final String TAG = DetailAlbumFragment.class.getSimpleName();
 
@@ -48,8 +50,9 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
     private TextView txtAlbumName;
     private TextView txtArtistName;
 
-    public static DetailAlbumFragment newInstance(AlbumModel albumModel) {
+    private DetailAlbumAdapter.IReyclerViewItemOnClickListener itemOnClickListener;
 
+    public static DetailAlbumFragment newInstance(AlbumModel albumModel) {
         Bundle args = new Bundle();
         args.putParcelable(KEY_ALBUM, albumModel);
         DetailAlbumFragment fragment = new DetailAlbumFragment();
@@ -74,6 +77,7 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
 
         mDetailAlbumData = new ArrayList<>();
         mDetailAlbumAdapter = new DetailAlbumAdapter(getActivity(), mDetailAlbumData);
+        mDetailAlbumAdapter.setItemOnClickListener(this);
 
         DetailAlbumAsync detailAlbumAsync = new DetailAlbumAsync(this);
         detailAlbumAsync.execute(mAlbumModel.getHref());
@@ -82,10 +86,12 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_detail_album, container, false);
+
         mRecyclerListSong = (RecyclerView) v.findViewById(R.id.fragment_detail_album_list_song_of_album);
         mImageAlbum = (ImageView) v.findViewById(R.id.fragment_detail_album_image_album);
-        txtAlbumName = (TextView) v.findViewById(R.id.fragment_detail_album_name);
-        txtArtistName = (TextView) v.findViewById(R.id.fragment_detail_album_artist_name);
+     //   txtAlbumName = (TextView) v.findViewById(R.id.fragment_detail_album_name);
+     //   txtArtistName = (TextView) v.findViewById(R.id.fragment_detail_album_artist_name);
+
         return v;
     }
 
@@ -102,10 +108,11 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
         Log.i(TAG, "onViewCreated: " + mAlbumModel.getTitle());
 
         int indexLastDash = mAlbumModel.getTitle().indexOf("-");
-        String title = mAlbumModel.getTitle().substring(0, indexLastDash -1);
-        String name = mAlbumModel.getTitle().substring(indexLastDash + 2);
-        txtAlbumName.setText(title);
-        txtArtistName.setText(name);
+     //   String title = mAlbumModel.getTitle().substring(0, indexLastDash - 1);
+      //  String name = mAlbumModel.getTitle().substring(indexLastDash + 2);
+      //  txtAlbumName.setText(title);
+      //  txtArtistName.setText(name);
+
     }
 
     @Override
@@ -149,5 +156,11 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
         } catch (IOException e) {
             return null;
         }
+    }
+
+
+    @Override
+    public void onItemClick(View v, int position) {
+        ((HomeActivity) getActivity()).replaceFragmentWithToolbar(PlayerFragment.newInstance());
     }
 }

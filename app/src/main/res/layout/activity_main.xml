@@ -4,12 +4,13 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-      tools:context=".activity.HomeActivity">
+    tools:context=".activity.HomeActivity">
 
     <RelativeLayout
         android:id="@+id/main_with_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <include
             android:id="@+id/toolbar"
@@ -24,18 +25,10 @@
 
     </RelativeLayout>
 
-    <!--<fragment-->
-    <!--android:id="@+id/frg_nav_drawer_onl"-->
-    <!--android:name="com.edu.gvn.jsoupdemo.fragment.online.NavigationDrawerOnlineFragment"-->
-    <!--android:layout_width="280dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_gravity="start|left"-->
-    <!--tools:layout="@layout/fragment_navigation_drawer_online" />-->
-
     <RelativeLayout
+        android:id="@+id/rl_nav"
         android:layout_width="280dp"
         android:layout_height="match_parent"
-        android:id="@+id/rl_nav"
         android:layout_gravity="left|start">
 
         <include

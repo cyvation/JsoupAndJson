@@ -8,6 +8,14 @@
     <dimen name="nav_drawer_item_margin_left">16dp</dimen>
     <dimen name="nav_item_height">48dp</dimen>
     <dimen name="nav_divider_height">1dp</dimen>
+
     <dimen name="image_size_bottom_bar_icon">24dp</dimen>
+
+    <dimen name="song_image_margin_top">20dp</dimen>
+    <dimen name="title_song_margin_top">15dp</dimen>
+
+    <dimen name="player_title_text_size">20sp</dimen>
+    <dimen name="player_artist_text_size">12sp</dimen>
+    <dimen name="player_progressbar_margin_top">25dp</dimen>
 
 </resources>

@@ -46,7 +46,7 @@ public class HotMusicFragment extends Fragment implements View.OnClickListener {
         mTabVn.setOnClickListener(this);
         mTabKorea.setOnClickListener(this);
         mTabRapVn.setOnClickListener(this);
-        ((HomeActivity)getActivity()).replaceFragment(this,new VietNamFragment(),R.id.child_fragment);
+        ((HomeActivity)getActivity()).addFragment(this,new VietNamFragment(),R.id.child_fragment);
         return mView;
     }
 
@@ -56,16 +56,16 @@ public class HotMusicFragment extends Fragment implements View.OnClickListener {
         animTab(v);
         switch (v.getId()) {
             case R.id.rll_vn:
-                ((HomeActivity)getActivity()).replaceFragment(this,new VietNamFragment(),R.id.child_fragment);
+                ((HomeActivity)getActivity()).addFragment(this,new VietNamFragment(),R.id.child_fragment);
                 break;
             case R.id.rll_us:
-                ((HomeActivity)getActivity()).replaceFragment(this,new UsUkFragment(),R.id.child_fragment);
+                ((HomeActivity)getActivity()).addFragment(this,new UsUkFragment(),R.id.child_fragment);
                 break;
             case R.id.rll_korea:
-                ((HomeActivity)getActivity()).replaceFragment(this,new KoreaFragment(),R.id.child_fragment);
+                ((HomeActivity)getActivity()).addFragment(this,new KoreaFragment(),R.id.child_fragment);
                 break;
             case R.id.rll_rap_vn:
-                ((HomeActivity)getActivity()).replaceFragment(this,new VietRapFragment(),R.id.child_fragment);
+                ((HomeActivity)getActivity()).addFragment(this,new VietRapFragment(),R.id.child_fragment);
                 break;
         }
     }

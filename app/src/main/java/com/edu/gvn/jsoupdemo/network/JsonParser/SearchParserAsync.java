@@ -94,5 +94,7 @@ public class SearchParserAsync extends AsyncTask<String, Void, SearchModel> {
             Log.i(TAG, "onPostExecute: not null");
             callBack.callData(searchModel);
         }
+
+        this.cancel(true);
     }
 }

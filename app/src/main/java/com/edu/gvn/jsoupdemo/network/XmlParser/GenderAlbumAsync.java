@@ -73,5 +73,6 @@ public class GenderAlbumAsync extends AsyncTask<String, Void, ArrayList<AlbumMod
         if (albumModels !=null&& albumModels.size()!=0){
             getData.callBack(albumModels);
         }
+        this.cancel(true);
     }
 }

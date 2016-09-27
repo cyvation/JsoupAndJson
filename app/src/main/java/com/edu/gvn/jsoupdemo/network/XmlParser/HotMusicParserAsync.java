@@ -91,5 +91,6 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<Album
             callback.getData(albumModels);
             Log.i(TAG, "onPostExecute: " + albumModels.size());
         }
+        this.cancel(true);
     }
 }

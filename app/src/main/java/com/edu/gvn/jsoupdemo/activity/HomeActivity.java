@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.edu.gvn.jsoupdemo.R;
+import com.edu.gvn.jsoupdemo.fragment.PlayerFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.NavigationDrawerOnlineFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.SearchFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.album.AlbumCategoryFragment;
@@ -24,7 +25,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
     private Toolbar mToolbar;
     private NavigationDrawerOnlineFragment navigationDrawerOnlineFragment;
 
-    private Handler handler ;
+    private static final int DELAY_CLOSE_NAV = 600;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +35,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
         setupToolbar();
         setNavOnlFragment();
 
-
-
-
     }
-
 
     private void setNavOnlFragment() {
         navigationDrawerOnlineFragment = new NavigationDrawerOnlineFragment();
@@ -52,66 +49,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
     private void setupToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
     }
 
-
-    @Override
-    public void onItemClick(View v) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                navigationDrawerOnlineFragment.closeNavDrawer();
-            }
-        },600);
-
-        switch (v.getId()) {
-            case R.id.ll_voice_serch:
-                break;
-            case R.id.ll_search:
-                if (!isFishLoad)
-                    replaceFragment(new SearchFragment());
-                else {
-                    addFragment(new SearchFragment());
-                    isFishLoad = false;
-                }
-                break;
-            case R.id.ll_hot_music:
-                if (!isFishLoad)
-                    replaceFragment(new HotMusicFragment());
-                else {
-                    addFragment(new HotMusicFragment());
-                    isFishLoad = false;
-                }
-
-                break;
-            case R.id.ll_rank:
-                break;
-            case R.id.ll_artists:
-                break;
-            case R.id.ll_albums:
-                if (!isFishLoad)
-                    replaceFragment(new AlbumCategoryFragment());
-                else {
-                    addFragment(new AlbumCategoryFragment());
-                    isFishLoad = false;
-                }
-
-                break;
-
-            case R.id.ll_top_ten:
-                break;
-            case R.id.ll_option_lyric_screen:
-                break;
-            case R.id.ll_option_suggested_apps:
-                break;
-            case R.id.ll_option_settings:
-                break;
-            case R.id.ll_option_exit:
-                break;
-
-
-        }
-    }
 
     //if parent fragment
     public void addFragment(Fragment toFragment) {
@@ -125,29 +65,34 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
             transaction.addToBackStack(backStackName);
             transaction.commit();
         }
-
     }
-
-
 
     public void replaceFragment(Fragment fragment) {
         String backStackName = fragment.getClass().getName();
         String tag = backStackName;
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-
-        // nếu tìm thấy fragment này trong backStack thì return true
-        // else return false.
-        
         boolean isExistFragment = manager.popBackStackImmediate(backStackName, 0);
         if (!isExistFragment) {
             transaction.replace(R.id.rl_parent, fragment);
             transaction.addToBackStack(backStackName);
             transaction.commit();
         }
-
-
     }
+
+    public void replaceFragmentWithToolbar(Fragment fragment) {
+        String backStackName = fragment.getClass().getName();
+        String tag = backStackName;
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        boolean isExistFragment = manager.popBackStackImmediate(backStackName, 0);
+        if (!isExistFragment) {
+            transaction.replace(R.id.main_with_toolbar, fragment);
+            transaction.addToBackStack(backStackName);
+            transaction.commit();
+        }
+    }
+
 
     //if parent fragment
     public void addFragment(Fragment fromFragment, Fragment toFragment, int idParentView) {
@@ -171,4 +116,75 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
         transaction.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment mFragment = fm.findFragmentById(R.id.main_with_toolbar);
+        fm.popBackStack();
+        if (mFragment instanceof PlayerFragment) {
+            mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        }
+    }
+
+    @Override
+    public void onItemClick(View v) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                navigationDrawerOnlineFragment.closeNavDrawer();
+            }
+        }, DELAY_CLOSE_NAV);
+
+        switch (v.getId()) {
+            case R.id.ll_voice_serch:
+                break;
+            case R.id.ll_search:
+                if (!isFishLoad)
+                    replaceFragment(new SearchFragment());
+                else {
+                    addFragment(new SearchFragment());
+                    isFishLoad = false;
+                }
+                break;
+            case R.id.ll_hot_music:
+                if (!isFishLoad)
+                    replaceFragment(new HotMusicFragment());
+                else {
+                    addFragment(new HotMusicFragment());
+                    isFishLoad = false;
+                }
+                break;
+            case R.id.ll_rank:
+                break;
+            case R.id.ll_artists:
+                break;
+            case R.id.ll_albums:
+                if (!isFishLoad)
+                    replaceFragment(new AlbumCategoryFragment());
+                else {
+                    addFragment(new AlbumCategoryFragment());
+                    isFishLoad = false;
+                }
+                break;
+            case R.id.ll_top_ten:
+                break;
+            case R.id.ll_option_lyric_screen:
+                break;
+            case R.id.ll_option_suggested_apps:
+                break;
+            case R.id.ll_option_settings:
+                break;
+            case R.id.ll_option_exit:
+                break;
+
+
+        }
+    }
+
+    // biến variable
+    //contructor
+    // lifecicler
+    // func
+    // even
+    // innerclass
 }

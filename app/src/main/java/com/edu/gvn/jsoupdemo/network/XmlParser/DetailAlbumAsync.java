@@ -65,5 +65,6 @@ public class DetailAlbumAsync extends AsyncTask<String, Void, ArrayList<DetailAl
         if (detailAlbumModels != null && detailAlbumModels.size() != 0) {
             detailAlbumCallback.callBack(detailAlbumModels);
         }
+        this.cancel(true);
     }
 }
