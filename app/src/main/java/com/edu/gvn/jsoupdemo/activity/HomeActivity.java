@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -18,22 +17,28 @@ import com.edu.gvn.jsoupdemo.fragment.online.album.AlbumCategoryFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.hot.HotMusicFragment;
 
 
-public class HomeActivity extends AppCompatActivity implements NavigationDrawerOnlineFragment.GetNavItemClickListener {
-
-    private boolean isFishLoad = true;
+public class HomeActivity extends BaseActivity implements NavigationDrawerOnlineFragment.GetNavItemClickListener {
     private static final String TAG = HomeActivity.class.getSimpleName();
-    private Toolbar mToolbar;
+
+    private static final int DELAY_CLOSE_NAV = 300;
+    private boolean isFishLoad = true;
+
     private NavigationDrawerOnlineFragment navigationDrawerOnlineFragment;
 
-    private static final int DELAY_CLOSE_NAV = 600;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         setupToolbar();
         setNavOnlFragment();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
     }
 
@@ -52,8 +57,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
 
     }
 
-
-    //if parent fragment
     public void addFragment(Fragment toFragment) {
         String backStackName = toFragment.getClass().getName();
         String tag = backStackName;
@@ -93,8 +96,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
         }
     }
 
-
-    //if parent fragment
     public void addFragment(Fragment fromFragment, Fragment toFragment, int idParentView) {
         String backStackName = toFragment.getClass().getName();
         String tag = backStackName;
@@ -115,6 +116,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationDrawerO
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
 
     @Override
     public void onBackPressed() {

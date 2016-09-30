@@ -89,8 +89,8 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
 
         mRecyclerListSong = (RecyclerView) v.findViewById(R.id.fragment_detail_album_list_song_of_album);
         mImageAlbum = (ImageView) v.findViewById(R.id.fragment_detail_album_image_album);
-     //   txtAlbumName = (TextView) v.findViewById(R.id.fragment_detail_album_name);
-     //   txtArtistName = (TextView) v.findViewById(R.id.fragment_detail_album_artist_name);
+        //   txtAlbumName = (TextView) v.findViewById(R.id.fragment_detail_album_name);
+        //   txtArtistName = (TextView) v.findViewById(R.id.fragment_detail_album_artist_name);
 
         return v;
     }
@@ -108,10 +108,10 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
         Log.i(TAG, "onViewCreated: " + mAlbumModel.getTitle());
 
         int indexLastDash = mAlbumModel.getTitle().indexOf("-");
-     //   String title = mAlbumModel.getTitle().substring(0, indexLastDash - 1);
-      //  String name = mAlbumModel.getTitle().substring(indexLastDash + 2);
-      //  txtAlbumName.setText(title);
-      //  txtArtistName.setText(name);
+        //   String title = mAlbumModel.getTitle().substring(0, indexLastDash - 1);
+        //  String name = mAlbumModel.getTitle().substring(indexLastDash + 2);
+        //  txtAlbumName.setText(title);
+        //  txtArtistName.setText(name);
 
     }
 
@@ -123,7 +123,7 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
     }
 
 
-    private static final float BLUR_RADIUS = 3f;
+    private static final float BLUR_RADIUS = 2f;
     private static final float BLUR_SCALE = 0.4f;
 
     public Bitmap blur(Bitmap image) {
