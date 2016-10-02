@@ -40,7 +40,7 @@ public class Player implements MediaPlayer.OnCompletionListener {
             if (mPlayer != null) {
                 mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 mPlayer.reset();
-                mPlayer.setDataSource("");
+                mPlayer.setDataSource(dataUri);
                 mPlayer.prepare();
                 mPlayer.start();
             }

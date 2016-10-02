@@ -23,6 +23,7 @@ public class PlayService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.i(TAG, "onBind: binded");
+        play();
         return binder;
     }
 
@@ -52,4 +53,7 @@ public class PlayService extends Service {
       }
     }
 
+    public void play(){
+        mPlayer.setDataSource("http://mp3.zing.vn/embed/song/ZW7UFI6I");
+    }
 }
