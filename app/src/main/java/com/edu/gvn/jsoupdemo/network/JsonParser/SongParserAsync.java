@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
 import com.edu.gvn.jsoupdemo.model.online.SongOnlModel;
 import com.google.gson.Gson;
 
@@ -38,7 +39,14 @@ public class SongParserAsync extends AsyncTask<String, Void, SongOnlModel> {
         InputStreamReader streamReader;
         try {
             String simpleUrl = strings[0];
-            Document root = Jsoup.connect(simpleUrl).get();
+
+            StringBuilder buildUrl = new StringBuilder();
+            buildUrl.append(Mp3ZingBaseUrl.BASE_ZING_MP3);
+            buildUrl.append(Mp3ZingBaseUrl.LINK_SONG);
+            buildUrl.append(simpleUrl);
+
+            Log.i(TAG, "doInBackground: " + buildUrl.toString());
+            Document root = Jsoup.connect(buildUrl.toString()).get();
             Element e = root.getElementById("html5player");
             String songDataURL = e.attr("data-xml");
 

@@ -3,12 +3,14 @@ package com.edu.gvn.jsoupdemo.fragment.online.album;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,11 +22,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
-import com.edu.gvn.jsoupdemo.activity.HomeActivity;
+import com.edu.gvn.jsoupdemo.activity.BaseActivity;
 import com.edu.gvn.jsoupdemo.adapter.DetailAlbumAdapter;
-import com.edu.gvn.jsoupdemo.fragment.PlayerFragment;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.edu.gvn.jsoupdemo.model.online.DetailAlbumModel;
+import com.edu.gvn.jsoupdemo.model.online.SongOnlModel;
+import com.edu.gvn.jsoupdemo.network.JsonParser.SongParserAsync;
 import com.edu.gvn.jsoupdemo.network.XmlParser.DetailAlbumAsync;
 
 import java.io.IOException;
@@ -50,7 +53,6 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
     private TextView txtAlbumName;
     private TextView txtArtistName;
 
-    private DetailAlbumAdapter.IReyclerViewItemOnClickListener itemOnClickListener;
 
     public static DetailAlbumFragment newInstance(AlbumModel albumModel) {
         Bundle args = new Bundle();
@@ -89,12 +91,13 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
 
         mRecyclerListSong = (RecyclerView) v.findViewById(R.id.fragment_detail_album_list_song_of_album);
         mImageAlbum = (ImageView) v.findViewById(R.id.fragment_detail_album_image_album);
-        //   txtAlbumName = (TextView) v.findViewById(R.id.fragment_detail_album_name);
-        //   txtArtistName = (TextView) v.findViewById(R.id.fragment_detail_album_artist_name);
+        txtAlbumName = (TextView) v.findViewById(R.id.fragment_detail_album_name);
+        txtArtistName = (TextView) v.findViewById(R.id.fragment_detail_album_artist_name);
 
         return v;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -108,10 +111,10 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
         Log.i(TAG, "onViewCreated: " + mAlbumModel.getTitle());
 
         int indexLastDash = mAlbumModel.getTitle().indexOf("-");
-        //   String title = mAlbumModel.getTitle().substring(0, indexLastDash - 1);
-        //  String name = mAlbumModel.getTitle().substring(indexLastDash + 2);
-        //  txtAlbumName.setText(title);
-        //  txtArtistName.setText(name);
+        String title = mAlbumModel.getTitle().substring(0, indexLastDash - 1);
+        String name = mAlbumModel.getTitle().substring(indexLastDash + 2);
+        txtAlbumName.setText(title);
+        txtArtistName.setText(name);
 
     }
 
@@ -126,6 +129,7 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
     private static final float BLUR_RADIUS = 2f;
     private static final float BLUR_SCALE = 0.4f;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public Bitmap blur(Bitmap image) {
         if (null == image) return null;
 
@@ -161,6 +165,20 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
 
     @Override
     public void onItemClick(View v, int position) {
-        ((HomeActivity) getActivity()).replaceFragmentWithToolbar(PlayerFragment.newInstance());
+
+        SongParserAsync songParserAsync = new SongParserAsync(getActivity(), new SongParserAsync.IDataCallBack() {
+            @Override
+            public void callBack(SongOnlModel onlModel) {
+                String url = onlModel.data.get(0).source_list.get(1);
+
+                int indexSlash = url.indexOf("/");
+                String urlData = url.substring(indexSlash);
+
+                BaseActivity.mPlayService.setDataSource("http://org2.s1.mp3.zdn.vn/" +urlData);
+            }
+        });
+        songParserAsync.execute(mDetailAlbumData.get(position).getIDSong());
+
+       // ((HomeActivity) getActivity()).replaceFragmentWithToolbar(PlayerFragment.newInstance());
     }
 }

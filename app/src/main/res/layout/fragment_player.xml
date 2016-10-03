@@ -7,6 +7,8 @@
     tools:context="com.edu.gvn.jsoupdemo.fragment.PlayerFragment">
 
 
+
+
     <info.abdolahi.CircularMusicProgressBar
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fragment_player_progress_bar"
@@ -17,8 +19,8 @@
         android:layout_marginTop="@dimen/player_progressbar_margin_top"
         android:src="@drawable/album_asia_japan"
         app:border_color="#878787"
-        app:border_width="4dp"
         app:border_overlay="true"
+        app:border_width="4dp"
         app:centercircle_diammterer="1"
         app:progress_color="@color/colorAccent"
         app:progress_startAngle="90" />
@@ -36,6 +38,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/player_title_text_size"
         android:textStyle="bold" />
+
 
     <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
         android:id="@+id/fragment_player_song_artist"
@@ -55,6 +58,7 @@
         android:layout_above="@+id/rl_support_song"
         android:layout_marginBottom="45dp">
 
+
         <ImageView
             android:id="@+id/fragment_player_imageview_play_state"
             android:layout_width="48dp"
@@ -67,6 +71,7 @@
             android:src="@drawable/button_state_player" />
 
         <ImageView
+            android:id="@+id/fragment_play_imageview_forward"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -74,6 +79,7 @@
             android:src="@drawable/ic_player_previous" />
 
         <ImageView
+            android:id="@+id/fragment_play_imageview_nexts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -93,26 +99,27 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/seekbar_volume"
+            android:layout_toLeftOf="@+id/fragment_player_seekbar_volume"
             android:src="@drawable/ic_player_volume_low" />
 
         <SeekBar
-            android:id="@+id/seekbar_volume"
+            android:id="@+id/fragment_player_seekbar_volume"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:progress="50" />
+            android:max="10" />
 
         <ImageView
             android:id="@+id/img_volume_hight"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/seekbar_volume"
+            android:layout_toRightOf="@+id/fragment_player_seekbar_volume"
             android:src="@drawable/ic_player_volume_hight" />
 
         <ImageView
+            android:id="@+id/fragment_player_imageview_repeat"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
@@ -123,6 +130,7 @@
             android:src="@drawable/ic_player_repeat" />
 
         <ImageView
+            android:id="@+id/fragment_player_imageview_shuffle"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"

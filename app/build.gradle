@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.edu.gvn.jsoupdemo"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -36,4 +36,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.aliab:circular-music-progressbar:v1.0'
     testCompile 'junit:junit:4.12'
+    compile project(':library')
 }

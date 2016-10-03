@@ -23,7 +23,7 @@ public class PlayService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.i(TAG, "onBind: binded");
-        play();
+
         return binder;
     }
 
@@ -31,7 +31,7 @@ public class PlayService extends Service {
     public void onCreate() {
         Log.i(TAG, "onCreate: created");
         super.onCreate();
-        mPlayer = new Player(this); 
+        mPlayer = new Player(this);
     }
 
     @Override
@@ -47,13 +47,27 @@ public class PlayService extends Service {
     }
 
 
-    public class LocalBinder extends Binder {
-      public PlayService getService(){
-          return PlayService.this ;
-      }
+    public void setDataSource(String url){
+        mPlayer.setDataSource(url);
+    }
+    public boolean isPlaying() {
+        return mPlayer.isPlaying();
     }
 
-    public void play(){
-        mPlayer.setDataSource("http://mp3.zing.vn/embed/song/ZW7UFI6I");
+    public int currentPosition() {
+        return mPlayer.getCurrentPostion();
+    }
+
+    public int maxDuration() {
+        return mPlayer.getDuration();
+    }
+
+    public int getVolume(){
+        return mPlayer.getVolumeLevel();
+    }
+    public class LocalBinder extends Binder {
+        public PlayService getService() {
+            return PlayService.this;
+        }
     }
 }

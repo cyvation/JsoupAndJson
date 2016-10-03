@@ -15,10 +15,11 @@ import java.util.Random;
 
 public class Player implements MediaPlayer.OnCompletionListener {
 
-    public static final int REPEAT_OFF = 0;
-    public static final int REPEAT_ON = 1;
-    public static final int REPEAT_ONE = 2;
+    private static final int REPEAT_OFF = 0;
+    private static final int REPEAT_ON = 1;
+    private static final int REPEAT_ONE = 2;
 
+    private AudioManager mAudioManager;
     private MediaPlayer mPlayer;
     private Context mContext;
     private ArrayList<DetailAlbumModel> mListSongs;
@@ -32,13 +33,16 @@ public class Player implements MediaPlayer.OnCompletionListener {
         this.mContext = context;
         mRandom = new Random();
         mPlayer = new MediaPlayer();
+        mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mPlayer.setOnCompletionListener(this);
+
+        mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+
     }
 
     public void setDataSource(String dataUri) {
         try {
             if (mPlayer != null) {
-                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 mPlayer.reset();
                 mPlayer.setDataSource(dataUri);
                 mPlayer.prepare();
@@ -71,7 +75,6 @@ public class Player implements MediaPlayer.OnCompletionListener {
     public void start() {
         if (mPlayer != null)
             mPlayer.start();
-
     }
 
     public int getDuration() {
@@ -108,6 +111,17 @@ public class Player implements MediaPlayer.OnCompletionListener {
         this.isShuffle = shuffle;
     }
 
+    public boolean isPlaying() {
+        if (mPlayer != null) {
+            return mPlayer.isPlaying();
+        }
+        return false;
+    }
+
+    public int getVolumeLevel() {
+        return mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+    }
+
     @Override
     public void onCompletion(MediaPlayer mp) {
         switch (mRepeat) {
@@ -139,7 +153,7 @@ public class Player implements MediaPlayer.OnCompletionListener {
                 break;
             default:
 
-
         }
     }
+
 }

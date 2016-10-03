@@ -24,9 +24,13 @@ public class DetailAlbumModel {
         return mOrder;
     }
 
-    public String mIDSong() {
+    public String getIDSong() {
         return mIDSong;
     }
 
+    @Override
+    public String toString() {
+        return mOrder + " - " + mIDSong ;
+    }
 }
 

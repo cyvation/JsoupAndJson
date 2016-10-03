@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.cjj.SnailBar;
 import com.edu.gvn.jsoupdemo.service.PlayService;
 
 /**
@@ -19,8 +20,9 @@ import com.edu.gvn.jsoupdemo.service.PlayService;
 public class BaseActivity extends AppCompatActivity {
     private static final String KEY_PREFERENCE = "com.edu.gvn.jsoupdemo.shareref";
     private static final String TAG = BaseActivity.class.getSimpleName();
-    public PlayService mPlayService;
+    public static PlayService mPlayService;
     private boolean isServiceConnected;
+    private SnailBar snailBar ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class BaseActivity extends AppCompatActivity {
             Log.i(TAG, "onResume: first");
             firstRunPreferences.edit().putBoolean("first.run", false).apply();
         }
+
 
     }
 
