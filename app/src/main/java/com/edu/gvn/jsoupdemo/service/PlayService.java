@@ -9,6 +9,9 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.edu.gvn.jsoupdemo.common.Player;
+import com.edu.gvn.jsoupdemo.model.online.DetailAlbumModel;
+
+import java.util.ArrayList;
 
 /**
  * Created by hnc on 30/09/2016.
@@ -46,10 +49,14 @@ public class PlayService extends Service {
         super.onDestroy();
     }
 
-
-    public void setDataSource(String url){
-        mPlayer.setDataSource(url);
+    public void setListAlbum(ArrayList<DetailAlbumModel> mData) {
+        mPlayer.setDataAlbumList(mData);
     }
+
+    public void playIndex(int index) {
+        mPlayer.playIndex(index);
+    }
+
     public boolean isPlaying() {
         return mPlayer.isPlaying();
     }
@@ -62,9 +69,34 @@ public class PlayService extends Service {
         return mPlayer.getDuration();
     }
 
-    public int getVolume(){
+    public int getVolume() {
         return mPlayer.getVolumeLevel();
     }
+
+    public boolean getShuffle() {
+        return mPlayer.getShuffle();
+    }
+
+    public int getRepeat() {
+        return mPlayer.getRepeat();
+    }
+
+    public String getNameSong() {
+        return mPlayer.getNameSong();
+    }
+
+    public String getArtistSong() {
+        return mPlayer.getArtistSong();
+    }
+
+    public String getCover() {
+        return mPlayer.getLinkCover();
+    }
+
+    public String getDownload() {
+        return mPlayer.getLinkDownload();
+    }
+
     public class LocalBinder extends Binder {
         public PlayService getService() {
             return PlayService.this;

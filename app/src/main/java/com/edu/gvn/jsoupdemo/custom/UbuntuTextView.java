@@ -1,7 +1,6 @@
 package com.edu.gvn.jsoupdemo.custom;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -27,7 +26,6 @@ public class UbuntuTextView extends TextView {
     }
 
     private void fontText(Context context){
-        Typeface tf = Typeface.createFromAsset(context.getAssets(),"font/Ubuntu-MI.ttf");
-        setTypeface(tf);
+
     }
 }

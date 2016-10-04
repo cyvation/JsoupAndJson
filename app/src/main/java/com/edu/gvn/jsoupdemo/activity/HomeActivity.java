@@ -1,7 +1,6 @@
 package com.edu.gvn.jsoupdemo.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -20,7 +19,6 @@ import com.edu.gvn.jsoupdemo.fragment.online.hot.HotMusicFragment;
 public class HomeActivity extends BaseActivity implements NavigationDrawerOnlineFragment.GetNavItemClickListener {
     private static final String TAG = HomeActivity.class.getSimpleName();
 
-    private static final int DELAY_CLOSE_NAV = 300;
     private boolean isFishLoad = true;
 
     private NavigationDrawerOnlineFragment navigationDrawerOnlineFragment;
@@ -130,12 +128,8 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
 
     @Override
     public void onItemClick(View v) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                navigationDrawerOnlineFragment.closeNavDrawer();
-            }
-        }, DELAY_CLOSE_NAV);
+
+        navigationDrawerOnlineFragment.closeNavDrawer();
 
         switch (v.getId()) {
             case R.id.ll_voice_serch:

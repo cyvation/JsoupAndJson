@@ -53,7 +53,7 @@ public class SongParserAsync extends AsyncTask<String, Void, SongOnlModel> {
             Log.i(TAG, "doInBackground: " + songDataURL);
             URL mUrl = new URL(songDataURL);
             httpUrlConn = (HttpURLConnection) mUrl.openConnection();
-            httpUrlConn.setReadTimeout(15000);
+            httpUrlConn.setReadTimeout(20000);
 
             streamReader = new InputStreamReader(httpUrlConn.getInputStream());
 

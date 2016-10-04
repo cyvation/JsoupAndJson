@@ -3,8 +3,11 @@ package com.edu.gvn.jsoupdemo.common;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.util.Log;
 
 import com.edu.gvn.jsoupdemo.model.online.DetailAlbumModel;
+import com.edu.gvn.jsoupdemo.model.online.SongOnlModel;
+import com.edu.gvn.jsoupdemo.network.JsonParser.SongParserAsync;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -29,6 +32,11 @@ public class Player implements MediaPlayer.OnCompletionListener {
     private int mRepeat;
     private Random mRandom;
 
+    private String nameSong;
+    private String artistSong;
+    private String linkCover;
+    private String linkDownload;
+
     public Player(Context context) {
         this.mContext = context;
         mRandom = new Random();
@@ -47,11 +55,52 @@ public class Player implements MediaPlayer.OnCompletionListener {
                 mPlayer.setDataSource(dataUri);
                 mPlayer.prepare();
                 mPlayer.start();
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void setDataAlbumList(ArrayList<DetailAlbumModel> mData) {
+        if (mListSongs != null) mListSongs.clear();
+        this.mListSongs = mData;
+    }
+
+    public void playIndex(int index) {
+        SongParserAsync songParserAsync = new SongParserAsync(mContext, new SongParserAsync.IDataCallBack() {
+            public static final String TAG = "huutho";
+
+            @Override
+            public void callBack(SongOnlModel onlModel) {
+                String url = onlModel.data.get(0).source_list.get(1);
+                int indexSlash = url.indexOf("/");
+                String urlData = url.substring(indexSlash);
+                String dataStream = "http://org2.s1.mp3.zdn.vn/" + urlData;
+                setDataSource(dataStream);
+
+
+                StringBuilder coverBuilder = new StringBuilder();
+                coverBuilder.append("http://image.mp3.zdn.vn");
+                coverBuilder.append(onlModel.data.get(0).cover);
+                linkCover = coverBuilder.toString();
+
+                nameSong = onlModel.data.get(0).name;
+                artistSong = onlModel.data.get(0).artist;
+                linkDownload = dataStream;
+
+                Log.i(TAG, "callBack: " + nameSong + "\n" + artistSong + "\n" + linkDownload + "\n" + linkCover);
+            }
+        });
+        songParserAsync.execute(mListSongs.get(index).getIDSong());
+    }
+
+    public boolean isPlaying() {
+        if (mPlayer != null) {
+            return mPlayer.isPlaying();
+        }
+        return false;
     }
 
     public void next(int currentSong) {
@@ -77,19 +126,6 @@ public class Player implements MediaPlayer.OnCompletionListener {
             mPlayer.start();
     }
 
-    public int getDuration() {
-        if (mPlayer != null)
-            return mPlayer.getDuration();
-
-        return -1;
-    }
-
-    public int getCurrentPostion() {
-        if (mPlayer != null)
-            return mPlayer.getCurrentPosition();
-        return -1;
-    }
-
     public void seekTo(int msec) {
         if (mPlayer != null) {
             mPlayer.pause();
@@ -111,16 +147,58 @@ public class Player implements MediaPlayer.OnCompletionListener {
         this.isShuffle = shuffle;
     }
 
-    public boolean isPlaying() {
-        if (mPlayer != null) {
-            return mPlayer.isPlaying();
-        }
-        return false;
+    public boolean getShuffle() {
+        return isShuffle;
+    }
+
+    public int getRepeat() {
+        return mRepeat;
+    }
+
+    public int getDuration() {
+        if (mPlayer != null)
+            return mPlayer.getDuration();
+
+        return -1;
+    }
+
+    public int getCurrentPostion() {
+        if (mPlayer != null)
+            return mPlayer.getCurrentPosition();
+        return -1;
     }
 
     public int getVolumeLevel() {
         return mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
     }
+
+    public String getNameSong() {
+        return nameSong;
+    }
+
+    public String getArtistSong() {
+        return artistSong;
+    }
+
+    public String getLinkCover() {
+        return linkCover;
+    }
+
+    public String getLinkDownload() {
+        return linkDownload;
+    }
+
+    /**
+     * - REPEAT OFF :
+     * + nếu trộn : thì random bài hát
+     * + nếu k trộn : tăng index bài hát, nếu bài cuối rồi thì stop
+     * - REPEAT ON :
+     * + neew trộn : random bài hát
+     * + nếu k trộn : tăng index bài hát, nếu bài cuối rồi thì trở về bài 1
+     * - REEPEAT ONE : ..
+     *
+     * @param mp : my media player
+     */
 
     @Override
     public void onCompletion(MediaPlayer mp) {
@@ -129,10 +207,17 @@ public class Player implements MediaPlayer.OnCompletionListener {
 
                 if (isShuffle) {
                     indexSong = mRandom.nextInt(mListSongs.size() - 1);
-                    setDataSource(mListSongs.get(indexSong).getmOrder());
+                    //  setDataSource(mListSongs.get(indexSong).getmOrder());
+                    playIndex(indexSong);
                 } else {
-                    indexSong++;
-                    setDataSource(mListSongs.get(indexSong).getmOrder());
+                    if (indexSong == mListSongs.size() - 1) {
+                        mp.stop();
+                        break;
+                    } else {
+                        indexSong++;
+                        //   setDataSource(mListSongs.get(indexSong).getmOrder());
+                        playIndex(indexSong);
+                    }
                 }
 
                 break;
@@ -140,16 +225,19 @@ public class Player implements MediaPlayer.OnCompletionListener {
 
                 if (isShuffle) {
                     indexSong = mRandom.nextInt(mListSongs.size() - 1);
-                    setDataSource(mListSongs.get(indexSong).getmOrder());
+                    // setDataSource(mListSongs.get(indexSong).getmOrder());
+                    playIndex(indexSong);
                 } else {
 
                     indexSong = (indexSong == mListSongs.size() - 1) ? 0 : (indexSong++);
-                    setDataSource(mListSongs.get(indexSong).getmOrder());
+                    //  setDataSource(mListSongs.get(indexSong).getmOrder());
+                    playIndex(indexSong);
                 }
 
                 break;
             case REPEAT_ONE:
-                setDataSource(mListSongs.get(indexSong).getmOrder());
+                //   setDataSource(mListSongs.get(indexSong).getmOrder());
+                playIndex(indexSong);
                 break;
             default:
 

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
@@ -49,17 +50,42 @@ public class DetailAlbumAdapter extends RecyclerView.Adapter<DetailAlbumAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtOrder, txtNameSong;
+        private ImageView download, add, toPlayer;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             txtOrder = (TextView) itemView.findViewById(R.id.fragment_detail_album_order);
             txtNameSong = (TextView) itemView.findViewById(R.id.fragment_detail_album_song_name);
 
+            download = (ImageView) itemView.findViewById(R.id.fragment_detail_album_btn_download);
+            add = (ImageView) itemView.findViewById(R.id.fragment_detail_album_btn_add);
+            toPlayer = (ImageView) itemView.findViewById(R.id.fragment_detail_album_btn_to_player);
+
+            download.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemOnClickListener.onDownloadClick(v, getAdapterPosition());
+                }
+            });
+
+            add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemOnClickListener.onAddClick(v, getAdapterPosition());
+                }
+            });
+
+            toPlayer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemOnClickListener.onToPlayerClick(v, getAdapterPosition());
+                }
+            });
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemOnClickListener.onItemClick(v,getAdapterPosition());
+                    itemOnClickListener.onItemClick(v, getAdapterPosition());
                 }
             });
 
@@ -71,6 +97,12 @@ public class DetailAlbumAdapter extends RecyclerView.Adapter<DetailAlbumAdapter.
     }
 
     public interface IReyclerViewItemOnClickListener {
-        void onItemClick(View v , int position);
+        void onItemClick(View v, int position);
+
+        void onDownloadClick(View v, int position);
+
+        void onAddClick(View v, int position);
+
+        void onToPlayerClick(View v, int position);
     }
 }

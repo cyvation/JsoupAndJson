@@ -16,6 +16,6 @@
 
     <dimen name="player_title_text_size">20sp</dimen>
     <dimen name="player_artist_text_size">12sp</dimen>
-    <dimen name="player_progressbar_margin_top">25dp</dimen>
+    <dimen name="player_progressbar_margin_top">55dp</dimen>
 
 </resources>

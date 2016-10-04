@@ -7,8 +7,6 @@
     tools:context="com.edu.gvn.jsoupdemo.fragment.PlayerFragment">
 
 
-
-
     <info.abdolahi.CircularMusicProgressBar
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fragment_player_progress_bar"
@@ -20,8 +18,8 @@
         android:src="@drawable/album_asia_japan"
         app:border_color="#878787"
         app:border_overlay="true"
-        app:border_width="4dp"
-        app:centercircle_diammterer="1"
+        app:border_width="5dp"
+        app:centercircle_diammterer="3"
         app:progress_color="@color/colorAccent"
         app:progress_startAngle="90" />
 
@@ -127,7 +125,7 @@
             android:layout_toLeftOf="@+id/img_volume_low"
             android:padding="3dp"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_player_repeat" />
+            android:src="@drawable/button_state_repeat" />
 
         <ImageView
             android:id="@+id/fragment_player_imageview_shuffle"
@@ -138,7 +136,7 @@
             android:layout_toRightOf="@+id/img_volume_hight"
             android:padding="3dp"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_player_shuffle" />
+            android:src="@drawable/button_state_shuffle" />
 
 
     </RelativeLayout>

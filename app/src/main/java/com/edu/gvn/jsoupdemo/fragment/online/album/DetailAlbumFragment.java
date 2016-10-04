@@ -1,14 +1,8 @@
 package com.edu.gvn.jsoupdemo.fragment.online.album;
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -23,17 +17,14 @@ import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.activity.BaseActivity;
+import com.edu.gvn.jsoupdemo.activity.HomeActivity;
 import com.edu.gvn.jsoupdemo.adapter.DetailAlbumAdapter;
+import com.edu.gvn.jsoupdemo.fragment.PlayerFragment;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.edu.gvn.jsoupdemo.model.online.DetailAlbumModel;
-import com.edu.gvn.jsoupdemo.model.online.SongOnlModel;
-import com.edu.gvn.jsoupdemo.network.JsonParser.SongParserAsync;
 import com.edu.gvn.jsoupdemo.network.XmlParser.DetailAlbumAsync;
+import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -104,9 +95,7 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
         mRecyclerListSong.setAdapter(mDetailAlbumAdapter);
         mRecyclerListSong.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        Bitmap bitmap = getBitmapFromURL(mAlbumModel.getImg_src());
-        Bitmap blurBitmap = blur(bitmap);
-        mImageAlbum.setImageBitmap(blurBitmap);
+        Picasso.with(getActivity()).load(mAlbumModel.getImg_src()).into(mImageAlbum);
 
         Log.i(TAG, "onViewCreated: " + mAlbumModel.getTitle());
 
@@ -123,62 +112,27 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
         mDetailAlbumData.addAll(model);
         mDetailAlbumAdapter.notifyDataSetChanged();
         mDetailAlbumData.size();
-    }
-
-
-    private static final float BLUR_RADIUS = 2f;
-    private static final float BLUR_SCALE = 0.4f;
-
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public Bitmap blur(Bitmap image) {
-        if (null == image) return null;
-
-
-        Bitmap outputBitmap = Bitmap.createBitmap(image);
-        final RenderScript renderScript = RenderScript.create(getActivity());
-        Allocation tmpIn = Allocation.createFromBitmap(renderScript, image);
-        Allocation tmpOut = Allocation.createFromBitmap(renderScript, outputBitmap);
-
-        //Intrinsic Gausian blur filter
-        ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
-        theIntrinsic.setRadius(BLUR_RADIUS);
-        theIntrinsic.setInput(tmpIn);
-        theIntrinsic.forEach(tmpOut);
-        tmpOut.copyTo(outputBitmap);
-        return outputBitmap;
-    }
-
-    public static Bitmap getBitmapFromURL(String src) {
-        try {
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
-        } catch (IOException e) {
-            return null;
-        }
+        BaseActivity.mPlayService.setListAlbum(mDetailAlbumData);
     }
 
 
     @Override
     public void onItemClick(View v, int position) {
+        BaseActivity.mPlayService.playIndex(position);
+    }
 
-        SongParserAsync songParserAsync = new SongParserAsync(getActivity(), new SongParserAsync.IDataCallBack() {
-            @Override
-            public void callBack(SongOnlModel onlModel) {
-                String url = onlModel.data.get(0).source_list.get(1);
+    @Override
+    public void onDownloadClick(View v, int position) {
 
-                int indexSlash = url.indexOf("/");
-                String urlData = url.substring(indexSlash);
+    }
 
-                BaseActivity.mPlayService.setDataSource("http://org2.s1.mp3.zdn.vn/" +urlData);
-            }
-        });
-        songParserAsync.execute(mDetailAlbumData.get(position).getIDSong());
+    @Override
+    public void onAddClick(View v, int position) {
 
-       // ((HomeActivity) getActivity()).replaceFragmentWithToolbar(PlayerFragment.newInstance());
+    }
+
+    @Override
+    public void onToPlayerClick(View v, int position) {
+        ((HomeActivity) getActivity()).replaceFragmentWithToolbar(PlayerFragment.newInstance());
     }
 }
