@@ -75,13 +75,12 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<Album
                 }
 
             }
-            return data;
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return null;
+        return data;
     }
 
     @Override

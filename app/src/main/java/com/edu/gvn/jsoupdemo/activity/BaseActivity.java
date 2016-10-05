@@ -34,8 +34,6 @@ public class BaseActivity extends AppCompatActivity {
             Log.i(TAG, "onResume: first");
             firstRunPreferences.edit().putBoolean("first.run", false).apply();
         }
-
-
     }
 
     @Override

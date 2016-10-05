@@ -7,648 +7,652 @@
     android:scrollbars="none"
     tools:context="com.edu.gvn.jsoupdemo.fragment.online.album.AlbumCategoryFragment">
 
-    <LinearLayout
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:orientation="vertical"-->
+            <!--app:cardCornerRadius="4dp"-->
+            <!--app:cardElevation="2dp">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@color/colorAccent"-->
+                    <!--&gt;-->
+
+                    <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:text="Việt nam"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textSize="16sp"-->
+                        <!--android:textStyle="bold" />-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_marginTop="3dp"-->
+                    <!--android:orientation="horizontal">-->
+
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/vn_vpop"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_vn_nhac_tre" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="V-pop" />-->
+
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/vn_romance"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_vn_nhac_tru_tinh" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="Romance" />-->
+
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/vn_rap_hiphop"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="fitXY"-->
+                            <!--android:src="@drawable/album_vn_rap_hiphop" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="Rap - Hip hop" />-->
+
+                    <!--</RelativeLayout>-->
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:orientation="horizontal">-->
+
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/vn_trinhcongson"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_vn_nhac_trinh" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="Trinh Cong Son" />-->
+
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/vn_nhacthieunhi"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_vn_nhac_thieu_nhi" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="@string/nhacthieunhi" />-->
+
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/vn_rock"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_vn_rock_viet" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="@string/album_rock_viet" />-->
+
+                    <!--</RelativeLayout>-->
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_marginBottom="8dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:orientation="horizontal">-->
+
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/vn_dance"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_vn_dance" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="@string/album_dance_viet" />-->
+
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/vn_country"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_vn_nhac_que_huong" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="@string/album_vn_country" />-->
+
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/vn_red"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_vn_nhac_cach_mang" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="@string/album_vn_red" />-->
+
+                    <!--</RelativeLayout>-->
+                <!--</LinearLayout>-->
+
+            <!--</LinearLayout>-->
+
+
+        <!--</android.support.v7.widget.CardView>-->
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:orientation="vertical"-->
+            <!--app:cardCornerRadius="4dp"-->
+            <!--app:cardElevation="4dp">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@color/colorAccent"-->
+                    <!--&gt;-->
+
+                    <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:text="Us - Uk"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textSize="16sp"-->
+                        <!--android:textStyle="bold" />-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:orientation="horizontal">-->
+
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/us_pop"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_us_pop" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="@string/album_us_pop"-->
+                            <!--/>-->
+
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/us_rock"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_us_rock" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="@string/album_us_rock"-->
+                            <!--/>-->
+
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/us_rap_hiphop"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_us_rap_hiphop"-->
+                            <!--android:layout_alignParentTop="true"-->
+                            <!--android:layout_alignParentLeft="true"-->
+                            <!--android:layout_alignParentStart="true"-->
+                            <!--android:layout_marginTop="66dp"-->
+                            <!--android:id="@+id/imageView" />-->
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="Rap - Hip hop"-->
+                            <!--/>-->
+                    <!--</RelativeLayout>-->
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:orientation="horizontal">-->
+
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/us_country"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_us_country" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="Country"-->
+                            <!--/>-->
+
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/us_edm"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_us_edm" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="EDM"-->
+                            <!--/>-->
+
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/us_rb_soul"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_us_rb_soul" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_alignParentBottom="true"-->
+                            <!--android:background="@color/colorAccent"-->
+                            <!--android:gravity="center"-->
+                            <!--android:paddingBottom="2dp"-->
+                            <!--android:paddingTop="2dp"-->
+                            <!--android:text="R\\B soul"-->
+                            <!--android:textColor="@color/white"-->
+                            <!--android:textSize="12sp" />-->
+
+                    <!--</RelativeLayout>-->
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_marginBottom="8dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:orientation="horizontal">-->
+
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/us_trance"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_us_trance_house_techno" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="Trance/House/Techno"-->
+                            <!--/>-->
+
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/us_blue_jazz"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_us_blue_jazz" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="Blue/Jazz"-->
+                            <!--/>-->
+
+                    <!--</RelativeLayout>-->
+
+                <!--</LinearLayout>-->
+
+            <!--</LinearLayout>-->
+
+
+        <!--</android.support.v7.widget.CardView>-->
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="40dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:orientation="vertical"-->
+            <!--app:cardCornerRadius="4dp"-->
+            <!--app:cardElevation="4dp">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@color/colorAccent"-->
+                    <!--&gt;-->
+
+                    <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:layout_marginLeft="10dp"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:text="Asia"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textSize="16sp"-->
+                        <!--android:textStyle="bold" />-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:elevation="1dp"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:outlineProvider="bounds">-->
+
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/asia_korea"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_asia_korea" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="K-pop"-->
+                            <!--/>-->
+
+                    <!--</RelativeLayout>-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:elevation="1dp"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:outlineProvider="bounds">-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/asia_japan"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_asia_japan" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="Japan"-->
+                            <!--/>-->
+
+                    <!--</RelativeLayout>-->
+
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:layout_marginBottom="8dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:elevation="1dp"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:outlineProvider="bounds">-->
+
+
+                    <!--<RelativeLayout-->
+                        <!--android:id="@+id/asia_china"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:translationZ="4dp">-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:scaleType="centerCrop"-->
+                            <!--android:src="@drawable/album_asia_china" />-->
+
+                        <!--<com.edu.gvn.jsoupdemo.custom.UbuntuTextView-->
+                            <!--style="@style/TextItemCategoryAlbum"-->
+                            <!--android:text="tàu khựa"-->
+                            <!--/>-->
+
+                    <!--</RelativeLayout>-->
+
+
+                <!--</LinearLayout>-->
+
+            <!--</LinearLayout>-->
+
+
+        <!--</android.support.v7.widget.CardView>-->
+    <!--</LinearLayout>-->
+
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorAccent"
-                    >
-
-                    <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Việt nam"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="3dp"
-                    android:orientation="horizontal">
-
-
-                    <RelativeLayout
-                        android:id="@+id/vn_vpop"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_vn_nhac_tre" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="V-pop" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/vn_romance"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_vn_nhac_tru_tinh" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="Romance" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/vn_rap_hiphop"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/album_vn_rap_hiphop" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="Rap - Hip hop" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-
-                    <RelativeLayout
-                        android:id="@+id/vn_trinhcongson"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_vn_nhac_trinh" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="Trinh Cong Son" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/vn_nhacthieunhi"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_vn_nhac_thieu_nhi" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="@string/nhacthieunhi" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/vn_rock"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_vn_rock_viet" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="@string/album_rock_viet" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-
-                    <RelativeLayout
-                        android:id="@+id/vn_dance"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_vn_dance" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="@string/album_dance_viet" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/vn_country"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_vn_nhac_que_huong" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="@string/album_vn_country" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/vn_red"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_vn_nhac_cach_mang" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="@string/album_vn_red" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorAccent"
-                    >
-
-                    <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Us - Uk"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-
-                    <RelativeLayout
-                        android:id="@+id/us_pop"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_us_pop" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="@string/album_us_pop"
-                            />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/us_rock"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_us_rock" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="@string/album_us_rock"
-                            />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/us_rap_hiphop"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="Rap - Hip hop"
-                            />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_us_rap_hiphop"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginTop="66dp"
-                            android:id="@+id/imageView" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-
-                    <RelativeLayout
-                        android:id="@+id/us_country"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_us_country" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="Country"
-                            />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/us_edm"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_us_edm" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="EDM"
-                            />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/us_rb_soul"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_us_rb_soul" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:background="@color/colorAccent"
-                            android:gravity="center"
-                            android:paddingBottom="2dp"
-                            android:paddingTop="2dp"
-                            android:text="R\\B soul"
-                            android:textColor="@color/white"
-                            android:textSize="12sp" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-
-                    <RelativeLayout
-                        android:id="@+id/us_trance"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_us_trance_house_techno" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="Trance/House/Techno"
-                            />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/us_blue_jazz"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_us_blue_jazz" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="Blue/Jazz"
-                            />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorAccent"
-                    >
-
-                    <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Asia"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:elevation="1dp"
-                    android:orientation="horizontal"
-                    android:outlineProvider="bounds">
-
-
-                    <RelativeLayout
-                        android:id="@+id/asia_korea"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_asia_korea" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="K-pop"
-                            />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:elevation="1dp"
-                    android:orientation="horizontal"
-                    android:outlineProvider="bounds">
-
-                    <RelativeLayout
-                        android:id="@+id/asia_japan"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_asia_japan" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="Japan"
-                            />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:elevation="1dp"
-                    android:orientation="horizontal"
-                    android:outlineProvider="bounds">
-
-
-                    <RelativeLayout
-                        android:id="@+id/asia_china"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:translationZ="4dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/album_asia_china" />
-
-                        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                            style="@style/TextItemCategoryAlbum"
-                            android:text="tàu khựa"
-                            />
-
-                    </RelativeLayout>
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
-
-
+        android:id="@+id/recycler_category"/>
 
 
 </ScrollView>

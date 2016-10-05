@@ -18,6 +18,7 @@
         android:src="@drawable/album_asia_japan"
         app:border_color="#878787"
         app:border_overlay="true"
+        android:scaleType="centerCrop"
         app:border_width="5dp"
         app:centercircle_diammterer="3"
         app:progress_color="@color/colorAccent"
@@ -26,6 +27,7 @@
 
     <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
         android:id="@+id/fragment_player_song_title"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fragment_player_progress_bar"
@@ -41,6 +43,7 @@
     <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
         android:id="@+id/fragment_player_song_artist"
         android:layout_width="wrap_content"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fragment_player_song_title"
         android:layout_centerHorizontal="true"

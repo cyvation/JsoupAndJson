@@ -59,10 +59,11 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ((AlbumViewHolder) holder).binData(context, mData.get(position));
         }
 
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClickListener.onItemClick(v,position);
+                onItemClickListener.onItemClick(v, position);
                 Log.i(TAG, "onClick: " + position);
             }
         });
@@ -125,6 +126,6 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public interface GenderAlbumOnItemClickListener {
-        void onItemClick(View v , int position);
+        void onItemClick(View v, int position);
     }
 }

@@ -71,8 +71,10 @@ public class GenderAlbumFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        int numberColumn = 2;
-        mListAlbum.setLayoutManager(new GridLayoutManager(getActivity(), numberColumn));
+        final int numberColumn = 2;
+
+        mListAlbum.setLayoutManager(new GridLayoutManager(getActivity(),numberColumn));
+
         mListAlbum.setAdapter(mAlbumAdapter);
         mListAlbum.setDrawingCacheEnabled(true);
         mListAlbum.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
@@ -88,9 +90,9 @@ public class GenderAlbumFragment extends Fragment {
         mAlbumAdapter.setOnItemClickListener(new GenderAlbumAdapter.GenderAlbumOnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Log.i(TAG, "onItemClick: " + position +"--");
+                Log.i(TAG, "onItemClick: " + position + "--");
 
-                ((HomeActivity)getActivity()).replaceFragment(DetailAlbumFragment.newInstance(mGenderAlbumData.get(position)));
+                ((HomeActivity) getActivity()).replaceFragment(DetailAlbumFragment.newInstance(mGenderAlbumData.get(position)));
             }
         });
     }
@@ -103,7 +105,7 @@ public class GenderAlbumFragment extends Fragment {
     public GenderAlbumAsync.GenderAlbumDataCallback albumDataCallback = new GenderAlbumAsync.GenderAlbumDataCallback() {
         @Override
         public void callBack(ArrayList<AlbumModel> data) {
-            if (mGenderAlbumData.size() != 0) mGenderAlbumData.remove(mGenderAlbumData.size() - 1);
+              if (mGenderAlbumData.size() != 0) mGenderAlbumData.remove(mGenderAlbumData.size() - 1);
 
             mGenderAlbumData.addAll(data);
             mAlbumAdapter.setNotifiDataChange();

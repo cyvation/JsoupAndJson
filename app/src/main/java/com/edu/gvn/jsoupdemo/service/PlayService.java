@@ -61,6 +61,22 @@ public class PlayService extends Service {
         return mPlayer.isPlaying();
     }
 
+    public void next() {
+        mPlayer.next();
+    }
+
+    public void forward() {
+        mPlayer.forward();
+    }
+
+    public void pause() {
+        mPlayer.pause();
+    }
+
+    public void start() {
+        mPlayer.start();
+    }
+
     public int currentPosition() {
         return mPlayer.getCurrentPostion();
     }
@@ -69,6 +85,17 @@ public class PlayService extends Service {
         return mPlayer.getDuration();
     }
 
+    public void setVolume(int volume) {
+        mPlayer.setVolume(volume);
+    }
+
+    public void setShuffle() {
+        mPlayer.setShuffle();
+    }
+
+    public void setRepeat(){
+        mPlayer.setRepeat();
+    }
     public int getVolume() {
         return mPlayer.getVolumeLevel();
     }
@@ -97,6 +124,9 @@ public class PlayService extends Service {
         return mPlayer.getLinkDownload();
     }
 
+    public void setOnComplete(Player.MediaPlayerOnComplete onComplete){
+        mPlayer.setOnComplete(onComplete);
+    }
     public class LocalBinder extends Binder {
         public PlayService getService() {
             return PlayService.this;

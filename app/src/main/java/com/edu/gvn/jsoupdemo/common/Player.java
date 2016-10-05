@@ -90,6 +90,8 @@ public class Player implements MediaPlayer.OnCompletionListener {
                 artistSong = onlModel.data.get(0).artist;
                 linkDownload = dataStream;
 
+                if (onComplete!=null)
+                onComplete.notifiDataSetChange();
                 Log.i(TAG, "callBack: " + nameSong + "\n" + artistSong + "\n" + linkDownload + "\n" + linkCover);
             }
         });
@@ -103,16 +105,14 @@ public class Player implements MediaPlayer.OnCompletionListener {
         return false;
     }
 
-    public void next(int currentSong) {
-        currentSong++;
-        String uri = mListSongs.get(currentSong).getmOrder();
-        setDataSource(uri);
+    public void next() {
+        indexSong = ((indexSong == mListSongs.size() - 1) ? (indexSong = 0) : indexSong++);
+        playIndex(indexSong);
     }
 
-    public void forward(int currentSong) {
-        currentSong--;
-        String uri = mListSongs.get(currentSong).getmOrder();
-        setDataSource(uri);
+    public void forward() {
+        indexSong =  ((indexSong == 0) ? (indexSong = mListSongs.size() - 1) : indexSong--);
+        playIndex(indexSong);
     }
 
     public void pause() {
@@ -134,17 +134,28 @@ public class Player implements MediaPlayer.OnCompletionListener {
         }
     }
 
-    public void setVolume(float left, float right) {
-        if (mPlayer != null)
-            mPlayer.setVolume(left, right);
+    public void setVolume(int volume) {
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0);
     }
 
-    public void setRepeat(int repeat) {
-        this.mRepeat = repeat;
+    public void setRepeat() {
+
+        if (mRepeat == 0) {
+            mRepeat++;
+            return;
+        } else if (mRepeat == 1) {
+            mRepeat++;
+            return;
+        } else if (mRepeat == 2) {
+            mRepeat = 0;
+            return;
+
+        }
+//        this.mRepeat = repeat;
     }
 
-    public void setShuffle(boolean shuffle) {
-        this.isShuffle = shuffle;
+    public void setShuffle() {
+        isShuffle = !isShuffle;
     }
 
     public boolean getShuffle() {
@@ -242,6 +253,18 @@ public class Player implements MediaPlayer.OnCompletionListener {
             default:
 
         }
+        if (onComplete != null)
+            onComplete.onComplete();
     }
 
+    private MediaPlayerOnComplete onComplete;
+
+    public void setOnComplete(MediaPlayerOnComplete onComplete) {
+        this.onComplete = onComplete;
+    }
+
+    public interface MediaPlayerOnComplete {
+        void onComplete();
+        void notifiDataSetChange();
+    }
 }

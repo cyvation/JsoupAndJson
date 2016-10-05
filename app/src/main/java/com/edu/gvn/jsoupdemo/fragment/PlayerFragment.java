@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.activity.BaseActivity;
+import com.edu.gvn.jsoupdemo.common.Player;
 import com.squareup.picasso.Picasso;
 
 import info.abdolahi.CircularMusicProgressBar;
@@ -24,7 +25,7 @@ import info.abdolahi.CircularMusicProgressBar;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlayerFragment extends Fragment implements View.OnClickListener {
+public class PlayerFragment extends Fragment implements View.OnClickListener,Player.MediaPlayerOnComplete {
 
     private static final int TIME_DELAY_UPDATE = 1000;
     private static final int REPEAT_OFF = 0;
@@ -72,6 +73,7 @@ public class PlayerFragment extends Fragment implements View.OnClickListener {
 
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(Color.TRANSPARENT);
+        toolbar.setVisibility(View.GONE);
 
         mPlayState.setActivated(BaseActivity.mPlayService.isPlaying());
         mShuffle.setActivated(BaseActivity.mPlayService.getShuffle());
@@ -83,7 +85,7 @@ public class PlayerFragment extends Fragment implements View.OnClickListener {
         mMusicProgress.setValue(percentMusicProgress(BaseActivity.mPlayService.currentPosition(), BaseActivity.mPlayService.maxDuration()));
         mVolume.setProgress(BaseActivity.mPlayService.getVolume());
 
-        mVolume.setOnSeekBarChangeListener(seekBarChangeListener);
+        mVolume.setOnSeekBarChangeListener(volumeChangeListener);
         mPlayState.setOnClickListener(this);
         mNext.setOnClickListener(this);
         mForward.setOnClickListener(this);
@@ -91,16 +93,10 @@ public class PlayerFragment extends Fragment implements View.OnClickListener {
         mRepeat.setOnClickListener(this);
 
         Picasso.with(getActivity()).load(BaseActivity.mPlayService.getCover()).into(mMusicProgress);
+        updateProgressMusicBar(mMusicProgress);
 
-        mUpdateProgressBarHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mMusicProgress.setValue(percentMusicProgress(BaseActivity.mPlayService.currentPosition(), BaseActivity.mPlayService.maxDuration()));
-                mUpdateProgressBarHandler.postDelayed(this, TIME_DELAY_UPDATE);
-            }
-        }, TIME_DELAY_UPDATE);
+        BaseActivity.mPlayService.setOnComplete(this);
     }
-
 
     private void setStateRepeat(int repeat) {
         switch (repeat) {
@@ -119,19 +115,27 @@ public class PlayerFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private long percentMusicProgress(int currentPosition, int maxDuration) {
-        if (maxDuration == 0) maxDuration = 1;
-
-        int percent = (int) (( (float) currentPosition / maxDuration )* 100);
-        Log.i("huutho", "run: " + BaseActivity.mPlayService.currentPosition()+ " - " +  BaseActivity.mPlayService.maxDuration() + " - " + percent);
-
-       return percent ;
+    private void updateProgressMusicBar(final CircularMusicProgressBar mMusicProgress) {
+        mUpdateProgressBarHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mMusicProgress.setValue(percentMusicProgress(BaseActivity.mPlayService.currentPosition(), BaseActivity.mPlayService.maxDuration()));
+                mUpdateProgressBarHandler.postDelayed(this, TIME_DELAY_UPDATE);
+            }
+        }, TIME_DELAY_UPDATE);
     }
 
-    private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
+    private long percentMusicProgress(int currentPosition, int maxDuration) {
+        if (maxDuration == 0) maxDuration = 1;
+        return (int) (((float) currentPosition / maxDuration) * 100);
+    }
+
+    private SeekBar.OnSeekBarChangeListener volumeChangeListener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+            if (fromUser) {
+                BaseActivity.mPlayService.setVolume(progress);
+            }
         }
 
         @Override
@@ -147,19 +151,51 @@ public class PlayerFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
+        Log.i("huutho", "onClick: ");
+
         switch (v.getId()) {
             case R.id.fragment_player_imageview_play_state:
+                boolean isPlaying = BaseActivity.mPlayService.isPlaying();
+                if (isPlaying) {
+                    BaseActivity.mPlayService.pause();
+                } else {
+                    BaseActivity.mPlayService.start();
+                }
+                mPlayState.setActivated(BaseActivity.mPlayService.isPlaying());
                 break;
+
             case R.id.fragment_play_imageview_nexts:
+                BaseActivity.mPlayService.next();
                 break;
+
             case R.id.fragment_play_imageview_forward:
+                BaseActivity.mPlayService.forward();
                 break;
+
             case R.id.fragment_player_imageview_shuffle:
+                BaseActivity.mPlayService.setShuffle();
+                mShuffle.setActivated(BaseActivity.mPlayService.getShuffle());
                 break;
+
             case R.id.fragment_player_imageview_repeat:
+                BaseActivity.mPlayService.setRepeat();
+                setStateRepeat(BaseActivity.mPlayService.getRepeat());
                 break;
         }
     }
 
 
+    @Override
+    public void onComplete() {
+
+    }
+
+    @Override
+    public void notifiDataSetChange() {
+        Log.i("huutho", "notifiDataSetChange: ");
+        mNameSong.setText(BaseActivity.mPlayService.getNameSong());
+        mArtistSong.setText(BaseActivity.mPlayService.getArtistSong());
+        Picasso.with(getActivity()).load(BaseActivity.mPlayService.getCover()).into(mMusicProgress);
+    }
 }

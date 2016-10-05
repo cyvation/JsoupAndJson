@@ -81,7 +81,7 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
         }
     }
 
-    public void replaceFragmentWithToolbar(Fragment fragment) {
+    public void  replaceFragmentWithToolbar(Fragment fragment) {
         String backStackName = fragment.getClass().getName();
         String tag = backStackName;
         FragmentManager manager = getSupportFragmentManager();
@@ -93,6 +93,7 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
             transaction.commit();
         }
     }
+
 
     public void addFragment(Fragment fromFragment, Fragment toFragment, int idParentView) {
         String backStackName = toFragment.getClass().getName();
