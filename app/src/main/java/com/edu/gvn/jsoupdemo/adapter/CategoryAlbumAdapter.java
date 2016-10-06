@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
+import com.edu.gvn.jsoupdemo.common.TypeView;
 import com.edu.gvn.jsoupdemo.model.online.CategoryAlbumModel;
 
 import java.util.ArrayList;
@@ -19,52 +20,51 @@ import java.util.ArrayList;
 
 public class CategoryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static final int TYPE_VIEW = 0;
-    public static final int TYPE_TITLE = 1;
-
-    private Context context;
+    private Context mContext;
     private ArrayList<CategoryAlbumModel> mData;
-    public ICategoryItemOnClick itemOnClick ;
+    private ICategoryItemOnClick itemOnClick;
 
     public CategoryAlbumAdapter(Context context, ArrayList<CategoryAlbumModel> mData) {
-        this.context = context;
+        this.mContext = context;
         this.mData = mData;
     }
 
-    public void setOnItemClick(ICategoryItemOnClick onItemClick){
-        this.itemOnClick = onItemClick;
-    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        if (viewType == TYPE_VIEW) {
-            return new CategoryAlbumAdapter.ItemCategory(inflater.inflate(R.layout.item_category_content, parent, false));
-        } else {
-            return new CategoryAlbumAdapter.TitleCategory(inflater.inflate(R.layout.item_category_title, parent, false));
-        }
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        return
+                (viewType == TypeView.CONTENT) ?
+
+                (new CategoryAlbumAdapter.ItemCategory(inflater.inflate(R.layout.item_category_content, parent, false)))
+                :
+                (new CategoryAlbumAdapter.TitleCategory(inflater.inflate(R.layout.item_category_title, parent, false)));
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        if (getItemViewType(position) == TYPE_VIEW) {
-            ((ItemCategory) holder).image.setImageResource(mData.get(position).getImage());
-            ((ItemCategory) holder).txtSubTitle.setText(mData.get(position).getTitle());
+        switch (getItemViewType(position)) {
+            case TypeView.CONTENT:
+                ((ItemCategory) holder).imgItemCategory.setImageResource(mData.get(position).getImage());
+                ((ItemCategory) holder).txtSubTitleCategory.setText(mData.get(position).getTitle());
 
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    itemOnClick.onItemClick(holder.itemView,holder.getAdapterPosition());
-                }
-            });
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        itemOnClick.onItemClick(holder.itemView, holder.getAdapterPosition());
+                    }
+                });
+                break;
 
-        } else {
-            ((TitleCategory) holder).txtTitle.setText(mData.get(position).getTitle());
+            case TypeView.TITLE:
+                ((TitleCategory) holder).txtCategoryTitle.setText(mData.get(position).getTitle());
+                break;
         }
     }
 
     @Override
     public int getItemViewType(int position) {
-        return mData.get(position).getView();
+        return mData.get(position).getViewType();
     }
 
     @Override
@@ -73,27 +73,31 @@ public class CategoryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     private static class ItemCategory extends RecyclerView.ViewHolder {
-        public ImageView image;
-        public TextView txtSubTitle;
+        private ImageView imgItemCategory;
+        private TextView txtSubTitleCategory;
 
         private ItemCategory(View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.img_category_content);
-            txtSubTitle = (TextView) itemView.findViewById(R.id.txt_category_content_sub_title);
+            imgItemCategory = (ImageView) itemView.findViewById(R.id.img_category_content);
+            txtSubTitleCategory = (TextView) itemView.findViewById(R.id.txt_category_content_sub_title);
         }
 
     }
 
     private static class TitleCategory extends RecyclerView.ViewHolder {
-        public TextView txtTitle;
+        private TextView txtCategoryTitle;
 
         private TitleCategory(View itemView) {
             super(itemView);
-            txtTitle = (TextView) itemView.findViewById(R.id.txt_category_title);
+            txtCategoryTitle = (TextView) itemView.findViewById(R.id.txt_category_title);
         }
     }
 
-    public interface ICategoryItemOnClick{
+    public void setOnItemClick(ICategoryItemOnClick onItemClick) {
+        this.itemOnClick = onItemClick;
+    }
+
+    public interface ICategoryItemOnClick {
         void onItemClick(View v, int position);
     }
 }

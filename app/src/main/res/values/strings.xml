@@ -18,11 +18,5 @@
     <string name="nav_albums">Albums</string>
     <string name="nav_artists">Artists</string>
     <string name="nav_top_10">Top 10</string>
-    <string name="nhacthieunhi">Children\'s music</string>
-    <string name="album_rock_viet">Rock</string>
-    <string name="album_dance_viet">Dance</string>
-    <string name="album_vn_country">Country</string>
-    <string name="album_vn_red">Red music</string>
-    <string name="album_us_pop">Pop</string>
-    <string name="album_us_rock">Rock</string>
+
 </resources>

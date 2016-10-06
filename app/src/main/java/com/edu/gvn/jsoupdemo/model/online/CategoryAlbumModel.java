@@ -5,20 +5,20 @@ package com.edu.gvn.jsoupdemo.model.online;
  */
 
 public class CategoryAlbumModel {
-    private int view;
+    private int viewType;
     private String title;
     private int image;
     private String url ;
 
     public CategoryAlbumModel(int view, String title, int image , String url) {
-        this.view = view;
+        this.viewType = view;
         this.url = url;
         this.title = title;
         this.image = image;
     }
 
-    public int getView() {
-        return view;
+    public int getViewType() {
+        return viewType;
     }
 
 

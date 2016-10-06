@@ -22,7 +22,7 @@ public class DetailAlbumAdapter extends RecyclerView.Adapter<DetailAlbumAdapter.
     private Context mContext;
     private LayoutInflater inflater;
     private ArrayList<DetailAlbumModel> mDetailAlbumData;
-    private IReyclerViewItemOnClickListener itemOnClickListener;
+    private IReyclerViewItemClickListener itemClickListener;
 
 
     public DetailAlbumAdapter(Context context, ArrayList<DetailAlbumModel> mDetailAlbumData) {
@@ -58,45 +58,48 @@ public class DetailAlbumAdapter extends RecyclerView.Adapter<DetailAlbumAdapter.
             txtNameSong = (TextView) itemView.findViewById(R.id.fragment_detail_album_song_name);
 
             download = (ImageView) itemView.findViewById(R.id.fragment_detail_album_btn_download);
-            add = (ImageView) itemView.findViewById(R.id.fragment_detail_album_btn_add);
             toPlayer = (ImageView) itemView.findViewById(R.id.fragment_detail_album_btn_to_player);
+            add = (ImageView) itemView.findViewById(R.id.fragment_detail_album_btn_add);
 
+            iconOfItemViewClick();
+        }
+
+        private void iconOfItemViewClick() {
             download.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemOnClickListener.onDownloadClick(v, getAdapterPosition());
+                    itemClickListener.onDownloadClick(v, getAdapterPosition());
                 }
             });
 
             add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemOnClickListener.onAddClick(v, getAdapterPosition());
+                    itemClickListener.onAddClick(v, getAdapterPosition());
                 }
             });
 
             toPlayer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemOnClickListener.onToPlayerClick(v, getAdapterPosition());
+                    itemClickListener.onToPlayerClick(v, getAdapterPosition());
                 }
             });
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemOnClickListener.onItemClick(v, getAdapterPosition());
+                    itemClickListener.onItemClick(v, getAdapterPosition());
                 }
             });
-
         }
     }
 
-    public void setItemOnClickListener(IReyclerViewItemOnClickListener itemOnClickListener) {
-        this.itemOnClickListener = itemOnClickListener;
+    public void setItemClickListener(IReyclerViewItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
-    public interface IReyclerViewItemOnClickListener {
+    public interface IReyclerViewItemClickListener {
         void onItemClick(View v, int position);
 
         void onDownloadClick(View v, int position);

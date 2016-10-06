@@ -5,4 +5,7 @@ package com.edu.gvn.jsoupdemo.common;
  */
 
 public class TypeView {
+    public static final int TITLE = 1 ;
+    public static final int CONTENT = 0 ;
+
 }

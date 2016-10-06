@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.activity.HomeActivity;
@@ -23,13 +24,13 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class GenderAlbumFragment extends Fragment {
-
-    public static final String KEY_ALBUM = "key_album";
     private static final String TAG = GenderAlbumFragment.class.getSimpleName();
-
+    public static final String KEY_ALBUM = "key_album";
+    private final static int NUMBER_COLUMN = 2;
     private RecyclerView mListAlbum;
     private GenderAlbumAdapter mAlbumAdapter;
     private ArrayList<AlbumModel> mGenderAlbumData;
+    private ProgressBar mLoading ;
 
     private String urlAlbum;
     private int indexPage = 1;
@@ -64,6 +65,7 @@ public class GenderAlbumFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_onl_album_all_album_fragment, container, false);
         mListAlbum = (RecyclerView) v.findViewById(R.id.rv_fragment_onl_album_albumfragment);
+        mLoading = (ProgressBar) v.findViewById(R.id.loading);
         return v;
     }
 
@@ -71,9 +73,7 @@ public class GenderAlbumFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final int numberColumn = 2;
-
-        mListAlbum.setLayoutManager(new GridLayoutManager(getActivity(),numberColumn));
+        mListAlbum.setLayoutManager(new GridLayoutManager(getActivity(),NUMBER_COLUMN));
 
         mListAlbum.setAdapter(mAlbumAdapter);
         mListAlbum.setDrawingCacheEnabled(true);
@@ -95,6 +95,8 @@ public class GenderAlbumFragment extends Fragment {
                 ((HomeActivity) getActivity()).replaceFragment(DetailAlbumFragment.newInstance(mGenderAlbumData.get(position)));
             }
         });
+
+        if (mGenderAlbumData.size()!=0) mLoading.setVisibility(View.INVISIBLE);
     }
 
     public void sendRequestAlbum(String url, int indexPage) {
@@ -109,6 +111,7 @@ public class GenderAlbumFragment extends Fragment {
 
             mGenderAlbumData.addAll(data);
             mAlbumAdapter.setNotifiDataChange();
+            mLoading.setVisibility(View.GONE);
 
         }
     };

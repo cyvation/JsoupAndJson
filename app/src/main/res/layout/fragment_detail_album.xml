@@ -39,7 +39,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#c0000000"/>
+                    android:background="#c0000000" />
             </RelativeLayout>
 
 
@@ -67,13 +67,14 @@
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/fragment_detail_album_name"
                     android:layout_below="@+id/fragment_detail_album_name"
-                    android:text="Shipper đẹp trai"
-                    android:lines="1"
                     android:ellipsize="end"
+                    android:lines="1"
+                    android:text="Shipper đẹp trai"
                     android:textColor="@color/text_dark_gray_color"
                     android:textSize="12sp" />
 
                 <ImageView
+                    android:id="@+id/imageView"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_alignParentRight="true"
@@ -85,25 +86,23 @@
                     android:src="@drawable/ic_player_shuffle"
                     android:translationZ="3dp"
                     app:layout_collapseMode="parallax"
-                    app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-                    android:id="@+id/imageView" />
+                    app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed" />
 
                 <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
                     android:id="@+id/fragment_detail_album_name"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="10dp"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:layout_marginLeft="10dp"
                     android:shadowColor="#000"
                     android:shadowDx="1.5"
                     android:shadowDy="2"
                     android:text="Hihi Đồ ngốc"
                     android:textColor="#000"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_alignParentTop="true"
-                    />
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
@@ -112,12 +111,25 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_detail_album_list_song_of_album"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/frame_image"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_detail_album_list_song_of_album"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:indeterminate="true"
+            android:id="@+id/loading"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp" />
+    </RelativeLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>

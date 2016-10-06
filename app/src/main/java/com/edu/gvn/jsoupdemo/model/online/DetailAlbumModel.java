@@ -5,7 +5,6 @@ package com.edu.gvn.jsoupdemo.model.online;
  */
 
 public class DetailAlbumModel {
-
     private String mOrder ;
     private String mIDSong;
     private String mSongName ;

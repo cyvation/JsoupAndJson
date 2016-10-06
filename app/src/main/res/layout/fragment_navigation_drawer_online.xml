@@ -43,7 +43,7 @@
                 android:textSize="16sp" />
 
             <LinearLayout
-                android:id="@+id/ll_voice_serch"
+                android:id="@+id/option_voice_serch"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nav_item_height"
                 android:gravity="center_vertical"
@@ -64,7 +64,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_search"
+                android:id="@+id/option_search"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nav_item_height"
                 android:gravity="center_vertical"
@@ -86,7 +86,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_hot_music"
+                android:id="@+id/option_hot_music"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nav_item_height"
                 android:gravity="center_vertical"
@@ -108,7 +108,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_rank"
+                android:id="@+id/option_rank"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nav_item_height"
                 android:gravity="center_vertical"
@@ -130,7 +130,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_albums"
+                android:id="@+id/option_albums"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nav_item_height"
                 android:gravity="center_vertical"
@@ -152,7 +152,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_artists"
+                android:id="@+id/option_artists"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nav_item_height"
                 android:gravity="center_vertical"
@@ -174,7 +174,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_top_ten"
+                android:id="@+id/option_top_ten"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nav_item_height"
                 android:gravity="center_vertical"
@@ -211,7 +211,7 @@
                 android:textSize="16sp" />
 
             <LinearLayout
-                android:id="@+id/ll_option_lyric_screen"
+                android:id="@+id/option_lyric_screen"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nav_item_height"
                 android:gravity="center_vertical"
@@ -233,7 +233,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_option_suggested_apps"
+                android:id="@+id/option_suggested_apps"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nav_item_height"
                 android:gravity="center_vertical"
@@ -255,7 +255,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_option_settings"
+                android:id="@+id/option_settings"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nav_item_height"
                 android:gravity="center_vertical"
@@ -277,7 +277,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_option_exit"
+                android:id="@+id/option_exit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/nav_item_height"
                 android:gravity="center_vertical"
@@ -299,7 +299,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
 
     </ScrollView>
 </RelativeLayout>

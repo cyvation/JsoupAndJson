@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
@@ -30,15 +31,17 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.DetailAlbumCallback, DetailAlbumAdapter.IReyclerViewItemOnClickListener {
-    public static final String KEY_ALBUM = "key.album";
+public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.DetailAlbumCallback,
+        DetailAlbumAdapter.IReyclerViewItemClickListener {
+
     private static final String TAG = DetailAlbumFragment.class.getSimpleName();
+    public static final String KEY_ALBUM = "key.album";
 
-    private AlbumModel mAlbumModel;
-
-    private RecyclerView mRecyclerListSong;
-    private DetailAlbumAdapter mDetailAlbumAdapter;
-    private ArrayList<DetailAlbumModel> mDetailAlbumData;
+    private AlbumModel mHolderDetailAlbum;
+    private RecyclerView mListDetail;
+    private DetailAlbumAdapter mDetailAdapter;
+    private ArrayList<DetailAlbumModel> mDetailData;
+    private ProgressBar mLoading;
 
     private ImageView mImageAlbum;
     private TextView txtAlbumName;
@@ -54,8 +57,8 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
     }
 
     private void getDataBundleInstance(Bundle saveInstanceState) {
-        mAlbumModel = saveInstanceState.getParcelable(KEY_ALBUM);
-        Log.i(TAG, "getDataBundleInstance: " + mAlbumModel.getTitle());
+        mHolderDetailAlbum = saveInstanceState.getParcelable(KEY_ALBUM);
+        Log.i(TAG, "getDataBundleInstance: " + mHolderDetailAlbum.getTitle());
     }
 
     @Override
@@ -68,23 +71,23 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
             getDataBundleInstance(savedInstanceState);
         }
 
-        mDetailAlbumData = new ArrayList<>();
-        mDetailAlbumAdapter = new DetailAlbumAdapter(getActivity(), mDetailAlbumData);
-        mDetailAlbumAdapter.setItemOnClickListener(this);
+        mDetailData = new ArrayList<>();
+        mDetailAdapter = new DetailAlbumAdapter(getActivity(), mDetailData);
+        mDetailAdapter.setItemClickListener(this);
 
         DetailAlbumAsync detailAlbumAsync = new DetailAlbumAsync(this);
-        detailAlbumAsync.execute(mAlbumModel.getHref());
+        detailAlbumAsync.execute(mHolderDetailAlbum.getHref());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_detail_album, container, false);
 
-        mRecyclerListSong = (RecyclerView) v.findViewById(R.id.fragment_detail_album_list_song_of_album);
+        mListDetail = (RecyclerView) v.findViewById(R.id.fragment_detail_album_list_song_of_album);
         mImageAlbum = (ImageView) v.findViewById(R.id.fragment_detail_album_image_album);
         txtAlbumName = (TextView) v.findViewById(R.id.fragment_detail_album_name);
         txtArtistName = (TextView) v.findViewById(R.id.fragment_detail_album_artist_name);
-
+        mLoading = (ProgressBar) v.findViewById(R.id.loading);
         return v;
     }
 
@@ -92,27 +95,29 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecyclerListSong.setAdapter(mDetailAlbumAdapter);
-        mRecyclerListSong.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mListDetail.setAdapter(mDetailAdapter);
+        mListDetail.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        Picasso.with(getActivity()).load(mAlbumModel.getImg_src()).into(mImageAlbum);
+        Picasso.with(getActivity()).load(mHolderDetailAlbum.getImg_src()).into(mImageAlbum);
 
-        Log.i(TAG, "onViewCreated: " + mAlbumModel.getTitle());
+        Log.i(TAG, "onViewCreated: " + mHolderDetailAlbum.getTitle());
 
-        int indexLastDash = mAlbumModel.getTitle().indexOf("-");
-        String title = mAlbumModel.getTitle().substring(0, indexLastDash - 1);
-        String name = mAlbumModel.getTitle().substring(indexLastDash + 2);
+        int indexLastDash = mHolderDetailAlbum.getTitle().indexOf("-");
+        String title = mHolderDetailAlbum.getTitle().substring(0, indexLastDash - 1);
+        String name = mHolderDetailAlbum.getTitle().substring(indexLastDash + 2);
         txtAlbumName.setText(title);
         txtArtistName.setText(name);
 
+        if (mDetailData.size() !=0) mLoading.setVisibility(View.GONE);
     }
 
     @Override
     public void callBack(ArrayList<DetailAlbumModel> model) {
-        mDetailAlbumData.addAll(model);
-        mDetailAlbumAdapter.notifyDataSetChanged();
-        mDetailAlbumData.size();
-        BaseActivity.mPlayService.setListAlbum(mDetailAlbumData);
+        mDetailData.addAll(model);
+        mDetailAdapter.notifyDataSetChanged();
+        BaseActivity.mPlayService.setListAlbum(mDetailData);
+
+        mLoading.setVisibility(View.GONE);
     }
 
 

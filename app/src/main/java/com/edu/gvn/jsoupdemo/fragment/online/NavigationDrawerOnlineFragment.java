@@ -47,17 +47,17 @@ public class NavigationDrawerOnlineFragment extends Fragment implements View.OnC
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View inflateView = inflater.inflate(R.layout.fragment_navigation_drawer_online, container, false);
-        inflateView.findViewById(R.id.ll_voice_serch).setOnClickListener(this);
-        inflateView.findViewById(R.id.ll_search).setOnClickListener(this);
-        inflateView.findViewById(R.id.ll_hot_music).setOnClickListener(this);
-        inflateView.findViewById(R.id.ll_rank).setOnClickListener(this);
-        inflateView.findViewById(R.id.ll_artists).setOnClickListener(this);
-        inflateView.findViewById(R.id.ll_albums).setOnClickListener(this);
-        inflateView.findViewById(R.id.ll_top_ten).setOnClickListener(this);
-        inflateView.findViewById(R.id.ll_option_lyric_screen).setOnClickListener(this);
-        inflateView.findViewById(R.id.ll_option_suggested_apps).setOnClickListener(this);
-        inflateView.findViewById(R.id.ll_option_settings).setOnClickListener(this);
-        inflateView.findViewById(R.id.ll_option_exit).setOnClickListener(this);
+        inflateView.findViewById(R.id.option_voice_serch).setOnClickListener(this);
+        inflateView.findViewById(R.id.option_search).setOnClickListener(this);
+        inflateView.findViewById(R.id.option_hot_music).setOnClickListener(this);
+        inflateView.findViewById(R.id.option_rank).setOnClickListener(this);
+        inflateView.findViewById(R.id.option_artists).setOnClickListener(this);
+        inflateView.findViewById(R.id.option_albums).setOnClickListener(this);
+        inflateView.findViewById(R.id.option_top_ten).setOnClickListener(this);
+        inflateView.findViewById(R.id.option_lyric_screen).setOnClickListener(this);
+        inflateView.findViewById(R.id.option_suggested_apps).setOnClickListener(this);
+        inflateView.findViewById(R.id.option_settings).setOnClickListener(this);
+        inflateView.findViewById(R.id.option_exit).setOnClickListener(this);
 
         mFragment = inflateView;
         return inflateView;

@@ -17,42 +17,31 @@ import com.edu.gvn.jsoupdemo.fragment.online.hot.HotMusicFragment;
 
 
 public class HomeActivity extends BaseActivity implements NavigationDrawerOnlineFragment.GetNavItemClickListener {
-    private static final String TAG = HomeActivity.class.getSimpleName();
-
-    private boolean isFishLoad = true;
-
-    private NavigationDrawerOnlineFragment navigationDrawerOnlineFragment;
-
+    private boolean isFirstLoad = true;
+    private NavigationDrawerOnlineFragment mNavDrawerOnlFragment;
     private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         setupToolbar();
         setNavOnlFragment();
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
     }
 
     private void setNavOnlFragment() {
-        navigationDrawerOnlineFragment = new NavigationDrawerOnlineFragment();
+        mNavDrawerOnlFragment = new NavigationDrawerOnlineFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.rl_nav, navigationDrawerOnlineFragment);
-        navigationDrawerOnlineFragment.setUpNavDrawer((DrawerLayout) findViewById(R.id.drawer_layout), mToolbar, this);
+        ft.replace(R.id.rl_nav, mNavDrawerOnlFragment);
+        mNavDrawerOnlFragment.setUpNavDrawer((DrawerLayout) findViewById(R.id.drawer_layout), mToolbar, this);
         ft.commit();
     }
 
     private void setupToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-
     }
 
     public void addFragment(Fragment toFragment) {
@@ -81,7 +70,7 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
         }
     }
 
-    public void  replaceFragmentWithToolbar(Fragment fragment) {
+    public void replaceFragmentWithToolbar(Fragment fragment) {
         String backStackName = fragment.getClass().getName();
         String tag = backStackName;
         FragmentManager manager = getSupportFragmentManager();
@@ -93,7 +82,6 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
             transaction.commit();
         }
     }
-
 
     public void addFragment(Fragment fromFragment, Fragment toFragment, int idParentView) {
         String backStackName = toFragment.getClass().getName();
@@ -130,48 +118,48 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
     @Override
     public void onItemClick(View v) {
 
-        navigationDrawerOnlineFragment.closeNavDrawer();
+        mNavDrawerOnlFragment.closeNavDrawer();
 
         switch (v.getId()) {
-            case R.id.ll_voice_serch:
+            case R.id.option_voice_serch:
                 break;
-            case R.id.ll_search:
-                if (!isFishLoad)
+            case R.id.option_search:
+                if (!isFirstLoad)
                     replaceFragment(new SearchFragment());
                 else {
                     addFragment(new SearchFragment());
-                    isFishLoad = false;
+                    isFirstLoad = false;
                 }
                 break;
-            case R.id.ll_hot_music:
-                if (!isFishLoad)
+            case R.id.option_hot_music:
+                if (!isFirstLoad)
                     replaceFragment(new HotMusicFragment());
                 else {
                     addFragment(new HotMusicFragment());
-                    isFishLoad = false;
+                    isFirstLoad = false;
                 }
                 break;
-            case R.id.ll_rank:
+            case R.id.option_rank:
                 break;
-            case R.id.ll_artists:
+            case R.id.option_artists:
                 break;
-            case R.id.ll_albums:
-                if (!isFishLoad)
+            case R.id.option_albums:
+                if (!isFirstLoad)
                     replaceFragment(new AlbumCategoryFragment());
                 else {
                     addFragment(new AlbumCategoryFragment());
-                    isFishLoad = false;
+                    isFirstLoad = false;
                 }
                 break;
-            case R.id.ll_top_ten:
+            case R.id.option_top_ten:
                 break;
-            case R.id.ll_option_lyric_screen:
+            case R.id.option_lyric_screen:
                 break;
-            case R.id.ll_option_suggested_apps:
+            case R.id.option_suggested_apps:
                 break;
-            case R.id.ll_option_settings:
+            case R.id.option_settings:
                 break;
-            case R.id.ll_option_exit:
+            case R.id.option_exit:
                 break;
 
 

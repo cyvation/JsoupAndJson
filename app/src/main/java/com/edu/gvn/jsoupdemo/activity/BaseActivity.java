@@ -8,9 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import com.cjj.SnailBar;
 import com.edu.gvn.jsoupdemo.service.PlayService;
 
 /**
@@ -19,29 +17,28 @@ import com.edu.gvn.jsoupdemo.service.PlayService;
 
 public class BaseActivity extends AppCompatActivity {
     private static final String KEY_PREFERENCE = "com.edu.gvn.jsoupdemo.shareref";
-    private static final String TAG = BaseActivity.class.getSimpleName();
+    private static final String KEY_FIRST_RUN = "first.run";
+
     public static PlayService mPlayService;
     private boolean isServiceConnected;
-    private SnailBar snailBar ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences firstRunPreferences = getSharedPreferences(KEY_PREFERENCE, Context.MODE_PRIVATE);
-        if (firstRunPreferences.getBoolean("first.run", true)) {
+        SharedPreferences firstRunAppPref = getSharedPreferences(KEY_PREFERENCE, Context.MODE_PRIVATE);
+        if (firstRunAppPref.getBoolean(KEY_FIRST_RUN, true)) {
             startService(new Intent(this, PlayService.class));
-            Log.i(TAG, "onResume: first");
-            firstRunPreferences.edit().putBoolean("first.run", false).apply();
+            firstRunAppPref.edit().putBoolean(KEY_FIRST_RUN, false).apply();
         }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Intent iConn = new Intent(this, PlayService.class);
-        startService(iConn);
-        bindService(iConn, mServiceConn, Context.BIND_AUTO_CREATE);
+        Intent iConnectToPlayService = new Intent(this, PlayService.class);
+        startService(iConnectToPlayService);
+        bindService(iConnectToPlayService, mServiceConn, Context.BIND_AUTO_CREATE);
 
     }
 

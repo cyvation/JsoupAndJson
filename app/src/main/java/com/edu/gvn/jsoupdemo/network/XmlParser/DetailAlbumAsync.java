@@ -17,14 +17,7 @@ import java.util.ArrayList;
  */
 
 public class DetailAlbumAsync extends AsyncTask<String, Void, ArrayList<DetailAlbumModel>> {
-    private static final String TAG = DetailAlbumAsync.class.getSimpleName();
-
-    public interface DetailAlbumCallback {
-        void callBack(ArrayList<DetailAlbumModel> model);
-    }
-
     private DetailAlbumCallback detailAlbumCallback;
-
 
     public DetailAlbumAsync(DetailAlbumCallback detailAlbumCallback) {
         this.detailAlbumCallback = detailAlbumCallback;
@@ -55,7 +48,6 @@ public class DetailAlbumAsync extends AsyncTask<String, Void, ArrayList<DetailAl
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
@@ -66,5 +58,9 @@ public class DetailAlbumAsync extends AsyncTask<String, Void, ArrayList<DetailAl
             detailAlbumCallback.callBack(detailAlbumModels);
         }
         this.cancel(true);
+    }
+
+    public interface DetailAlbumCallback {
+        void callBack(ArrayList<DetailAlbumModel> model);
     }
 }
