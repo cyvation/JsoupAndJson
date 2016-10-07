@@ -2,7 +2,6 @@ package com.edu.gvn.jsoupdemo.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
+import com.edu.gvn.jsoupdemo.common.IReyclerViewOnItemClickListener;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.squareup.picasso.Picasso;
 
@@ -23,18 +23,18 @@ public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusic
     private ArrayList<AlbumModel> mData;
     private Context context;
     private LayoutInflater inflater;
+    private IReyclerViewOnItemClickListener onItemClickListener;
 
-
-    public HotOrAlbumMusicAdapter(Context context, ArrayList<AlbumModel> mData) {
+    public HotOrAlbumMusicAdapter(Context context, ArrayList<AlbumModel> mData, IReyclerViewOnItemClickListener onItemClickListener) {
         this.mData = mData;
         this.context = context;
-
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_hot_music,parent,false);
+        View view = inflater.inflate(R.layout.item_hot_music, parent, false);
         return new ViewHolder(view);
     }
 
@@ -48,12 +48,16 @@ public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusic
 
         holder.txtTitle.setText(title);
         holder.txtContent.setText(content);
-        Picasso.with(context).load(mData.get(position).getImg_src()).into(holder.img);
+        Picasso.with(context)
+                .load(mData.get(position).getImg_src())
+                .placeholder(R.drawable.background_nav)
+                .into(holder.img);
+
+
     }
 
     @Override
     public int getItemCount() {
-        Log.i("tha thu", "getItemCount: " + mData.size());
         return mData.size();
     }
 
@@ -61,19 +65,24 @@ public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusic
         ImageView img;
         TextView txtTitle, txtContent;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             img = (ImageView) itemView.findViewById(R.id.img_album_hot);
             txtTitle = (TextView) itemView.findViewById(R.id.txt_title_album_hot);
             txtContent = (TextView) itemView.findViewById(R.id.txt_content_album_hot);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(itemView,getAdapterPosition());
+                }
+            });
         }
     }
 
-    public void addData(ArrayList<AlbumModel> data){
+    public void addData(ArrayList<AlbumModel> data) {
         mData.clear();
         mData.addAll(data);
         notifyDataSetChanged();
-
     }
 
 }

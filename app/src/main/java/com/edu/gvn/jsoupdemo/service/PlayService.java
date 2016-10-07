@@ -93,9 +93,10 @@ public class PlayService extends Service {
         mPlayer.setShuffle();
     }
 
-    public void setRepeat(){
+    public void setRepeat() {
         mPlayer.setRepeat();
     }
+
     public int getVolume() {
         return mPlayer.getVolumeLevel();
     }
@@ -124,9 +125,18 @@ public class PlayService extends Service {
         return mPlayer.getLinkDownload();
     }
 
-    public void setOnComplete(Player.MediaPlayerOnComplete onComplete){
+    public int getIndexSong() {
+        return mPlayer.getIndex();
+    }
+
+    public ArrayList<DetailAlbumModel> getListData(){
+       return mPlayer.getListData();
+    }
+
+    public void setOnComplete(Player.MediaPlayerOnComplete onComplete) {
         mPlayer.setOnComplete(onComplete);
     }
+
     public class LocalBinder extends Binder {
         public PlayService getService() {
             return PlayService.this;

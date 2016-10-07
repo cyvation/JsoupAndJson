@@ -38,6 +38,7 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<Album
         StringBuilder url = new StringBuilder();
         url.append(Mp3ZingBaseUrl.BASE_ZING_MP3).append("/").append(params[0]);
 
+        Log.i(TAG, "doInBackground: " + url.toString());
 
         Document document;
         try {
@@ -45,21 +46,11 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<Album
 
 
             Elements selectionMT0 = document.select("div.section.mt0");
-            Log.i(TAG, "Selection MT 0 : " + selectionMT0.size());
-
             for (int i = 0; i < selectionMT0.size(); i++) {
-
                 Elements row = selectionMT0.get(i).select("div.row");
-                Log.i(TAG, "Row: " + row.size());
-
-
                 for (int j = 0; j < row.size(); j++) {
-
                     Elements album_item = row.get(j).select("div.album-item.des-inside.col-3.otr");
-
-
                     for (int k = 0; k < album_item.size(); k++) {
-
                         Element a = album_item.get(k).getElementsByTag("a").last();
                         Element img = album_item.get(k).getElementsByTag("img").last();
 
@@ -69,8 +60,6 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<Album
 
                         AlbumModel albumModel = new AlbumModel(a_href, img_src, title);
                         data.add(albumModel);
-
-                        Log.i(TAG, "doInBackground: " + title);
                     }
                 }
 
@@ -88,7 +77,6 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<Album
         super.onPostExecute(albumModels);
         if (albumModels.size() != 0) {
             callback.getData(albumModels);
-            Log.i(TAG, "onPostExecute: " + albumModels.size());
         }
         this.cancel(true);
     }

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.edu.gvn.jsoupdemo.R;
@@ -83,25 +84,20 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
         }
     }
 
-    public void addFragment(Fragment fromFragment, Fragment toFragment, int idParentView) {
+    public void replaceFragment(Fragment fromFragment, Fragment toFragment, int idParentView) {
         String backStackName = toFragment.getClass().getName();
         String tag = backStackName;
         FragmentManager mFragmentManager = fromFragment.getChildFragmentManager();
-        FragmentTransaction transaction = fromFragment.getChildFragmentManager().beginTransaction();
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
         boolean fragmentPopped = mFragmentManager.popBackStackImmediate(backStackName, 0);
+
         if (!fragmentPopped && mFragmentManager.findFragmentByTag(tag) == null) {
-            transaction.add(idParentView, toFragment, tag);
+            transaction.replace(idParentView, toFragment, tag);
             transaction.addToBackStack(backStackName);
             transaction.commit();
+            Log.i("huutho", "replaceFragment: create fragment");
         }
 
-    }
-
-    public void replaceFragment(Fragment fromFragment, Fragment toFragment, int idParentView) {
-        FragmentTransaction transaction = fromFragment.getChildFragmentManager().beginTransaction();
-        transaction.replace(idParentView, toFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
 
 
@@ -109,10 +105,14 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
     public void onBackPressed() {
         FragmentManager fm = getSupportFragmentManager();
         Fragment mFragment = fm.findFragmentById(R.id.main_with_toolbar);
-        fm.popBackStack();
+
         if (mFragment instanceof PlayerFragment) {
             mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
         }
+
+        //  fm.popBackStack();
+        fm.popBackStackImmediate();
     }
 
     @Override

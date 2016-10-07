@@ -12,16 +12,9 @@
         android:layout_above="@+id/bottom_bar"
         android:layout_height="match_parent"/>
 
-    <View
-
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-
-        />
 
     <LinearLayout
-        android:elevation="100dp"
-            android:layout_alignParentBottom="true"
+        android:layout_alignParentBottom="true"
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="56dp"

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
+import com.edu.gvn.jsoupdemo.common.TypeView;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.squareup.picasso.Picasso;
 
@@ -21,8 +22,6 @@ import java.util.ArrayList;
 
 public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = GenderAlbumAdapter.class.getSimpleName();
-    public static int TYPE_VIEW = 0;
-    public static int TYPE_LOAD = 1;
 
     private boolean isLoading;
     private OnLoadMoreListener onLoadMoreListener;
@@ -42,7 +41,7 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        if (viewType == TYPE_VIEW) {
+        if (viewType == TypeView.CONTENT) {
             return new AlbumViewHolder(inflater.inflate(R.layout.item_gender_album, parent, false));
         } else {
             return new LoadMoreViewHolder(inflater.inflate(R.layout.item_loadmore, parent, false));
@@ -55,7 +54,7 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             isLoading = true;
             onLoadMoreListener.onLoadListener();
         }
-        if (getItemViewType(position) == TYPE_VIEW) {
+        if (getItemViewType(position) == TypeView.CONTENT) {
             ((AlbumViewHolder) holder).binData(context, mData.get(position));
         }
 
@@ -76,10 +75,10 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        if (mData.get(position).getView().equals(String.valueOf(TYPE_VIEW))) {
-            return TYPE_VIEW;
+        if (mData.get(position).getView()== TypeView.CONTENT) {
+            return TypeView.CONTENT;
         } else {
-            return TYPE_LOAD;
+            return TypeView.TITLE;
         }
     }
 
@@ -97,7 +96,6 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         private void binData(Context context, AlbumModel albumModel) {
             Picasso.with(context).load(albumModel.getImg_src()).into(image);
-
             int indexLastDash = albumModel.getTitle().indexOf("-");
             String title = albumModel.getTitle().substring(0, indexLastDash);
             String name = albumModel.getTitle().substring(indexLastDash + 2);

@@ -12,6 +12,8 @@ import com.edu.gvn.jsoupdemo.network.JsonParser.SongParserAsync;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static android.support.v7.widget.StaggeredGridLayoutManager.TAG;
+
 /**
  * Created by hnc on 30/09/2016.
  */
@@ -25,7 +27,7 @@ public class Player implements MediaPlayer.OnCompletionListener {
     private AudioManager mAudioManager;
     private MediaPlayer mPlayer;
     private Context mContext;
-    private ArrayList<DetailAlbumModel> mListSongs;
+    private ArrayList<DetailAlbumModel> mListSongs = new ArrayList<>();
     private int indexSong;
 
     private boolean isShuffle;
@@ -69,9 +71,16 @@ public class Player implements MediaPlayer.OnCompletionListener {
     }
 
     public void playIndex(int index) {
-        SongParserAsync songParserAsync = new SongParserAsync(mContext, new SongParserAsync.IDataCallBack() {
-            public static final String TAG = "huutho";
 
+
+        Log.i(TAG, "playIndex: " + index);
+
+        nameSong = "Loading ...";
+        artistSong = "...";
+
+        System.gc();
+
+        SongParserAsync songParserAsync = new SongParserAsync(mContext, new SongParserAsync.IDataCallBack() {
             @Override
             public void callBack(SongOnlModel onlModel) {
                 String url = onlModel.data.get(0).source_list.get(1);
@@ -90,8 +99,8 @@ public class Player implements MediaPlayer.OnCompletionListener {
                 artistSong = onlModel.data.get(0).artist;
                 linkDownload = dataStream;
 
-                if (onComplete!=null)
-                onComplete.notifiDataSetChange();
+                if (onComplete != null)
+                    onComplete.notifiDataSetChange();
                 Log.i(TAG, "callBack: " + nameSong + "\n" + artistSong + "\n" + linkDownload + "\n" + linkCover);
             }
         });
@@ -106,12 +115,22 @@ public class Player implements MediaPlayer.OnCompletionListener {
     }
 
     public void next() {
-        indexSong = ((indexSong == mListSongs.size() - 1) ? (indexSong = 0) : indexSong++);
+        Log.i(TAG, "next: next");
+        if (indexSong == mListSongs.size() - 1)
+            indexSong = 0;
+        else
+            indexSong++;
+
         playIndex(indexSong);
     }
 
     public void forward() {
-        indexSong =  ((indexSong == 0) ? (indexSong = mListSongs.size() - 1) : indexSong--);
+        Log.i(TAG, "forward: forward");
+        if (indexSong == 0)
+            indexSong = mListSongs.size() - 1;
+        else
+            indexSong--;
+
         playIndex(indexSong);
     }
 
@@ -142,16 +161,11 @@ public class Player implements MediaPlayer.OnCompletionListener {
 
         if (mRepeat == 0) {
             mRepeat++;
-            return;
         } else if (mRepeat == 1) {
             mRepeat++;
-            return;
         } else if (mRepeat == 2) {
             mRepeat = 0;
-            return;
-
         }
-//        this.mRepeat = repeat;
     }
 
     public void setShuffle() {
@@ -199,6 +213,14 @@ public class Player implements MediaPlayer.OnCompletionListener {
         return linkDownload;
     }
 
+    public int getIndex() {
+        return indexSong;
+    }
+
+    public ArrayList<DetailAlbumModel> getListData() {
+        return mListSongs;
+    }
+
     /**
      * - REPEAT OFF :
      * + nếu trộn : thì random bài hát
@@ -213,12 +235,12 @@ public class Player implements MediaPlayer.OnCompletionListener {
 
     @Override
     public void onCompletion(MediaPlayer mp) {
+        Log.i(TAG, "onCompletion: complete" );
         switch (mRepeat) {
             case REPEAT_OFF:
 
                 if (isShuffle) {
                     indexSong = mRandom.nextInt(mListSongs.size() - 1);
-                    //  setDataSource(mListSongs.get(indexSong).getmOrder());
                     playIndex(indexSong);
                 } else {
                     if (indexSong == mListSongs.size() - 1) {
@@ -226,28 +248,20 @@ public class Player implements MediaPlayer.OnCompletionListener {
                         break;
                     } else {
                         indexSong++;
-                        //   setDataSource(mListSongs.get(indexSong).getmOrder());
                         playIndex(indexSong);
                     }
                 }
-
                 break;
             case REPEAT_ON:
 
                 if (isShuffle) {
                     indexSong = mRandom.nextInt(mListSongs.size() - 1);
-                    // setDataSource(mListSongs.get(indexSong).getmOrder());
-                    playIndex(indexSong);
                 } else {
-
                     indexSong = (indexSong == mListSongs.size() - 1) ? 0 : (indexSong++);
-                    //  setDataSource(mListSongs.get(indexSong).getmOrder());
-                    playIndex(indexSong);
                 }
-
+                playIndex(indexSong);
                 break;
             case REPEAT_ONE:
-                //   setDataSource(mListSongs.get(indexSong).getmOrder());
                 playIndex(indexSong);
                 break;
             default:
@@ -265,6 +279,7 @@ public class Player implements MediaPlayer.OnCompletionListener {
 
     public interface MediaPlayerOnComplete {
         void onComplete();
+
         void notifiDataSetChange();
     }
 }

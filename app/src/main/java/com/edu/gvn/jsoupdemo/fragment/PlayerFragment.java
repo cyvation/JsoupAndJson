@@ -1,7 +1,6 @@
 package com.edu.gvn.jsoupdemo.fragment;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -25,13 +24,14 @@ import info.abdolahi.CircularMusicProgressBar;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlayerFragment extends Fragment implements View.OnClickListener,Player.MediaPlayerOnComplete {
+public class PlayerFragment extends BaseFragment implements View.OnClickListener, Player.MediaPlayerOnComplete {
 
     private static final int TIME_DELAY_UPDATE = 1000;
     private static final int REPEAT_OFF = 0;
     private static final int REPEAT_ON = 1;
     private static final int REPEAT_ONE = 2;
 
+private Toolbar toolbar;
     private CircularMusicProgressBar mMusicProgress;
     private ImageView mPlayState, mNext, mForward;
     private TextView mNameSong, mArtistSong;
@@ -47,6 +47,12 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,Pla
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        toolbar.setVisibility(View.GONE);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,6 +70,7 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,Pla
         mArtistSong = (TextView) v.findViewById(R.id.fragment_player_song_artist);
 
         mUpdateProgressBarHandler = new Handler();
+
         return v;
     }
 
@@ -71,9 +78,6 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,Pla
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        toolbar.setBackgroundColor(Color.TRANSPARENT);
-        toolbar.setVisibility(View.GONE);
 
         mPlayState.setActivated(BaseActivity.mPlayService.isPlaying());
         mShuffle.setActivated(BaseActivity.mPlayService.getShuffle());
@@ -92,10 +96,26 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,Pla
         mShuffle.setOnClickListener(this);
         mRepeat.setOnClickListener(this);
 
-        Picasso.with(getActivity()).load(BaseActivity.mPlayService.getCover()).into(mMusicProgress);
+        Picasso.with(getActivity())
+                .load(BaseActivity.mPlayService.getCover())
+                .placeholder(R.drawable.background_nav)
+                .error(R.drawable.background_nav)
+                .into(mMusicProgress);
         updateProgressMusicBar(mMusicProgress);
 
         BaseActivity.mPlayService.setOnComplete(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        toolbar.setVisibility(View.VISIBLE);
     }
 
     private void setStateRepeat(int repeat) {
@@ -130,24 +150,8 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,Pla
         return (int) (((float) currentPosition / maxDuration) * 100);
     }
 
-    private SeekBar.OnSeekBarChangeListener volumeChangeListener = new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            if (fromUser) {
-                BaseActivity.mPlayService.setVolume(progress);
-            }
-        }
 
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
 
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-
-        }
-    };
 
     @Override
     public void onClick(View v) {
@@ -197,5 +201,27 @@ public class PlayerFragment extends Fragment implements View.OnClickListener,Pla
         mNameSong.setText(BaseActivity.mPlayService.getNameSong());
         mArtistSong.setText(BaseActivity.mPlayService.getArtistSong());
         Picasso.with(getActivity()).load(BaseActivity.mPlayService.getCover()).into(mMusicProgress);
+        mPlayState.setActivated(BaseActivity.mPlayService.isPlaying());
     }
+
+
+    private SeekBar.OnSeekBarChangeListener volumeChangeListener = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            if (fromUser) {
+                BaseActivity.mPlayService.setVolume(progress);
+            }
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
+
 }

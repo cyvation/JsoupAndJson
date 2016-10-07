@@ -19,4 +19,32 @@
     <string name="nav_artists">Artists</string>
     <string name="nav_top_10">Top 10</string>
 
+
+    <!--Category album-->
+    <string name="viet_nam">Vietnam</string>
+    <string name="v_pop">V-pop</string>
+    <string name="vn_romance">Romance</string>
+    <string name="vn_rap_hiphop">Rap-HipHop</string>
+    <string name="vn_trinh_cong_son">Trinh Cong Son</string>
+    <string name="vn_chidrent">Childrent\'s</string>
+    <string name="vn_rock">Rock</string>
+    <string name="vn_dance">Dance</string>
+    <string name="vn_country">Country</string>
+    <string name="vn_red">Red music</string>
+
+    <string name="us_uk">Us-Uk</string>
+    <string name="us_pop">Pop</string>
+    <string name="us_rok">Rock</string>
+    <string name="us_rap_hiphop">Rap-HipHop</string>
+    <string name="us_country">Country</string>
+    <string name="us_edm">EDM</string>
+    <string name="us_r_b">R/B soul</string>
+    <string name="us_trance_house_techno">Trance/House/Techno</string>
+    <string name="us_blue_jazz">Blue/Jazz</string>
+
+    <string name="asia">Asia</string>
+    <string name="k_pop">K-pop</string>
+    <string name="jav">Jav</string>
+    <string name="china">Khựa</string>
+
 </resources>

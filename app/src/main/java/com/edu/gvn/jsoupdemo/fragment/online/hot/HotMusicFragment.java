@@ -3,7 +3,6 @@ package com.edu.gvn.jsoupdemo.fragment.online.hot;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +13,14 @@ import android.widget.RelativeLayout;
 
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.activity.HomeActivity;
+import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
 
 
-public class HotMusicFragment extends Fragment implements View.OnClickListener {
+public class HotMusicFragment extends BaseFragment implements View.OnClickListener {
 
 
     private static final String TAG = HotMusicFragment.class.getSimpleName();
-    private LinearLayout mBottomBar ;
+    private LinearLayout mBottomBar;
     private RelativeLayout mTabVn, mTabUs, mTabKorea, mTabRapVn;
     private Animation mZoomInTab, mZoomOutTab;
 
@@ -46,28 +46,16 @@ public class HotMusicFragment extends Fragment implements View.OnClickListener {
         mTabVn.setOnClickListener(this);
         mTabKorea.setOnClickListener(this);
         mTabRapVn.setOnClickListener(this);
-        ((HomeActivity)getActivity()).addFragment(this,new VietNamFragment(),R.id.child_fragment);
+
         return mView;
     }
 
 
     @Override
-    public void onClick(View v) {
-        animTab(v);
-        switch (v.getId()) {
-            case R.id.rll_vn:
-                ((HomeActivity)getActivity()).addFragment(this,new VietNamFragment(),R.id.child_fragment);
-                break;
-            case R.id.rll_us:
-                ((HomeActivity)getActivity()).addFragment(this,new UsUkFragment(),R.id.child_fragment);
-                break;
-            case R.id.rll_korea:
-                ((HomeActivity)getActivity()).addFragment(this,new KoreaFragment(),R.id.child_fragment);
-                break;
-            case R.id.rll_rap_vn:
-                ((HomeActivity)getActivity()).addFragment(this,new VietRapFragment(),R.id.child_fragment);
-                break;
-        }
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ((HomeActivity) getActivity()).replaceFragment(this, new VietNamFragment(), R.id.child_fragment);
     }
 
     private void animTab(View view) {
@@ -84,12 +72,22 @@ public class HotMusicFragment extends Fragment implements View.OnClickListener {
         view.startAnimation(mZoomInTab);
     }
 
-
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
+    public void onClick(View v) {
+        animTab(v);
+        switch (v.getId()) {
+            case R.id.rll_vn:
+                ((HomeActivity) getActivity()).replaceFragment(this, new VietNamFragment(), R.id.child_fragment);
+                break;
+            case R.id.rll_us:
+                ((HomeActivity) getActivity()).replaceFragment(this, new UsUkFragment(), R.id.child_fragment);
+                break;
+            case R.id.rll_korea:
+                ((HomeActivity) getActivity()).replaceFragment(this, new KoreaFragment(), R.id.child_fragment);
+                break;
+            case R.id.rll_rap_vn:
+                ((HomeActivity) getActivity()).replaceFragment(this, new VietRapFragment(), R.id.child_fragment);
+                break;
+        }
     }
-
 }

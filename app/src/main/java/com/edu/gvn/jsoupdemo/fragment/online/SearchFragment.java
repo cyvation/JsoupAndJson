@@ -17,6 +17,7 @@ import android.widget.ListView;
 
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.adapter.SearchAdater;
+import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
 import com.edu.gvn.jsoupdemo.model.online.SearchModel;
 import com.edu.gvn.jsoupdemo.network.JsonParser.SearchParserAsync;
 
@@ -27,7 +28,7 @@ import java.util.TimerTask;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends BaseFragment {
 
     private static final String TAG = SearchFragment.class.getSimpleName();
     private Activity mActivity;

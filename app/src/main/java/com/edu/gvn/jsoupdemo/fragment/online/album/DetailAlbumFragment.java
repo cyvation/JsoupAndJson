@@ -20,6 +20,7 @@ import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.activity.BaseActivity;
 import com.edu.gvn.jsoupdemo.activity.HomeActivity;
 import com.edu.gvn.jsoupdemo.adapter.DetailAlbumAdapter;
+import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
 import com.edu.gvn.jsoupdemo.fragment.PlayerFragment;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.edu.gvn.jsoupdemo.model.online.DetailAlbumModel;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.DetailAlbumCallback,
+public class DetailAlbumFragment extends BaseFragment implements DetailAlbumAsync.DetailAlbumCallback,
         DetailAlbumAdapter.IReyclerViewItemClickListener {
 
     private static final String TAG = DetailAlbumFragment.class.getSimpleName();
@@ -108,22 +109,31 @@ public class DetailAlbumFragment extends Fragment implements DetailAlbumAsync.De
         txtAlbumName.setText(title);
         txtArtistName.setText(name);
 
-        if (mDetailData.size() !=0) mLoading.setVisibility(View.GONE);
+        if (mDetailData.size() != 0) mLoading.setVisibility(View.GONE);
     }
 
     @Override
     public void callBack(ArrayList<DetailAlbumModel> model) {
         mDetailData.addAll(model);
         mDetailAdapter.notifyDataSetChanged();
-        BaseActivity.mPlayService.setListAlbum(mDetailData);
-
         mLoading.setVisibility(View.GONE);
+
+
+        if (mDetailData.size() != (BaseActivity.mPlayService.getListData()).size()) {
+            BaseActivity.mPlayService.setListAlbum(mDetailData);
+            Log.i(TAG, "onItemClick: play set");
+        }
     }
 
 
     @Override
     public void onItemClick(View v, int position) {
-        BaseActivity.mPlayService.playIndex(position);
+
+        if (position != BaseActivity.mPlayService.getIndexSong()) {
+            BaseActivity.mPlayService.playIndex(position);
+            Log.i(TAG, "onItemClick: play index " + position);
+        }
+
     }
 
     @Override

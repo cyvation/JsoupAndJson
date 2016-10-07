@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.activity.HomeActivity;
 import com.edu.gvn.jsoupdemo.adapter.GenderAlbumAdapter;
+import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.edu.gvn.jsoupdemo.network.XmlParser.GenderAlbumAsync;
 
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GenderAlbumFragment extends Fragment {
+public class GenderAlbumFragment extends BaseFragment {
     private static final String TAG = GenderAlbumFragment.class.getSimpleName();
     public static final String KEY_ALBUM = "key_album";
     private final static int NUMBER_COLUMN = 2;

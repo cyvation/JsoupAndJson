@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_app_test"
     android:clipToPadding="false"
+    android:paddingTop="36dp"
     tools:context="com.edu.gvn.jsoupdemo.fragment.PlayerFragment">
 
 
@@ -109,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:max="10" />
+            android:max="15" />
 
         <ImageView
             android:id="@+id/img_volume_hight"

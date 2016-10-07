@@ -31,6 +31,7 @@ public class BaseActivity extends AppCompatActivity {
             startService(new Intent(this, PlayService.class));
             firstRunAppPref.edit().putBoolean(KEY_FIRST_RUN, false).apply();
         }
+
     }
 
     @Override
@@ -64,4 +65,10 @@ public class BaseActivity extends AppCompatActivity {
             isServiceConnected = false;
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.gc();
+    }
 }

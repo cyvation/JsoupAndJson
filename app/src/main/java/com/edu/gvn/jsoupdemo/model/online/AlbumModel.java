@@ -8,7 +8,7 @@ import android.os.Parcelable;
  */
 public class AlbumModel implements Parcelable {
 
-    private String view = "";
+    private int view;
     private String href;
     private String img_src;
     private String title;
@@ -20,8 +20,29 @@ public class AlbumModel implements Parcelable {
 
     }
 
+    public String getHref() {
+        return href;
+    }
+
+    public String getImg_src() {
+        return img_src;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+
+    public int getView() {
+        return view;
+    }
+
+    public void setView(int view) {
+        this.view = view;
+    }
+
     protected AlbumModel(Parcel in) {
-        view = in.readString();
+        view = in.readInt();
         href = in.readString();
         img_src = in.readString();
         title = in.readString();
@@ -39,31 +60,6 @@ public class AlbumModel implements Parcelable {
         }
     };
 
-    public String getHref() {
-        return href;
-    }
-
-    public String getImg_src() {
-        return img_src;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String toString() {
-        return href + "\n" + img_src + "\n" + title;
-    }
-
-    public String getView() {
-        return view;
-    }
-
-    public void setView(String view) {
-        this.view = view;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -71,9 +67,14 @@ public class AlbumModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(view);
+        dest.writeInt(view);
         dest.writeString(href);
         dest.writeString(img_src);
         dest.writeString(title);
+    }
+
+    @Override
+    public String toString() {
+        return href + "\n" + img_src + "\n" + title;
     }
 }

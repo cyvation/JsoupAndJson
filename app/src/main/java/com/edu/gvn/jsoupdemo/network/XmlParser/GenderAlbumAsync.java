@@ -2,7 +2,7 @@ package com.edu.gvn.jsoupdemo.network.XmlParser;
 
 import android.os.AsyncTask;
 
-import com.edu.gvn.jsoupdemo.adapter.GenderAlbumAdapter;
+import com.edu.gvn.jsoupdemo.common.TypeView;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 
 import org.jsoup.Jsoup;
@@ -34,6 +34,7 @@ public class GenderAlbumAsync extends AsyncTask<String, Void, ArrayList<AlbumMod
     @Override
     protected ArrayList<AlbumModel> doInBackground(String... params) {
         ArrayList<AlbumModel> mdata = new ArrayList<>();
+
         StringBuilder urlBuilder = new StringBuilder();
         urlBuilder.append(params[0]);
         urlBuilder.append("?page=");
@@ -53,12 +54,15 @@ public class GenderAlbumAsync extends AsyncTask<String, Void, ArrayList<AlbumMod
                     String srcImage = img.attr("src");
 
                     AlbumModel albumModel = new AlbumModel(href, srcImage, title);
-                    albumModel.setView(String.valueOf(GenderAlbumAdapter.TYPE_VIEW));
+                    albumModel.setView(TypeView.CONTENT);
                     mdata.add(albumModel);
                 }
             }
 
-            mdata.add(new AlbumModel("","",""));
+            // Thêm 1 phần tử với view là loadmore
+            AlbumModel model = new AlbumModel("","","");
+            model.setView(TypeView.TITLE);
+            mdata.add(model);
 
             return mdata;
         } catch (IOException e) {
