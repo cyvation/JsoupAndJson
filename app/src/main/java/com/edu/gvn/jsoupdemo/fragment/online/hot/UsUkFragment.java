@@ -38,7 +38,7 @@ public class UsUkFragment extends BaseFragment implements IReyclerViewOnItemClic
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mHotMusicAsync = new HotMusicParserAsync(new HotMusicParserAsync.GetDataCallback() {
+        mHotMusicAsync = new HotMusicParserAsync(context,new HotMusicParserAsync.GetDataCallback() {
             @Override
             public void getData(ArrayList<AlbumModel> data) {
                 mData = data;

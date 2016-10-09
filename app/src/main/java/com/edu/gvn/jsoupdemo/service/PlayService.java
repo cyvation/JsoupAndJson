@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.edu.gvn.jsoupdemo.common.Player;
 import com.edu.gvn.jsoupdemo.model.online.DetailAlbumModel;
@@ -25,14 +24,11 @@ public class PlayService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        Log.i(TAG, "onBind: binded");
-
         return binder;
     }
 
     @Override
     public void onCreate() {
-        Log.i(TAG, "onCreate: created");
         super.onCreate();
         mPlayer = new Player(this);
     }
@@ -45,12 +41,7 @@ public class PlayService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i(TAG, "onDestroy: destroyed");
         super.onDestroy();
-    }
-
-    public void setListAlbum(ArrayList<DetailAlbumModel> mData) {
-        mPlayer.setDataAlbumList(mData);
     }
 
     public void playIndex(int index) {
@@ -77,13 +68,6 @@ public class PlayService extends Service {
         mPlayer.start();
     }
 
-    public int currentPosition() {
-        return mPlayer.getCurrentPostion();
-    }
-
-    public int maxDuration() {
-        return mPlayer.getDuration();
-    }
 
     public void setVolume(int volume) {
         mPlayer.setVolume(volume);
@@ -97,6 +81,11 @@ public class PlayService extends Service {
         mPlayer.setRepeat();
     }
 
+    public void setListAlbum(ArrayList<DetailAlbumModel> mData) {
+        mPlayer.setDataAlbumList(mData);
+    }
+
+
     public int getVolume() {
         return mPlayer.getVolumeLevel();
     }
@@ -108,6 +97,15 @@ public class PlayService extends Service {
     public int getRepeat() {
         return mPlayer.getRepeat();
     }
+
+    public int getCurrentPosition() {
+        return mPlayer.getCurrentPostion();
+    }
+
+    public int getMaxDuration() {
+        return mPlayer.getDuration();
+    }
+
 
     public String getNameSong() {
         return mPlayer.getNameSong();
@@ -125,17 +123,20 @@ public class PlayService extends Service {
         return mPlayer.getLinkDownload();
     }
 
+
     public int getIndexSong() {
         return mPlayer.getIndex();
     }
 
-    public ArrayList<DetailAlbumModel> getListData(){
-       return mPlayer.getListData();
+    public ArrayList<DetailAlbumModel> getListData() {
+        return mPlayer.getListData();
     }
+
 
     public void setOnComplete(Player.MediaPlayerOnComplete onComplete) {
         mPlayer.setOnComplete(onComplete);
     }
+
 
     public class LocalBinder extends Binder {
         public PlayService getService() {

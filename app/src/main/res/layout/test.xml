@@ -8,12 +8,6 @@
     android:background="#a47777"
     android:fitsSystemWindows="true">
 
-    <com.cjj.SnailBar
-        android:layout_marginTop="30dp"
-        android:progress="30"
-        android:thumb="@drawable/snailanim"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        />
+
 
 </RelativeLayout>

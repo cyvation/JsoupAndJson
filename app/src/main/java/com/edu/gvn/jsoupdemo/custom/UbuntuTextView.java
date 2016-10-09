@@ -27,7 +27,7 @@ public class UbuntuTextView extends TextView {
     }
 
     private void fontText(Context context){
-        Typeface ubuntu = Typeface.createFromAsset(context.getAssets(),"font/Ubuntu-L.ttf");
+        Typeface ubuntu = Typeface.createFromAsset(context.getAssets(),"font/Ubuntu-LI.ttf");
         setTypeface(ubuntu);
     }
 }

@@ -12,14 +12,13 @@ import com.edu.gvn.jsoupdemo.network.JsonParser.SongParserAsync;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static android.support.v7.widget.StaggeredGridLayoutManager.TAG;
-
 /**
  * Created by hnc on 30/09/2016.
  */
 
 public class Player implements MediaPlayer.OnCompletionListener {
 
+    public final String TAG = Player.class.getSimpleName();
     private static final int REPEAT_OFF = 0;
     private static final int REPEAT_ON = 1;
     private static final int REPEAT_ONE = 2;
@@ -28,7 +27,7 @@ public class Player implements MediaPlayer.OnCompletionListener {
     private MediaPlayer mPlayer;
     private Context mContext;
     private ArrayList<DetailAlbumModel> mListSongs = new ArrayList<>();
-    private int indexSong;
+    private int indexSong = -1;
 
     private boolean isShuffle;
     private int mRepeat;
@@ -71,14 +70,11 @@ public class Player implements MediaPlayer.OnCompletionListener {
     }
 
     public void playIndex(int index) {
-
-
-        Log.i(TAG, "playIndex: " + index);
-
+        Log.i(TAG, "playIndex: " + mListSongs.get(index).toString());
+        System.gc();
+        indexSong = index;
         nameSong = "Loading ...";
         artistSong = "...";
-
-        System.gc();
 
         SongParserAsync songParserAsync = new SongParserAsync(mContext, new SongParserAsync.IDataCallBack() {
             @Override
@@ -99,9 +95,10 @@ public class Player implements MediaPlayer.OnCompletionListener {
                 artistSong = onlModel.data.get(0).artist;
                 linkDownload = dataStream;
 
-                if (onComplete != null)
-                    onComplete.notifiDataSetChange();
-                Log.i(TAG, "callBack: " + nameSong + "\n" + artistSong + "\n" + linkDownload + "\n" + linkCover);
+                if (onComplete != null) {
+                    onComplete.notifiDataSetChange(nameSong, artistSong, linkCover);
+                }
+
             }
         });
         songParserAsync.execute(mListSongs.get(index).getIDSong());
@@ -116,20 +113,31 @@ public class Player implements MediaPlayer.OnCompletionListener {
 
     public void next() {
         Log.i(TAG, "next: next");
-        if (indexSong == mListSongs.size() - 1)
-            indexSong = 0;
-        else
-            indexSong++;
+
+        if (isShuffle) {
+            indexSong = mRandom.nextInt(mListSongs.size() - 1);
+        } else {
+            if (indexSong == mListSongs.size() - 1) {
+                indexSong = 0;
+            } else {
+                indexSong++;
+            }
+        }
 
         playIndex(indexSong);
     }
 
     public void forward() {
         Log.i(TAG, "forward: forward");
-        if (indexSong == 0)
-            indexSong = mListSongs.size() - 1;
-        else
-            indexSong--;
+
+        if (isShuffle) {
+            indexSong = mRandom.nextInt(mListSongs.size() - 1);
+        } else {
+            if (indexSong == 0)
+                indexSong = mListSongs.size() - 1;
+            else
+                indexSong--;
+        }
 
         playIndex(indexSong);
     }
@@ -235,7 +243,7 @@ public class Player implements MediaPlayer.OnCompletionListener {
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        Log.i(TAG, "onCompletion: complete" );
+        Log.i(TAG, "onCompletion: complete");
         switch (mRepeat) {
             case REPEAT_OFF:
 
@@ -280,6 +288,8 @@ public class Player implements MediaPlayer.OnCompletionListener {
     public interface MediaPlayerOnComplete {
         void onComplete();
 
-        void notifiDataSetChange();
+        void notifiDataSetChange(String name, String artist, String image);
     }
+
+
 }

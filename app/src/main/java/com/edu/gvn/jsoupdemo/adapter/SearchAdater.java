@@ -18,11 +18,11 @@ import java.util.ArrayList;
 public class SearchAdater extends ArrayAdapter<SearchModel.Song> {
 
     private LayoutInflater inflater;
-    private ArrayList<SearchModel.Song> mData;
+    private ArrayList<SearchModel.Song> mSearchData;
 
     public SearchAdater(Context context, int resource, ArrayList<SearchModel.Song> data) {
         super(context, resource, data);
-        this.mData = data;
+        this.mSearchData = data;
         inflater = LayoutInflater.from(context);
 
     }
@@ -36,8 +36,8 @@ public class SearchAdater extends ArrayAdapter<SearchModel.Song> {
         TextView txtSongName = (TextView) convertView.findViewById(R.id.txt_song_name);
         TextView txtSongArtist = (TextView) convertView.findViewById(R.id.txt_artist);
 
-        String nameSong = mData.get(position).mName;
-        String nameArtist = mData.get(position).mArtist;
+        String nameSong = mSearchData.get(position).mName;
+        String nameArtist = mSearchData.get(position).mArtist;
 
         txtSongName.setText(nameSong);
         txtSongArtist.setText(nameArtist);

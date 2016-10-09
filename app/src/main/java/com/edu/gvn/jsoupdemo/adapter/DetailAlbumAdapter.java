@@ -57,9 +57,9 @@ public class DetailAlbumAdapter extends RecyclerView.Adapter<DetailAlbumAdapter.
             txtOrder = (TextView) itemView.findViewById(R.id.fragment_detail_album_order);
             txtNameSong = (TextView) itemView.findViewById(R.id.fragment_detail_album_song_name);
 
-            download = (ImageView) itemView.findViewById(R.id.fragment_detail_album_btn_download);
-            toPlayer = (ImageView) itemView.findViewById(R.id.fragment_detail_album_btn_to_player);
-            add = (ImageView) itemView.findViewById(R.id.fragment_detail_album_btn_add);
+            download = (ImageView) itemView.findViewById(R.id.btn_download);
+            toPlayer = (ImageView) itemView.findViewById(R.id.btn_to_player);
+            add = (ImageView) itemView.findViewById(R.id.btn_add);
 
             iconOfItemViewClick();
         }

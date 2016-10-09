@@ -40,7 +40,7 @@
 
 
         <ImageView
-            android:id="@+id/fragment_detail_album_btn_download"
+            android:id="@+id/btn_download"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginLeft="15dp"
@@ -49,7 +49,7 @@
 
 
         <ImageView
-            android:id="@+id/fragment_detail_album_btn_add"
+            android:id="@+id/btn_add"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginLeft="8dp"
@@ -57,7 +57,7 @@
             android:src="@drawable/add" />
 
         <ImageView
-            android:id="@+id/fragment_detail_album_btn_to_player"
+            android:id="@+id/btn_to_player"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_margin="10dp"

@@ -128,12 +128,9 @@ public class DetailAlbumFragment extends BaseFragment implements DetailAlbumAsyn
 
     @Override
     public void onItemClick(View v, int position) {
-
         if (position != BaseActivity.mPlayService.getIndexSong()) {
             BaseActivity.mPlayService.playIndex(position);
-            Log.i(TAG, "onItemClick: play index " + position);
         }
-
     }
 
     @Override

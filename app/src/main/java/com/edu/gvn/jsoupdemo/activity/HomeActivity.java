@@ -15,6 +15,7 @@ import com.edu.gvn.jsoupdemo.fragment.online.NavigationDrawerOnlineFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.SearchFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.album.AlbumCategoryFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.hot.HotMusicFragment;
+import com.edu.gvn.jsoupdemo.fragment.online.rank.RankFragment;
 
 
 public class HomeActivity extends BaseActivity implements NavigationDrawerOnlineFragment.GetNavItemClickListener {
@@ -29,6 +30,7 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
 
         setupToolbar();
         setNavOnlFragment();
+
     }
 
     private void setNavOnlFragment() {
@@ -140,6 +142,12 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
                 }
                 break;
             case R.id.option_rank:
+                if (!isFirstLoad)
+                    replaceFragment(new RankFragment());
+                else {
+                    addFragment(new RankFragment());
+                    isFirstLoad = false;
+                }
                 break;
             case R.id.option_artists:
                 break;

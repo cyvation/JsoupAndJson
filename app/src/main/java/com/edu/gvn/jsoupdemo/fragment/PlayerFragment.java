@@ -1,6 +1,7 @@
 package com.edu.gvn.jsoupdemo.fragment;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -31,7 +32,7 @@ public class PlayerFragment extends BaseFragment implements View.OnClickListener
     private static final int REPEAT_ON = 1;
     private static final int REPEAT_ONE = 2;
 
-private Toolbar toolbar;
+    private Toolbar toolbar;
     private CircularMusicProgressBar mMusicProgress;
     private ImageView mPlayState, mNext, mForward;
     private TextView mNameSong, mArtistSong;
@@ -86,7 +87,7 @@ private Toolbar toolbar;
         mNameSong.setText(BaseActivity.mPlayService.getNameSong());
         mArtistSong.setText(BaseActivity.mPlayService.getArtistSong());
 
-        mMusicProgress.setValue(percentMusicProgress(BaseActivity.mPlayService.currentPosition(), BaseActivity.mPlayService.maxDuration()));
+        mMusicProgress.setValue(percentMusicProgress(BaseActivity.mPlayService.getCurrentPosition(), BaseActivity.mPlayService.getMaxDuration()));
         mVolume.setProgress(BaseActivity.mPlayService.getVolume());
 
         mVolume.setOnSeekBarChangeListener(volumeChangeListener);
@@ -96,14 +97,12 @@ private Toolbar toolbar;
         mShuffle.setOnClickListener(this);
         mRepeat.setOnClickListener(this);
 
-        Picasso.with(getActivity())
-                .load(BaseActivity.mPlayService.getCover())
-                .placeholder(R.drawable.background_nav)
-                .error(R.drawable.background_nav)
-                .into(mMusicProgress);
-        updateProgressMusicBar(mMusicProgress);
-
         BaseActivity.mPlayService.setOnComplete(this);
+
+        // setImage bằng asynctask giúp main thread k quá nặng
+        ImageTask imageTask = new ImageTask();
+        imageTask.execute();
+
     }
 
     @Override
@@ -117,40 +116,6 @@ private Toolbar toolbar;
         super.onPause();
         toolbar.setVisibility(View.VISIBLE);
     }
-
-    private void setStateRepeat(int repeat) {
-        switch (repeat) {
-            case REPEAT_OFF:
-                mRepeat.setSelected(false);
-                mRepeat.setActivated(false);
-                break;
-            case REPEAT_ON:
-                mRepeat.setSelected(true);
-                mRepeat.setActivated(false);
-                break;
-            case REPEAT_ONE:
-                mRepeat.setSelected(true);
-                mRepeat.setActivated(true);
-                break;
-        }
-    }
-
-    private void updateProgressMusicBar(final CircularMusicProgressBar mMusicProgress) {
-        mUpdateProgressBarHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mMusicProgress.setValue(percentMusicProgress(BaseActivity.mPlayService.currentPosition(), BaseActivity.mPlayService.maxDuration()));
-                mUpdateProgressBarHandler.postDelayed(this, TIME_DELAY_UPDATE);
-            }
-        }, TIME_DELAY_UPDATE);
-    }
-
-    private long percentMusicProgress(int currentPosition, int maxDuration) {
-        if (maxDuration == 0) maxDuration = 1;
-        return (int) (((float) currentPosition / maxDuration) * 100);
-    }
-
-
 
 
     @Override
@@ -196,14 +161,58 @@ private Toolbar toolbar;
     }
 
     @Override
-    public void notifiDataSetChange() {
-        Log.i("huutho", "notifiDataSetChange: ");
-        mNameSong.setText(BaseActivity.mPlayService.getNameSong());
-        mArtistSong.setText(BaseActivity.mPlayService.getArtistSong());
-        Picasso.with(getActivity()).load(BaseActivity.mPlayService.getCover()).into(mMusicProgress);
-        mPlayState.setActivated(BaseActivity.mPlayService.isPlaying());
+    public void notifiDataSetChange(String name, String artist, String image) {
+        updateUI(name,artist,image);
     }
 
+
+    // Call when Next, Forward, onComplete
+
+
+    private void setStateRepeat(int repeat) {
+        switch (repeat) {
+            case REPEAT_OFF:
+                mRepeat.setSelected(false);
+                mRepeat.setActivated(false);
+                break;
+            case REPEAT_ON:
+                mRepeat.setSelected(true);
+                mRepeat.setActivated(false);
+                break;
+            case REPEAT_ONE:
+                mRepeat.setSelected(true);
+                mRepeat.setActivated(true);
+                break;
+        }
+    }
+
+    private void updateProgressMusicBar(final CircularMusicProgressBar mMusicProgress) {
+        mUpdateProgressBarHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mMusicProgress.setValue(percentMusicProgress(BaseActivity.mPlayService.getCurrentPosition(), BaseActivity.mPlayService.getMaxDuration()));
+                mUpdateProgressBarHandler.postDelayed(this, TIME_DELAY_UPDATE);
+            }
+        }, TIME_DELAY_UPDATE);
+    }
+
+    private long percentMusicProgress(int currentPosition, int maxDuration) {
+        if (maxDuration == 0) maxDuration = 1;
+        return (int) (((float) currentPosition / maxDuration) * 100);
+    }
+
+    private void updateUI(String name, String artist, String image) {
+        Picasso.with(getActivity())
+                .load(image)
+                .placeholder(R.drawable.background_nav)
+                .error(R.drawable.background_nav)
+                .into(mMusicProgress);
+        updateProgressMusicBar(mMusicProgress);
+
+        mNameSong.setText(name);
+        mArtistSong.setText(artist);
+        mPlayState.setActivated(BaseActivity.mPlayService.isPlaying());
+    }
 
     private SeekBar.OnSeekBarChangeListener volumeChangeListener = new SeekBar.OnSeekBarChangeListener() {
         @Override
@@ -224,4 +233,29 @@ private Toolbar toolbar;
         }
     };
 
+    public class ImageTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            publishProgress();
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+            Picasso.with(getActivity())
+                    .load(BaseActivity.mPlayService.getCover())
+                    .placeholder(R.drawable.background_nav)
+                    .error(R.drawable.background_nav)
+                    .into(mMusicProgress);
+            updateProgressMusicBar(mMusicProgress);
+
+            mNameSong.setText(BaseActivity.mPlayService.getNameSong());
+            mArtistSong.setText(BaseActivity.mPlayService.getArtistSong());
+            mPlayState.setActivated(BaseActivity.mPlayService.isPlaying());
+        }
+    }
+
+    ;
 }

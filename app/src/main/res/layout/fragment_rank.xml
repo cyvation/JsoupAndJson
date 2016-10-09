@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.online.rank.RankFragment">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/fragment_rank_appbarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="4dp"
+        android:translationZ="4dp"
+        tools:ignore="UnusedAttribute">
+
+        <android.support.design.widget.TabLayout
+           app:tabTextAppearance="@style/CustomTabBottom"
+            android:id="@+id/fragment_panel_tab_rank"
+            android:layout_width="match_parent"
+            app:tabSelectedTextColor="@color/white"
+            android:layout_height="?attr/actionBarSize" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        android:background="#fff"
+        android:id="@+id/fragment_rank_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/fragment_rank_appbarlayout"
+        />
+
+</RelativeLayout>

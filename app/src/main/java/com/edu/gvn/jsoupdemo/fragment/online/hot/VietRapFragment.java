@@ -37,7 +37,7 @@ public class VietRapFragment extends BaseFragment implements IReyclerViewOnItemC
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mHotMusicAsync = new HotMusicParserAsync(new HotMusicParserAsync.GetDataCallback() {
+        mHotMusicAsync = new HotMusicParserAsync(context,new HotMusicParserAsync.GetDataCallback() {
             @Override
             public void getData(ArrayList<AlbumModel> data) {
                 mData = data;

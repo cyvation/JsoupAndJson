@@ -1,5 +1,6 @@
 package com.edu.gvn.jsoupdemo.network.XmlParser;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -18,23 +19,20 @@ import java.util.ArrayList;
  * Created by HuuTho on 9/18/2016.
  */
 public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<AlbumModel>> {
-
     private static final String TAG = HotMusicParserAsync.class.getSimpleName();
 
-    public interface GetDataCallback {
-        void getData(ArrayList<AlbumModel> data);
-    }
-
+    private Context mContex;
     private GetDataCallback callback;
 
-    public HotMusicParserAsync(GetDataCallback callback) {
+    public HotMusicParserAsync(Context context, GetDataCallback callback) {
+        this.mContex = context;
         this.callback = callback;
     }
 
     @Override
     protected ArrayList<AlbumModel> doInBackground(String... params) {
-        ArrayList<AlbumModel> data = new ArrayList<>();
 
+        ArrayList<AlbumModel> data = new ArrayList<>();
         StringBuilder url = new StringBuilder();
         url.append(Mp3ZingBaseUrl.BASE_ZING_MP3).append("/").append(params[0]);
 
@@ -43,8 +41,6 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<Album
         Document document;
         try {
             document = Jsoup.connect(url.toString()).get();
-
-
             Elements selectionMT0 = document.select("div.section.mt0");
             for (int i = 0; i < selectionMT0.size(); i++) {
                 Elements row = selectionMT0.get(i).select("div.row");
@@ -62,7 +58,6 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<Album
                         data.add(albumModel);
                     }
                 }
-
             }
 
         } catch (IOException e) {
@@ -73,6 +68,11 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<Album
     }
 
     @Override
+    protected void onProgressUpdate(Void... values) {
+        super.onProgressUpdate(values);
+    }
+
+    @Override
     protected void onPostExecute(ArrayList<AlbumModel> albumModels) {
         super.onPostExecute(albumModels);
         if (albumModels.size() != 0) {
@@ -80,4 +80,9 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<Album
         }
         this.cancel(true);
     }
+
+    public interface GetDataCallback {
+        void getData(ArrayList<AlbumModel> data);
+    }
+
 }

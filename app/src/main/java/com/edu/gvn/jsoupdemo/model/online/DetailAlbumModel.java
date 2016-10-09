@@ -5,9 +5,9 @@ package com.edu.gvn.jsoupdemo.model.online;
  */
 
 public class DetailAlbumModel {
-    private String mOrder ;
+    private String mOrder;
     private String mIDSong;
-    private String mSongName ;
+    private String mSongName;
 
     public DetailAlbumModel(String mOrder, String mIDSong, String mSongName) {
         this.mOrder = mOrder;
@@ -29,7 +29,11 @@ public class DetailAlbumModel {
 
     @Override
     public String toString() {
-        return mOrder + " - " + mIDSong ;
+        return "DetailAlbumModel{" +
+                "mOrder='" + mOrder + '\'' +
+                ", mIDSong='" + mIDSong + '\'' +
+                ", mSongName='" + mSongName + '\'' +
+                '}';
     }
 }
 

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ddd"
+    android:layout_height="wrap_content"
+   >
+
+    <RelativeLayout
+        android:layout_width="450dp"
+        android:layout_height="wrap_content"
+      >
+
+        <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+            android:id="@+id/txt_title_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/connection_time_out"
+            android:textSize="@dimen/dialog_title_textsize"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/txt_title_dialog"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/text_dark_gray_color" />
+
+        <TextView
+            android:id="@+id/txt_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_line"
+            android:paddingBottom="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingTop="30dp"
+            android:text="Message" />
+
+        <Button
+            android:layout_marginBottom="15dp"
+            android:id="@+id/btn_go_to_setting"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/txt_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go to settings"/>
+
+        <View
+            android:id="@+id/view_line_1"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignTop="@+id/btn_go_to_setting"
+            android:layout_alignBottom="@+id/btn_go_to_setting"
+            android:layout_toLeftOf="@+id/btn_go_to_setting"
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:background="@color/text_dark_gray_color"/>
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:background="@android:color/transparent"
+            android:layout_alignBottom="@+id/btn_go_to_setting"
+            android:layout_toLeftOf="@+id/view_line_1"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"/>
+
+        <View
+            android:id="@+id/view_line_2"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_alignTop="@+id/btn_go_to_setting"
+            android:layout_alignBottom="@+id/btn_go_to_setting"
+            android:layout_toLeftOf="@+id/btn_cancel"
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:background="@color/text_dark_gray_color"/>
+
+        <Button
+            android:id="@+id/btn_reload"
+            android:background="@android:color/transparent"
+            android:layout_alignBottom="@+id/btn_go_to_setting"
+            android:layout_toLeftOf="@+id/view_line_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reload"/>
+    </RelativeLayout>
+
+</RelativeLayout>

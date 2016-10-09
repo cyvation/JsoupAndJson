@@ -20,14 +20,14 @@ import java.util.ArrayList;
  */
 public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusicAdapter.ViewHolder> {
 
-    private ArrayList<AlbumModel> mData;
-    private Context context;
+    private ArrayList<AlbumModel> mAlbumData;
+    private Context mContext;
     private LayoutInflater inflater;
     private IReyclerViewOnItemClickListener onItemClickListener;
 
     public HotOrAlbumMusicAdapter(Context context, ArrayList<AlbumModel> mData, IReyclerViewOnItemClickListener onItemClickListener) {
-        this.mData = mData;
-        this.context = context;
+        this.mAlbumData = mData;
+        this.mContext = context;
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -40,7 +40,7 @@ public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusic
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        AlbumModel model = mData.get(position);
+        AlbumModel model = mAlbumData.get(position);
         String desc = model.getTitle();
         int lastIndexDash = desc.lastIndexOf("-");
         String title = desc.substring(0, lastIndexDash - 1);
@@ -48,8 +48,8 @@ public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusic
 
         holder.txtTitle.setText(title);
         holder.txtContent.setText(content);
-        Picasso.with(context)
-                .load(mData.get(position).getImg_src())
+        Picasso.with(mContext)
+                .load(mAlbumData.get(position).getImg_src())
                 .placeholder(R.drawable.background_nav)
                 .into(holder.img);
 
@@ -58,7 +58,7 @@ public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusic
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mAlbumData.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -80,8 +80,8 @@ public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusic
     }
 
     public void addData(ArrayList<AlbumModel> data) {
-        mData.clear();
-        mData.addAll(data);
+        mAlbumData.clear();
+        mAlbumData.addAll(data);
         notifyDataSetChanged();
     }
 

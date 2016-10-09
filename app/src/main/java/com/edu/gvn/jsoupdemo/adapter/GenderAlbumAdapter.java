@@ -26,7 +26,7 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private boolean isLoading;
     private OnLoadMoreListener onLoadMoreListener;
     public Context context;
-    private ArrayList<AlbumModel> mData;
+    private ArrayList<AlbumModel> mAlbumData;
     private GenderAlbumOnItemClickListener onItemClickListener;
 
     public void setOnItemClickListener(GenderAlbumOnItemClickListener itemClickListener) {
@@ -35,7 +35,7 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public GenderAlbumAdapter(Context context, ArrayList<AlbumModel> mData) {
         this.context = context;
-        this.mData = mData;
+        this.mAlbumData = mData;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             onLoadMoreListener.onLoadListener();
         }
         if (getItemViewType(position) == TypeView.CONTENT) {
-            ((AlbumViewHolder) holder).binData(context, mData.get(position));
+            ((AlbumViewHolder) holder).binData(context, mAlbumData.get(position));
         }
 
 
@@ -70,12 +70,12 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mAlbumData.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (mData.get(position).getView()== TypeView.CONTENT) {
+        if (mAlbumData.get(position).getView()== TypeView.CONTENT) {
             return TypeView.CONTENT;
         } else {
             return TypeView.TITLE;

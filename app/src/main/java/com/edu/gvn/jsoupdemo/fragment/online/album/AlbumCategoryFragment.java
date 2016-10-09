@@ -2,6 +2,7 @@ package com.edu.gvn.jsoupdemo.fragment.online.album;
 
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AlbumCategoryFragment extends BaseFragment implements CategoryAlbumAdapter.ICategoryItemOnClick {
+public class AlbumCategoryFragment extends BaseFragment implements CategoryAlbumAdapter.ICategoryOnItemClick {
     private Context mContext;
     private RecyclerView mListCategory;
     private CategoryAlbumAdapter mCategoryAdapter;
@@ -41,7 +42,7 @@ public class AlbumCategoryFragment extends BaseFragment implements CategoryAlbum
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCategoryData = new ArrayList<>();
-        mCategoryData.addAll(getCategoryData());
+       // mCategoryData.addAll(getCategoryData());
         mCategoryAdapter = new CategoryAlbumAdapter(mContext, mCategoryData);
     }
 
@@ -60,10 +61,9 @@ public class AlbumCategoryFragment extends BaseFragment implements CategoryAlbum
         setRecyclerItemViewType();
         mListCategory.setLayoutManager(mGridLayoutManager);
         mListCategory.setAdapter(mCategoryAdapter);
-
-
-
         mCategoryAdapter.setOnItemClick(AlbumCategoryFragment.this);
+
+        new AddData().execute();
     }
 
     private void setRecyclerItemViewType() {
@@ -75,43 +75,68 @@ public class AlbumCategoryFragment extends BaseFragment implements CategoryAlbum
         });
     }
 
-    public ArrayList<CategoryAlbumModel> getCategoryData() {
-        ArrayList<CategoryAlbumModel> data = new ArrayList<>();
-        data.add(new CategoryAlbumModel(TypeView.TITLE, getString(R.string.viet_nam), -1, null));
-
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.v_pop), R.drawable.album_vn_nhac_tre, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_TRE));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_romance), R.drawable.album_vn_nhac_tru_tinh, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_TRU_TINH));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_rap_hiphop), R.drawable.album_vn_rap_hiphop, Mp3ZingBaseUrl.ALBUMS_VN_RAP_HIPHOP));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_trinh_cong_son), R.drawable.album_vn_nhac_trinh, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_TRINH));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_chidrent), R.drawable.album_vn_nhac_thieu_nhi, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_THIEU_NHI));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_rock), R.drawable.album_vn_rock_viet, Mp3ZingBaseUrl.ALBUMS_VN_ROCK_VIET));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_dance), R.drawable.album_vn_dance, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_DANCE_VIET));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_country), R.drawable.album_vn_nhac_que_huong, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_QUE_HUONG));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_red), R.drawable.album_vn_nhac_cach_mang, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_CACH_MANG));
-
-        data.add(new CategoryAlbumModel(TypeView.TITLE, getString(R.string.us_uk), -1, null));
-
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_pop), R.drawable.album_us_pop, Mp3ZingBaseUrl.ALBUMS_US_POP));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_rok), R.drawable.album_us_rock, Mp3ZingBaseUrl.ALBUMS_US_ROCK));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_rap_hiphop), R.drawable.album_us_rap_hiphop, Mp3ZingBaseUrl.ALBUMS_US_RAP_HIPHOP));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_country), R.drawable.album_us_country, Mp3ZingBaseUrl.ALBUMS_US_COUNTRY));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_edm), R.drawable.album_us_edm, Mp3ZingBaseUrl.ALBUMS_US_ELECTRONIC_DANCE));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_r_b), R.drawable.album_us_rb_soul, Mp3ZingBaseUrl.ALBUMS_US_R_B_SOUL));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_trance_house_techno), R.drawable.album_us_trance_house_techno, Mp3ZingBaseUrl.ALBUMS_US_TRANCE_HOUSE_TECHNO));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_blue_jazz), R.drawable.album_us_blue_jazz, Mp3ZingBaseUrl.ALBUMS_US_BLUES_JAZZ));
-
-        data.add(new CategoryAlbumModel(TypeView.TITLE, getString(R.string.asia), -1, null));
-
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.k_pop), R.drawable.album_asia_korea, Mp3ZingBaseUrl.ALBUMS_ASIAN_KOREA));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.jav), R.drawable.album_asia_japan, Mp3ZingBaseUrl.ALBUMS_ASIAN_JAPAN));
-        data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.china), R.drawable.album_asia_china, Mp3ZingBaseUrl.ALBUMS_ASIAN_CHINA));
-        return data;
-    }
-
     @Override
     public void onItemClick(View v, int position) {
         String genderUrl = mCategoryData.get(position).getUrl();
 
         ((HomeActivity) getActivity()).replaceFragment(GenderAlbumFragment.newInstance(genderUrl));
+    }
+
+    private class AddData extends AsyncTask<Void,Void,Void> {
+        private ArrayList<CategoryAlbumModel> data;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            data = new ArrayList<>();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            data.add(new CategoryAlbumModel(TypeView.TITLE, getString(R.string.viet_nam), -1, null));
+
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.v_pop), R.drawable.album_vn_nhac_tre, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_TRE));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_romance), R.drawable.album_vn_nhac_tru_tinh, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_TRU_TINH));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_rap_hiphop), R.drawable.album_vn_rap_hiphop, Mp3ZingBaseUrl.ALBUMS_VN_RAP_HIPHOP));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_trinh_cong_son), R.drawable.album_vn_nhac_trinh, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_TRINH));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_chidrent), R.drawable.album_vn_nhac_thieu_nhi, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_THIEU_NHI));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_rock), R.drawable.album_vn_rock_viet, Mp3ZingBaseUrl.ALBUMS_VN_ROCK_VIET));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_dance), R.drawable.album_vn_dance, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_DANCE_VIET));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_country), R.drawable.album_vn_nhac_que_huong, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_QUE_HUONG));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.vn_red), R.drawable.album_vn_nhac_cach_mang, Mp3ZingBaseUrl.ALBUMS_VN_NHAC_CACH_MANG));
+
+            data.add(new CategoryAlbumModel(TypeView.TITLE, getString(R.string.us_uk), -1, null));
+
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_pop), R.drawable.album_us_pop, Mp3ZingBaseUrl.ALBUMS_US_POP));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_rok), R.drawable.album_us_rock, Mp3ZingBaseUrl.ALBUMS_US_ROCK));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_rap_hiphop), R.drawable.album_us_rap_hiphop, Mp3ZingBaseUrl.ALBUMS_US_RAP_HIPHOP));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_country), R.drawable.album_us_country, Mp3ZingBaseUrl.ALBUMS_US_COUNTRY));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_edm), R.drawable.album_us_edm, Mp3ZingBaseUrl.ALBUMS_US_ELECTRONIC_DANCE));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_r_b), R.drawable.album_us_rb_soul, Mp3ZingBaseUrl.ALBUMS_US_R_B_SOUL));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_trance_house_techno), R.drawable.album_us_trance_house_techno, Mp3ZingBaseUrl.ALBUMS_US_TRANCE_HOUSE_TECHNO));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.us_blue_jazz), R.drawable.album_us_blue_jazz, Mp3ZingBaseUrl.ALBUMS_US_BLUES_JAZZ));
+
+            data.add(new CategoryAlbumModel(TypeView.TITLE, getString(R.string.asia), -1, null));
+
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.k_pop), R.drawable.album_asia_korea, Mp3ZingBaseUrl.ALBUMS_ASIAN_KOREA));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.jav), R.drawable.album_asia_japan, Mp3ZingBaseUrl.ALBUMS_ASIAN_JAPAN));
+            data.add(new CategoryAlbumModel(TypeView.CONTENT, getString(R.string.china), R.drawable.album_asia_china, Mp3ZingBaseUrl.ALBUMS_ASIAN_CHINA));
+
+            mCategoryData.addAll(data);
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            mCategoryAdapter.notifyDataSetChanged();
+        }
     }
 }

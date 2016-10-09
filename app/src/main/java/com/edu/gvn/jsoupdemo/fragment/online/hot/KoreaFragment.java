@@ -34,10 +34,11 @@ public class KoreaFragment extends BaseFragment implements IReyclerViewOnItemCli
     private ArrayList<AlbumModel> mData = new ArrayList<>();
     private ProgressBar loading;
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mHotMusicAsync = new HotMusicParserAsync(new HotMusicParserAsync.GetDataCallback() {
+        mHotMusicAsync = new HotMusicParserAsync(context,new HotMusicParserAsync.GetDataCallback() {
             @Override
             public void getData(ArrayList<AlbumModel> data) {
                 mData = data;

@@ -22,7 +22,7 @@ public class CategoryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private Context mContext;
     private ArrayList<CategoryAlbumModel> mData;
-    private ICategoryItemOnClick itemOnClick;
+    private ICategoryOnItemClick itemOnClick;
 
     public CategoryAlbumAdapter(Context context, ArrayList<CategoryAlbumModel> mData) {
         this.mContext = context;
@@ -36,9 +36,9 @@ public class CategoryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.View
         return
                 (viewType == TypeView.CONTENT) ?
 
-                (new CategoryAlbumAdapter.ItemCategory(inflater.inflate(R.layout.item_category_content, parent, false)))
-                :
-                (new CategoryAlbumAdapter.TitleCategory(inflater.inflate(R.layout.item_category_title, parent, false)));
+                        (new CategoryAlbumAdapter.ItemCategory(inflater.inflate(R.layout.item_category_content, parent, false)))
+                        :
+                        (new CategoryAlbumAdapter.TitleCategory(inflater.inflate(R.layout.item_category_title, parent, false)));
     }
 
     @Override
@@ -61,7 +61,6 @@ public class CategoryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.View
                 break;
         }
     }
-
     @Override
     public int getItemViewType(int position) {
         return mData.get(position).getViewType();
@@ -93,11 +92,11 @@ public class CategoryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    public void setOnItemClick(ICategoryItemOnClick onItemClick) {
+    public void setOnItemClick(ICategoryOnItemClick onItemClick) {
         this.itemOnClick = onItemClick;
     }
 
-    public interface ICategoryItemOnClick {
+    public interface ICategoryOnItemClick {
         void onItemClick(View v, int position);
     }
 }

@@ -47,4 +47,9 @@
     <string name="jav">Jav</string>
     <string name="china">Khựa</string>
 
+    <!--String connection network-->
+    <string name="connection_time_out">Connection Time Out</string>
+    <string name="title_time_out_dialog_conn">Connection time out</string>
+    <string name="msg_time_out_dialog_conn">Connection is time out, check your connection ?</string>
+
 </resources>
