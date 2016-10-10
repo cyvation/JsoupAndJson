@@ -7,11 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
@@ -28,8 +28,6 @@ import com.edu.gvn.jsoupdemo.network.XmlParser.RankAsync;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -38,6 +36,8 @@ public class KoreaRankFragment extends BaseFragment implements View.OnClickListe
     private ImageView mPlayAll;
     private RecyclerView mRankList;
     private RankAdapter mRankAdapter;
+    private ProgressBar mLoading;
+
     private ArrayList<RankModel> mRankData;
     private ArrayList<DetailAlbumModel> mPlayData = new ArrayList<>();
 
@@ -61,9 +61,11 @@ public class KoreaRankFragment extends BaseFragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_rank_general, container, false);
+
         ((TextView) v.findViewById(R.id.fragment_rank_general_name)).setText("Bảng xếp hạng bài hát Hàn Quốc");
         mPlayAll = (ImageView) v.findViewById(R.id.img_play_all);
         mRankList = (RecyclerView) v.findViewById(R.id.fragment_rank_general_rank);
+        mLoading = (ProgressBar) v.findViewById(R.id.loading);
         mPlayAll.setOnClickListener(this);
         return v;
     }
@@ -73,6 +75,12 @@ public class KoreaRankFragment extends BaseFragment implements View.OnClickListe
         super.onViewCreated(view, savedInstanceState);
         mRankList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRankList.setAdapter(mRankAdapter);
+
+        if (mRankData.size() == 0) {
+            mLoading.setVisibility(View.VISIBLE);
+        } else {
+            mLoading.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -123,7 +131,10 @@ public class KoreaRankFragment extends BaseFragment implements View.OnClickListe
     public void callBack(List<RankModel> lists) {
         mRankData.addAll(lists);
         mRankAdapter.notifyDataSetChanged();
-        Log.i(TAG, "callBack: " + mRankData.toString());
+
+        if (mLoading != null && mLoading.getVisibility() == View.VISIBLE) {
+            mLoading.setVisibility(View.GONE);
+        }
     }
 
     private ArrayList<DetailAlbumModel> convertData(ArrayList<RankModel> mOldData) {

@@ -21,6 +21,7 @@ public class RankPagerAdapter extends FragmentPagerAdapter {
 
     public RankPagerAdapter(FragmentManager fm) {
         super(fm);
+
         mListFragment = new ArrayList<>();
         mListFragment.add(new VietnamRankFragment());
         mListFragment.add(new UsUkRankFragment());

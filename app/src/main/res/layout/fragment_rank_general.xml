@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +9,7 @@
     tools:context=".fragment.online.rank.VietnamRankFragment">
 
     <RelativeLayout
+        android:id="@+id/panel_title"
         android:background="#eaeaea"
         android:outlineProvider="bounds"
         android:layout_width="match_parent"
@@ -47,7 +48,15 @@
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/panel_title"
         android:id="@+id/fragment_rank_general_rank"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:id="@+id/loading"/>
+</RelativeLayout>

@@ -5,11 +5,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.adapter.RankPagerAdapter;
@@ -58,15 +62,25 @@ public class RankFragment extends BaseFragment implements TabLayout.OnTabSelecte
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
        //ToDO : tab animation
+
+        ImageView img = (ImageView) (((LinearLayout)((LinearLayout)mTabRank.getChildAt(0)).getChildAt(tab.getPosition())).getChildAt(0));
+        TextView txt = (TextView) (((LinearLayout)((LinearLayout)mTabRank.getChildAt(0)).getChildAt(tab.getPosition())).getChildAt(1));
+        img.startAnimation(zoomInAnim);
+        txt.startAnimation(zoomOutAnim);
+
     }
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
 
+        ImageView img = (ImageView) (((LinearLayout)((LinearLayout)mTabRank.getChildAt(0)).getChildAt(tab.getPosition())).getChildAt(0));
+        TextView txt = (TextView) (((LinearLayout)((LinearLayout)mTabRank.getChildAt(0)).getChildAt(tab.getPosition())).getChildAt(1));
+        img.startAnimation(zoomOutAnim);
+        txt.startAnimation(zoomInAnim);
+        Log.i("huutho", "onTabSelected: " + tab.getPosition());
     }
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
-
     }
 }

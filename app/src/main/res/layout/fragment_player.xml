@@ -142,7 +142,6 @@
             android:scaleType="centerInside"
             android:src="@drawable/button_state_shuffle" />
 
-
     </RelativeLayout>
 
 </RelativeLayout>
