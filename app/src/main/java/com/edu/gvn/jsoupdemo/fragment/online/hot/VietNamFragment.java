@@ -36,10 +36,11 @@ public class VietNamFragment extends BaseFragment implements IReyclerViewOnItemC
     private HotMusicParserAsync mHotMusicAsync;
     private ArrayList<AlbumModel> mData = new ArrayList<>();
     private ProgressBar loading;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mHotMusicAsync = new HotMusicParserAsync(context,new HotMusicParserAsync.GetDataCallback() {
+        mHotMusicAsync = new HotMusicParserAsync(context, new HotMusicParserAsync.GetDataCallback() {
             @Override
             public void getData(ArrayList<AlbumModel> data) {
                 mData = data;
@@ -55,10 +56,12 @@ public class VietNamFragment extends BaseFragment implements IReyclerViewOnItemC
         mHotMusicAsync.execute(Mp3ZingBaseUrl.HOT_VIET);
     }
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new HotOrAlbumMusicAdapter(getActivity(), mData,this);
+        mAdapter = new HotOrAlbumMusicAdapter(getActivity(), mData, this);
+
     }
 
     @Override
@@ -72,10 +75,11 @@ public class VietNamFragment extends BaseFragment implements IReyclerViewOnItemC
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mListAlbumHot.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        mListAlbumHot.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mListAlbumHot.setAdapter(mAdapter);
 
-        if (mData.size()!=0) loading.setVisibility(View.GONE);
+        if (mData.size() != 0) loading.setVisibility(View.GONE);
+        mAdapter.notifyDataSetChanged();
     }
 
 
@@ -85,7 +89,7 @@ public class VietNamFragment extends BaseFragment implements IReyclerViewOnItemC
         String href = mData.get(position).getHref();
         String img = mData.get(position).getImg_src();
         String title = mData.get(position).getTitle();
-        AlbumModel albumModel = new AlbumModel(href,img,title);
+        AlbumModel albumModel = new AlbumModel(href, img, title);
 
         ((HomeActivity) getActivity()).replaceFragment(DetailAlbumFragment.newInstance(albumModel));
     }

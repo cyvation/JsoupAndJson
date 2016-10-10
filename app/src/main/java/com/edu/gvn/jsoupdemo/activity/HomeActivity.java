@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.edu.gvn.jsoupdemo.R;
@@ -66,8 +65,8 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         boolean isExistFragment = manager.popBackStackImmediate(backStackName, 0);
-        if (!isExistFragment) {
-            transaction.replace(R.id.rl_parent, fragment);
+        if (!isExistFragment && manager.findFragmentByTag(tag) == null) {
+            transaction.replace(R.id.rl_parent, fragment,tag);
             transaction.addToBackStack(backStackName);
             transaction.commit();
         }
@@ -86,22 +85,6 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
         }
     }
 
-    public void replaceFragment(Fragment fromFragment, Fragment toFragment, int idParentView) {
-        String backStackName = toFragment.getClass().getName();
-        String tag = backStackName;
-        FragmentManager mFragmentManager = fromFragment.getChildFragmentManager();
-        FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        boolean fragmentPopped = mFragmentManager.popBackStackImmediate(backStackName, 0);
-
-        if (!fragmentPopped && mFragmentManager.findFragmentByTag(tag) == null) {
-            transaction.replace(idParentView, toFragment, tag);
-            transaction.addToBackStack(backStackName);
-            transaction.commit();
-            Log.i("huutho", "replaceFragment: create fragment");
-        }
-
-    }
-
 
     @Override
     public void onBackPressed() {
@@ -110,10 +93,7 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
 
         if (mFragment instanceof PlayerFragment) {
             mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
         }
-
-        //  fm.popBackStack();
         fm.popBackStackImmediate();
     }
 
@@ -175,7 +155,7 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
     }
 
     // biến variable
-    //contructor
+    // contructor
     // lifecicler
     // func
     // even

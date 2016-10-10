@@ -1,113 +1,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.edu.gvn.jsoupdemo.fragment.online.hot.HotMusicFragment">
 
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/child_fragment"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/fragment_hot_music_pager"
         android:layout_width="match_parent"
-        android:layout_above="@+id/bottom_bar"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/appbar_layout" />
 
-
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:id="@+id/bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/colorPrimary"
-        android:orientation="horizontal">
+        android:elevation="4dp"
+        android:translationZ="4dp"
+        tools:ignore="UnusedAttribute">
 
-        <RelativeLayout
-            android:id="@+id/rll_vn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:orientation="horizontal">
-
-            <ImageView
-
-                android:id="@+id/imv_icon_vn"
-                style="@style/ImageBottomBar"
-                android:src="@drawable/bottom_tab_vietnam" />
-
-            <TextView
-                android:id="@+id/txt_vn"
-                style="@style/TextTitleBottomBar"
-                android:layout_below="@+id/imv_icon_vn"
-                android:text="Vietnam"
-
-                />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rll_us"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imv_icon_us"
-                style="@style/ImageBottomBar"
-                android:src="@drawable/bottom_tab_us" />
-
-            <TextView
-                style="@style/TextTitleBottomBar"
-                android:layout_below="@+id/imv_icon_us"
-                android:text="Us-Uk"
-
-                />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rll_korea"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imv_icon_korea"
-                style="@style/ImageBottomBar"
-                android:src="@drawable/bottom_tab_korea" />
-
-            <TextView
-                style="@style/TextTitleBottomBar"
-                android:layout_below="@+id/imv_icon_korea"
-                android:text="Korea"
-
-                />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rll_rap_vn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imv_icon_rap_vn"
-                style="@style/ImageBottomBar"
-                android:src="@drawable/bottom_tab_rapper" />
-
-            <TextView
-                style="@style/TextTitleBottomBar"
-                android:layout_below="@+id/imv_icon_rap_vn"
-                android:text="Rap-vn"
-
-                />
-        </RelativeLayout>
-    </LinearLayout>
-
+        <android.support.design.widget.TabLayout
+            android:id="@+id/fragment_hot_music_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextAppearance="@style/CustomTabBottom" />
+    </android.support.design.widget.AppBarLayout>
 
 </RelativeLayout>

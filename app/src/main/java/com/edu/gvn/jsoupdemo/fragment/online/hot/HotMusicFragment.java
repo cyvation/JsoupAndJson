@@ -3,91 +3,82 @@ package com.edu.gvn.jsoupdemo.fragment.online.hot;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
-import com.edu.gvn.jsoupdemo.activity.HomeActivity;
+import com.edu.gvn.jsoupdemo.adapter.HotMusicPagerAdapter;
 import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
 
 
-public class HotMusicFragment extends BaseFragment implements View.OnClickListener {
+public class HotMusicFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
 
+    private ViewPager mHotPager;
+    private TabLayout mHotTablayout;
+    private HotMusicPagerAdapter mHotAdapter;
 
-    private static final String TAG = HotMusicFragment.class.getSimpleName();
-    private LinearLayout mBottomBar;
-    private RelativeLayout mTabVn, mTabUs, mTabKorea, mTabRapVn;
-    private Animation mZoomInTab, mZoomOutTab;
-
+    private Animation zoomInAnim, zoomOutAnim;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mZoomInTab = AnimationUtils.loadAnimation(getActivity(), R.anim.tab_zoom_in);
-        mZoomOutTab = AnimationUtils.loadAnimation(getActivity(), R.anim.tab_zoom_out);
+        mHotAdapter = new HotMusicPagerAdapter(getActivity().getSupportFragmentManager());
+        zoomInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.tab_zoom_in);
+        zoomOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.tab_zoom_out);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View mView = inflater.inflate(R.layout.fragment_hot_music, container, false);
+        View view = inflater.inflate(R.layout.fragment_hot_music, container, false);
+        mHotPager = (ViewPager) view.findViewById(R.id.fragment_hot_music_pager);
+        mHotTablayout = (TabLayout) view.findViewById(R.id.fragment_hot_music_tablayout);
 
-        mBottomBar = (LinearLayout) mView.findViewById(R.id.bottom_bar);
-        mTabVn = (RelativeLayout) mView.findViewById(R.id.rll_vn);
-        mTabUs = (RelativeLayout) mView.findViewById(R.id.rll_us);
-        mTabKorea = (RelativeLayout) mView.findViewById(R.id.rll_korea);
-        mTabRapVn = (RelativeLayout) mView.findViewById(R.id.rll_rap_vn);
-
-        mTabUs.setOnClickListener(this);
-        mTabVn.setOnClickListener(this);
-        mTabKorea.setOnClickListener(this);
-        mTabRapVn.setOnClickListener(this);
-
-        return mView;
+        mHotTablayout.addOnTabSelectedListener(this);
+        return view;
     }
 
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        ((HomeActivity) getActivity()).replaceFragment(this, new VietNamFragment(), R.id.child_fragment);
-    }
-
-    private void animTab(View view) {
-        mTabVn.startAnimation(mZoomOutTab);
-        mTabRapVn.startAnimation(mZoomOutTab);
-        mTabKorea.startAnimation(mZoomOutTab);
-        mTabUs.startAnimation(mZoomOutTab);
-
-        mTabKorea.clearAnimation();
-        mTabVn.clearAnimation();
-        mTabRapVn.clearAnimation();
-        mTabUs.clearAnimation();
-
-        view.startAnimation(mZoomInTab);
+        mHotTablayout.setupWithViewPager(mHotPager);
+        mHotPager.setAdapter(mHotAdapter);
+        setTabIcon();
     }
 
     @Override
-    public void onClick(View v) {
-        animTab(v);
-        switch (v.getId()) {
-            case R.id.rll_vn:
-                ((HomeActivity) getActivity()).replaceFragment(this, new VietNamFragment(), R.id.child_fragment);
-                break;
-            case R.id.rll_us:
-                ((HomeActivity) getActivity()).replaceFragment(this, new UsUkFragment(), R.id.child_fragment);
-                break;
-            case R.id.rll_korea:
-                ((HomeActivity) getActivity()).replaceFragment(this, new KoreaFragment(), R.id.child_fragment);
-                break;
-            case R.id.rll_rap_vn:
-                ((HomeActivity) getActivity()).replaceFragment(this, new VietRapFragment(), R.id.child_fragment);
-                break;
-        }
+    public void onTabSelected(TabLayout.Tab tab) {
+        ImageView img = (ImageView) (((LinearLayout) ((LinearLayout) mHotTablayout.getChildAt(0)).getChildAt(tab.getPosition())).getChildAt(0));
+        TextView txt = (TextView) (((LinearLayout) ((LinearLayout) mHotTablayout.getChildAt(0)).getChildAt(tab.getPosition())).getChildAt(1));
+        img.startAnimation(zoomInAnim);
+        txt.startAnimation(zoomOutAnim);
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+        ImageView img = (ImageView) (((LinearLayout) ((LinearLayout) mHotTablayout.getChildAt(0)).getChildAt(tab.getPosition())).getChildAt(0));
+        TextView txt = (TextView) (((LinearLayout) ((LinearLayout) mHotTablayout.getChildAt(0)).getChildAt(tab.getPosition())).getChildAt(1));
+        img.startAnimation(zoomOutAnim);
+        txt.startAnimation(zoomInAnim);
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+    private void setTabIcon() {
+        mHotTablayout.getTabAt(0).setIcon(R.drawable.bottom_tab_vietnam);
+        mHotTablayout.getTabAt(1).setIcon(R.drawable.bottom_tab_us);
+        mHotTablayout.getTabAt(2).setIcon(R.drawable.bottom_tab_korea);
+        mHotTablayout.getTabAt(3).setIcon(R.drawable.bottom_tab_rapper);
     }
 }
