@@ -38,6 +38,8 @@ public class RankFragment extends BaseFragment implements TabLayout.OnTabSelecte
         View v = inflater.inflate(R.layout.fragment_rank, container, false);
         mRankPager = (ViewPager) v.findViewById(R.id.fragment_rank_pager);
         mTabRank = (TabLayout) v.findViewById(R.id.fragment_panel_tab_rank);
+
+        mTabRank.addOnTabSelectedListener(this);
         return v;
     }
 
@@ -47,9 +49,6 @@ public class RankFragment extends BaseFragment implements TabLayout.OnTabSelecte
         mTabRank.setupWithViewPager(mRankPager);
         mRankPager.setAdapter(mRankAdapter);
         setIconTab();
-
-        mTabRank.addOnTabSelectedListener(this);
-
     }
 
     private void setIconTab() {

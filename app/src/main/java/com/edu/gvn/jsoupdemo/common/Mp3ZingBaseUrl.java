@@ -54,6 +54,8 @@ public class Mp3ZingBaseUrl {
     public static final String ARTISTS_KOREA = "http://mp3.zing.vn/the-loai-nghe-si/Han-Quoc/IWZ9Z08W.html";
     public static final String ARTISTS_JAPAN = "http://mp3.zing.vn/the-loai-nghe-si/Nhat-Ban/IWZ9Z08Z.html";
     public static final String ARTISTS_CHINA = "http://mp3.zing.vn/the-loai-nghe-si/Hoa-Ngu/IWZ9Z08U.html";
+    public static final String ARTISTS_CONCERT = "http://mp3.zing.vn/the-loai-nghe-si/Hoa-Tau/IWZ9Z086.html";
+
     // page
     public static final String PAGE = "?page=";
     public static final String ALBUMS_ALPHABE = "?sort=alphabet&filter=";

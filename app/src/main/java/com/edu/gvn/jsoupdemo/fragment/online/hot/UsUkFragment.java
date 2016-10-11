@@ -1,7 +1,6 @@
 package com.edu.gvn.jsoupdemo.fragment.online.hot;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,10 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.edu.gvn.jsoupdemo.R;
+import com.edu.gvn.jsoupdemo.activity.HomeActivity;
 import com.edu.gvn.jsoupdemo.adapter.HotOrAlbumMusicAdapter;
 import com.edu.gvn.jsoupdemo.common.IReyclerViewOnItemClickListener;
 import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
 import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
+import com.edu.gvn.jsoupdemo.fragment.online.album.DetailAlbumFragment;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.edu.gvn.jsoupdemo.network.XmlParser.HotMusicParserAsync;
 
@@ -32,13 +33,16 @@ public class UsUkFragment extends BaseFragment implements IReyclerViewOnItemClic
     private HotOrAlbumMusicAdapter mAdapter;
     private HotMusicParserAsync mHotMusicAsync;
     private ArrayList<AlbumModel> mData = new ArrayList<>();
-
     private ProgressBar loading;
 
+
+
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mHotMusicAsync = new HotMusicParserAsync(context,new HotMusicParserAsync.GetDataCallback() {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mAdapter = new HotOrAlbumMusicAdapter(getActivity(), mData,this);
+
+        mHotMusicAsync = new HotMusicParserAsync(getActivity(),new HotMusicParserAsync.GetDataCallback() {
             @Override
             public void getData(ArrayList<AlbumModel> data) {
                 mData = data;
@@ -50,12 +54,6 @@ public class UsUkFragment extends BaseFragment implements IReyclerViewOnItemClic
             }
         });
         mHotMusicAsync.execute(Mp3ZingBaseUrl.HOT_AU_MY);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mAdapter = new HotOrAlbumMusicAdapter(getActivity(), mData,this);
     }
 
     @Override
@@ -77,6 +75,11 @@ public class UsUkFragment extends BaseFragment implements IReyclerViewOnItemClic
 
     @Override
     public void onItemClick(View v, int position) {
+        String href = mData.get(position).getHref();
+        String img = mData.get(position).getImg_src();
+        String title = mData.get(position).getTitle();
+        AlbumModel albumModel = new AlbumModel(href, img, title);
 
+        ((HomeActivity) getActivity()).replaceFragment(DetailAlbumFragment.newInstance(albumModel));
     }
 }

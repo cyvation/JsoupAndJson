@@ -11,10 +11,12 @@ import android.view.View;
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.fragment.PlayerFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.NavigationDrawerOnlineFragment;
-import com.edu.gvn.jsoupdemo.fragment.online.SearchFragment;
+import com.edu.gvn.jsoupdemo.fragment.online.artist.ArtistFragment;
+import com.edu.gvn.jsoupdemo.fragment.online.search.SearchFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.album.AlbumCategoryFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.hot.HotMusicFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.rank.RankFragment;
+import com.edu.gvn.jsoupdemo.network.XmlParser.ListArtistAsync;
 
 
 public class HomeActivity extends BaseActivity implements NavigationDrawerOnlineFragment.GetNavItemClickListener {
@@ -29,6 +31,10 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
 
         setupToolbar();
         setNavOnlFragment();
+
+
+        ListArtistAsync listArtistAsync = new ListArtistAsync();
+        listArtistAsync.execute("http://mp3.zing.vn/the-loai-nghe-si/Viet-Nam/IWZ9Z08I.html?page=1");
 
     }
 
@@ -62,6 +68,7 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
     public void replaceFragment(Fragment fragment) {
         String backStackName = fragment.getClass().getName();
         String tag = backStackName;
+
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         boolean isExistFragment = manager.popBackStackImmediate(backStackName, 0);
@@ -75,6 +82,7 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
     public void replaceFragmentWithToolbar(Fragment fragment) {
         String backStackName = fragment.getClass().getName();
         String tag = backStackName;
+
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         boolean isExistFragment = manager.popBackStackImmediate(backStackName, 0);
@@ -117,9 +125,9 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
                 if (!isFirstLoad)
                     replaceFragment(new HotMusicFragment());
                 else {
-                    addFragment(new HotMusicFragment());
-                    isFirstLoad = false;
-                }
+                   addFragment(new HotMusicFragment());
+                   isFirstLoad = false;
+              }
                 break;
             case R.id.option_rank:
                 if (!isFirstLoad)
@@ -130,6 +138,12 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
                 }
                 break;
             case R.id.option_artists:
+                if (!isFirstLoad)
+                    replaceFragment(new ArtistFragment());
+                else {
+                    addFragment(new  ArtistFragment());
+                    isFirstLoad = false;
+                }
                 break;
             case R.id.option_albums:
                 if (!isFirstLoad)

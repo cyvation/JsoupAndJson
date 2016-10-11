@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:clipToPadding="false"
-    tools:context="com.edu.gvn.jsoupdemo.fragment.online.SearchFragment">
+    tools:context="com.edu.gvn.jsoupdemo.fragment.online.search.SearchFragment">
 
 
     <EditText

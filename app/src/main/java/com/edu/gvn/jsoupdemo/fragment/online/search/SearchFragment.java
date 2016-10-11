@@ -1,4 +1,4 @@
-package com.edu.gvn.jsoupdemo.fragment.online;
+package com.edu.gvn.jsoupdemo.fragment.online.search;
 
 
 import android.app.Activity;

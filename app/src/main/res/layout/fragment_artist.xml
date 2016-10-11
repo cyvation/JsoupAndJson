@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.edu.gvn.jsoupdemo.fragment.online.artist.ArtistFragment">
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/fragment_artist_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:layout_above="@+id/appbar_layout"
+        />
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:id="@+id/appbar_layout"
+        android:translationZ="4dp"
+        tools:ignore="UnusedAttribute"
+        android:layout_alignParentBottom="true">
+
+        <android.support.design.widget.TabLayout
+            app:tabGravity="fill"
+            app:tabMinWidth="90dp"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextAppearance="@style/CustomTabBottom"
+            app:tabMode="scrollable"
+            android:layout_width="match_parent"
+            android:id="@+id/fragment_artist_tablayout"
+            android:layout_height="?attr/actionBarSize" />
+    </android.support.design.widget.AppBarLayout>
+
+</RelativeLayout>

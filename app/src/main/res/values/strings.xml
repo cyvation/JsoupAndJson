@@ -51,5 +51,12 @@
     <string name="connection_time_out">Connection Time Out</string>
     <string name="title_time_out_dialog_conn">Connection time out</string>
     <string name="msg_time_out_dialog_conn">Connection is time out, check your connection ?</string>
-
+    
+    <!--Category artist-->
+    <string name="artist_vietnam">Việt nam</string>
+    <string name="artist_us">Âu mỹ</string>
+    <string name="artist_korea">Hàn quốc</string>
+    <string name="artist_jav">Nhật bản</string>
+    <string name="artist_china">Trung hoa</string>
+    <string name="artist_concert">Hòa tấu</string>
 </resources>

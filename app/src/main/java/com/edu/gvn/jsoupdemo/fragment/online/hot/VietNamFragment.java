@@ -1,13 +1,11 @@
 package com.edu.gvn.jsoupdemo.fragment.online.hot;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,31 +35,24 @@ public class VietNamFragment extends BaseFragment implements IReyclerViewOnItemC
     private ArrayList<AlbumModel> mData = new ArrayList<>();
     private ProgressBar loading;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mHotMusicAsync = new HotMusicParserAsync(context, new HotMusicParserAsync.GetDataCallback() {
-            @Override
-            public void getData(ArrayList<AlbumModel> data) {
-                mData = data;
-                mAdapter.addData(data);
-
-                Log.i(TAG, "getData: " + mData.toString());
-
-                if (null != loading && loading.getVisibility() == View.VISIBLE) {
-                    loading.setVisibility(View.GONE);
-                }
-            }
-        });
-        mHotMusicAsync.execute(Mp3ZingBaseUrl.HOT_VIET);
-    }
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new HotOrAlbumMusicAdapter(getActivity(), mData, this);
+            mAdapter = new HotOrAlbumMusicAdapter(getActivity(), mData, this);
 
+            mHotMusicAsync = new HotMusicParserAsync(getActivity(), new HotMusicParserAsync.GetDataCallback() {
+                @Override
+                public void getData(ArrayList<AlbumModel> data) {
+                    mData = data;
+                    mAdapter.addData(data);
+
+                    if (null != loading && loading.getVisibility() == View.VISIBLE) {
+                        loading.setVisibility(View.GONE);
+                    }
+                }
+            });
+            mHotMusicAsync.execute(Mp3ZingBaseUrl.HOT_VIET);
     }
 
     @Override
@@ -69,6 +60,7 @@ public class VietNamFragment extends BaseFragment implements IReyclerViewOnItemC
         View v = inflater.inflate(R.layout.fragment_hotmusic_vietnamhot, container, false);
         mListAlbumHot = (RecyclerView) v.findViewById(R.id.rv_hotmusic_vietnam);
         loading = (ProgressBar) v.findViewById(R.id.loading);
+
         return v;
     }
 
@@ -78,8 +70,11 @@ public class VietNamFragment extends BaseFragment implements IReyclerViewOnItemC
         mListAlbumHot.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mListAlbumHot.setAdapter(mAdapter);
 
-        if (mData.size() != 0) loading.setVisibility(View.GONE);
-        mAdapter.notifyDataSetChanged();
+        if (mData.size() != 0) {
+            loading.setVisibility(View.GONE);
+            mAdapter.notifyDataSetChanged();
+        }
+
     }
 
 

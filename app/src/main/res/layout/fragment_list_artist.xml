@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.edu.gvn.jsoupdemo.fragment.online.artist.ListArtistFragment">
+
+    <com.edu.gvn.jsoupdemo.custom.AutoCompleteTextViewDelay
+        android:id="@+id/fragment_list_artist_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/colorPrimary"
+        android:hint="Search artist...."
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:translationZ="8dp"
+        tools:ignore="UnusedAttribute" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_list_artist_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fragment_list_artist_search_view" />
+
+</RelativeLayout>
