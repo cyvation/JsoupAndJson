@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JsoupAndJsonDemo.iml" filepath="$PROJECT_DIR$/JsoupAndJsonDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JsoupAndJson.iml" filepath="$PROJECT_DIR$/JsoupAndJson.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

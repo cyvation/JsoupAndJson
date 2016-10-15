@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.activity.HomeActivity;
 import com.edu.gvn.jsoupdemo.adapter.GenderAlbumAdapter;
+import com.edu.gvn.jsoupdemo.common.ILoadMoreOnListener;
 import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.edu.gvn.jsoupdemo.network.XmlParser.GenderAlbumAsync;
@@ -79,7 +80,7 @@ public class GenderAlbumFragment extends BaseFragment {
         mListAlbum.setAdapter(mAlbumAdapter);
         mListAlbum.setDrawingCacheEnabled(true);
         mListAlbum.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        mAlbumAdapter.setOnLoadMoreListener(new GenderAlbumAdapter.OnLoadMoreListener() {
+        mAlbumAdapter.setOnLoadMoreListener(new ILoadMoreOnListener() {
             @Override
             public void onLoadListener() {
                 indexPage++;

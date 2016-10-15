@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
+import com.edu.gvn.jsoupdemo.common.ILoadMoreOnListener;
 import com.edu.gvn.jsoupdemo.common.TypeView;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.squareup.picasso.Picasso;
@@ -24,7 +25,7 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private static final String TAG = GenderAlbumAdapter.class.getSimpleName();
 
     private boolean isLoading;
-    private OnLoadMoreListener onLoadMoreListener;
+    private ILoadMoreOnListener onLoadMoreListener;
     public Context context;
     private ArrayList<AlbumModel> mAlbumData;
     private GenderAlbumOnItemClickListener onItemClickListener;
@@ -110,11 +111,9 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    public interface OnLoadMoreListener {
-        void onLoadListener();
-    }
 
-    public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {
+
+    public void setOnLoadMoreListener(ILoadMoreOnListener onLoadMoreListener) {
         this.onLoadMoreListener = onLoadMoreListener;
     }
 

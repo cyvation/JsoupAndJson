@@ -9,7 +9,6 @@ import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -37,7 +36,6 @@ public class SearchParserAsync extends AsyncTask<String, Void, SearchModel> {
     @Override
     protected SearchModel doInBackground(String... params) {
         HttpURLConnection connection = null;
-        InputStream streamReader = null;
 
         try {
             String query = params[0];

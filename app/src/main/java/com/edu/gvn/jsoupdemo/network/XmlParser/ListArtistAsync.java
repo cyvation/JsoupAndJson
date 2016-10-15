@@ -2,7 +2,9 @@ package com.edu.gvn.jsoupdemo.network.XmlParser;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
+import com.edu.gvn.jsoupdemo.common.TypeView;
 import com.edu.gvn.jsoupdemo.model.online.ArtistItemModel;
 
 import org.jsoup.Jsoup;
@@ -30,9 +32,22 @@ public class ListArtistAsync extends AsyncTask<String, Void, ArrayList<ArtistIte
     @Override
     protected ArrayList<ArtistItemModel> doInBackground(String... params) {
 
+
+        Log.i("huutho", "doInBackground: " + params[0]);
+        Log.i("huutho", "doInBackground: " + params[1]);
+
+        StringBuilder urlBuilder = new StringBuilder();
+        urlBuilder.append(params[0]);
+
+        if (params[1].equals("2")) {
+            urlBuilder.append("?page=");
+            urlBuilder.append(params[1]);
+            Log.i("huutho", "doInBackground: " + urlBuilder.toString());
+        }
+
         ArrayList<ArtistItemModel> data = new ArrayList<ArtistItemModel>();
         try {
-            Document root = Jsoup.connect(params[0]).get();
+            Document root = Jsoup.connect(urlBuilder.toString()).get();
             Elements tabPanel = root.select("div.tab-pane");
             Elements row = tabPanel.select("div.row");
 
@@ -61,6 +76,11 @@ public class ListArtistAsync extends AsyncTask<String, Void, ArrayList<ArtistIte
                     data.add(artistItem);
                 }
             }
+
+            ArtistItemModel itemLoad = new ArtistItemModel();
+            itemLoad.setTypeView(TypeView.TITLE);
+            data.add(itemLoad);
+
             return data;
         } catch (IOException e) {
             e.printStackTrace();

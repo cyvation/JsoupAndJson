@@ -20,7 +20,7 @@
         android:elevation="4dp"
         android:id="@+id/appbar_layout"
         android:translationZ="4dp"
-        tools:ignore="UnusedAttribute"
+        tools:ignore="v"
         android:layout_alignParentBottom="true">
 
         <android.support.design.widget.TabLayout
