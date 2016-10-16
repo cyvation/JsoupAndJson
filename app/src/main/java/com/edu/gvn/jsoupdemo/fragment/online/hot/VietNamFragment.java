@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.activity.HomeActivity;
 import com.edu.gvn.jsoupdemo.adapter.HotOrAlbumMusicAdapter;
-import com.edu.gvn.jsoupdemo.common.IReyclerViewOnItemClickListener;
+import com.edu.gvn.jsoupdemo.common.IRecyclerViewOnItemClickListener;
 import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
 import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.album.DetailAlbumFragment;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class VietNamFragment extends BaseFragment implements IReyclerViewOnItemClickListener {
+public class VietNamFragment extends BaseFragment implements IRecyclerViewOnItemClickListener {
 
     private static final String TAG = VietNamFragment.class.getSimpleName();
     private RecyclerView mListAlbumHot;

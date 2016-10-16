@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.adapter.ArtistListAdapter;
 import com.edu.gvn.jsoupdemo.common.ILoadMoreOnListener;
+import com.edu.gvn.jsoupdemo.common.IRecyclerViewOnItemClickListener;
 import com.edu.gvn.jsoupdemo.model.online.ArtistItemModel;
 import com.edu.gvn.jsoupdemo.network.XmlParser.ListArtistAsync;
 
@@ -62,6 +63,8 @@ public class ListArtistFragment extends Fragment implements ListArtistAsync.IArt
         mSearch = (EditText) v.findViewById(R.id.fragment_list_artist_search_view);
         mArtistList = (RecyclerView) v.findViewById(R.id.fragment_list_artist_rv);
         mLoading = (ProgressBar) v.findViewById(R.id.loading);
+
+        mArtistAdapter.setOnItemClickListener(onItemClickListener);
         return v;
     }
 
@@ -106,4 +109,11 @@ public class ListArtistFragment extends Fragment implements ListArtistAsync.IArt
         indexPage ++ ;
         senRequestArtist(mUrlListArtist,String.valueOf(indexPage));
     }
+
+    IRecyclerViewOnItemClickListener onItemClickListener = new IRecyclerViewOnItemClickListener() {
+        @Override
+        public void onItemClick(View v, int position) {
+            
+        }
+    };
 }

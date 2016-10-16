@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 
+import com.edu.gvn.jsoupdemo.common.Constants;
 import com.edu.gvn.jsoupdemo.service.PlayService;
 
 /**
@@ -28,7 +29,9 @@ public class BaseActivity extends AppCompatActivity {
 
         SharedPreferences firstRunAppPref = getSharedPreferences(KEY_PREFERENCE, Context.MODE_PRIVATE);
         if (firstRunAppPref.getBoolean(KEY_FIRST_RUN, true)) {
-            startService(new Intent(this, PlayService.class));
+            Intent iFirstRun = new Intent(this, PlayService.class);
+            iFirstRun.setAction(Constants.ACTION.MAIN_ACTION);
+            startService(iFirstRun);
             firstRunAppPref.edit().putBoolean(KEY_FIRST_RUN, false).apply();
         }
 
@@ -38,6 +41,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Intent iConnectToPlayService = new Intent(this, PlayService.class);
+        iConnectToPlayService.setAction(Constants.ACTION.MAIN_ACTION);
         startService(iConnectToPlayService);
         bindService(iConnectToPlayService, mServiceConn, Context.BIND_AUTO_CREATE);
 

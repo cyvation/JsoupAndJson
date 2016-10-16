@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
-import com.edu.gvn.jsoupdemo.common.IReyclerViewOnItemClickListener;
+import com.edu.gvn.jsoupdemo.common.IRecyclerViewOnItemClickListener;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
 import com.squareup.picasso.Picasso;
 
@@ -23,9 +23,9 @@ public class HotOrAlbumMusicAdapter extends RecyclerView.Adapter<HotOrAlbumMusic
     private ArrayList<AlbumModel> mAlbumData;
     private Context mContext;
     private LayoutInflater inflater;
-    private IReyclerViewOnItemClickListener onItemClickListener;
+    private IRecyclerViewOnItemClickListener onItemClickListener;
 
-    public HotOrAlbumMusicAdapter(Context context, ArrayList<AlbumModel> mData, IReyclerViewOnItemClickListener onItemClickListener) {
+    public HotOrAlbumMusicAdapter(Context context, ArrayList<AlbumModel> mData, IRecyclerViewOnItemClickListener onItemClickListener) {
         this.mAlbumData = mData;
         this.mContext = context;
         this.onItemClickListener = onItemClickListener;

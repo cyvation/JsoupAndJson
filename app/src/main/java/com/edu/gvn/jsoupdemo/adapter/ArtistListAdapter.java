@@ -10,7 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
-import com.edu.gvn.jsoupdemo.common.IReyclerViewOnItemClickListener;
+import com.edu.gvn.jsoupdemo.common.IRecyclerViewOnItemClickListener;
 import com.edu.gvn.jsoupdemo.common.ILoadMoreOnListener;
 import com.edu.gvn.jsoupdemo.common.TypeView;
 import com.edu.gvn.jsoupdemo.model.online.ArtistItemModel;
@@ -27,7 +27,7 @@ public class ArtistListAdapter extends RecyclerView.Adapter {
     private ArrayList<ArtistItemModel> mData;
     private ILoadMoreOnListener onLoadMoreListener;
     private boolean isLoad;
-    private IReyclerViewOnItemClickListener  onItemClickListener;
+    private IRecyclerViewOnItemClickListener onItemClickListener;
 
 
     public ArtistListAdapter(Context context, ArrayList<ArtistItemModel> mData) {
@@ -92,10 +92,10 @@ public class ArtistListAdapter extends RecyclerView.Adapter {
         }
 
         private void binData(Context context, ArtistItemModel artistItemModel) {
-            Picasso.with(context).load(artistItemModel.getImgSrc()).into(imageArtist);
-//            int indexLastDash = albumModel.getTitle().indexOf("-");
-//            String title = albumModel.getTitle().substring(0, indexLastDash);
-//            String name = albumModel.getTitle().substring(indexLastDash + 2);
+            Picasso.with(context)
+                    .load(artistItemModel.getImgSrc())
+                    .placeholder(R.drawable.background_nav)
+                    .into(imageArtist);
             nameArtist.setText(mData.get(getAdapterPosition()).dataName);
         }
     }
@@ -117,7 +117,7 @@ public class ArtistListAdapter extends RecyclerView.Adapter {
         isLoad = false;
     }
 
-    public void setOnItemClickListener(IReyclerViewOnItemClickListener onItemClickListener){
+    public void setOnItemClickListener(IRecyclerViewOnItemClickListener onItemClickListener){
         this.onItemClickListener = onItemClickListener;
     }
 
