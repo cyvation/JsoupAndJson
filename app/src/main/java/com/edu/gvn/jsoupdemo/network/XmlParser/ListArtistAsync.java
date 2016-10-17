@@ -2,9 +2,11 @@ package com.edu.gvn.jsoupdemo.network.XmlParser;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
+import com.edu.gvn.jsoupdemo.common.LogUtils;
+import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
 import com.edu.gvn.jsoupdemo.common.TypeView;
+import com.edu.gvn.jsoupdemo.fragment.online.artist.ListArtistFragment;
 import com.edu.gvn.jsoupdemo.model.online.ArtistItemModel;
 
 import org.jsoup.Jsoup;
@@ -12,6 +14,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 /**
@@ -22,29 +26,40 @@ public class ListArtistAsync extends AsyncTask<String, Void, ArrayList<ArtistIte
 
     private Context mContext;
     private IArtistCallBack callBack;
+    private String typeArtist;
+    private StringBuilder urlBuilder;
 
     public ListArtistAsync(Context context, IArtistCallBack callBack) {
         this.mContext = context;
         this.callBack = callBack;
+        urlBuilder = new StringBuilder();
     }
 
 
     @Override
     protected ArrayList<ArtistItemModel> doInBackground(String... params) {
+        typeArtist = params[0];
+        urlBuilder.append(params[1]);
 
+        if (typeArtist.equals(ListArtistFragment.ARTIST_DEFAULT)) {
 
-        Log.i("huutho", "doInBackground: " + params[0]);
-        Log.i("huutho", "doInBackground: " + params[1]);
+            if (!params[1].equals("0")) {
+                urlBuilder.append(Mp3ZingBaseUrl.PAGE);
+                urlBuilder.append(params[2]);
+            }
+        } else {
+            if (!params[1].equals("0")) {
 
-        StringBuilder urlBuilder = new StringBuilder();
-        urlBuilder.append(params[0]);
-
-        if (params[1].equals("2")) {
-            urlBuilder.append("?page=");
-            urlBuilder.append(params[1]);
-            Log.i("huutho", "doInBackground: " + urlBuilder.toString());
+                try {
+                    urlBuilder.append(Mp3ZingBaseUrl.ALBUMS_ALPHABE);
+                    typeArtist = URLEncoder.encode(typeArtist, "UTF-8");
+                    urlBuilder.append(typeArtist);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
+        LogUtils.e("huutho", urlBuilder.toString());
         ArrayList<ArtistItemModel> data = new ArrayList<ArtistItemModel>();
         try {
             Document root = Jsoup.connect(urlBuilder.toString()).get();
@@ -74,6 +89,7 @@ public class ListArtistAsync extends AsyncTask<String, Void, ArrayList<ArtistIte
                     artistItem.imgSrc = imgSrc;
 
                     data.add(artistItem);
+
                 }
             }
 
@@ -93,11 +109,11 @@ public class ListArtistAsync extends AsyncTask<String, Void, ArrayList<ArtistIte
     protected void onPostExecute(ArrayList<ArtistItemModel> artistItemModels) {
         super.onPostExecute(artistItemModels);
         if (artistItemModels != null && artistItemModels.size() != 0) {
-            callBack.callBack(artistItemModels);
+            callBack.callBack(typeArtist, artistItemModels);
         }
     }
 
     public interface IArtistCallBack {
-        public void callBack(ArrayList<ArtistItemModel> lists);
+        public void callBack(String artistType, ArrayList<ArtistItemModel> lists);
     }
 }

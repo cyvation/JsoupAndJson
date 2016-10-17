@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.activity.BaseActivity;
 import com.edu.gvn.jsoupdemo.activity.HomeActivity;
-import com.edu.gvn.jsoupdemo.adapter.DetailAlbumAdapter;
+import com.edu.gvn.jsoupdemo.adapter.AlbumDetailAdapter;
 import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
 import com.edu.gvn.jsoupdemo.fragment.PlayerFragment;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
@@ -33,14 +33,14 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class DetailAlbumFragment extends BaseFragment implements DetailAlbumAsync.DetailAlbumCallback,
-        DetailAlbumAdapter.IReyclerViewItemClickListener {
+        AlbumDetailAdapter.IReyclerViewItemClickListener {
 
     private static final String TAG = DetailAlbumFragment.class.getSimpleName();
     public static final String KEY_ALBUM = "key.album";
 
     private AlbumModel mHolderDetailAlbum;
     private RecyclerView mListDetail;
-    private DetailAlbumAdapter mDetailAdapter;
+    private AlbumDetailAdapter mDetailAdapter;
     private ArrayList<DetailAlbumModel> mDetailData;
     private ProgressBar mLoading;
 
@@ -73,7 +73,7 @@ public class DetailAlbumFragment extends BaseFragment implements DetailAlbumAsyn
         }
 
         mDetailData = new ArrayList<>();
-        mDetailAdapter = new DetailAlbumAdapter(getActivity(), mDetailData);
+        mDetailAdapter = new AlbumDetailAdapter(getActivity(), mDetailData);
         mDetailAdapter.setItemClickListener(this);
 
         DetailAlbumAsync detailAlbumAsync = new DetailAlbumAsync(this);

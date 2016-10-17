@@ -1,8 +1,6 @@
 package com.edu.gvn.jsoupdemo.fragment.online;
 
 
-import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -12,15 +10,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
 
 public class NavigationDrawerOnlineFragment extends BaseFragment implements View.OnClickListener {
-
-
     public interface GetNavItemClickListener {
         void onItemClick(View v);
     }
@@ -28,21 +22,6 @@ public class NavigationDrawerOnlineFragment extends BaseFragment implements View
     private GetNavItemClickListener listener;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
-    private View mFragment;
-
-    private LinearLayout mVoiceSearch, mSearch, mHotMusic, mRank, mArtists, mAlbums, mTopTen;
-    private LinearLayout mLyricOnScreen, mSuggestApps, mSettings, mExits;
-
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,9 +38,9 @@ public class NavigationDrawerOnlineFragment extends BaseFragment implements View
         inflateView.findViewById(R.id.option_settings).setOnClickListener(this);
         inflateView.findViewById(R.id.option_exit).setOnClickListener(this);
 
-        mFragment = inflateView;
         return inflateView;
     }
+
 
     public void setUpNavDrawer(DrawerLayout drawerLayout, Toolbar toolbar, GetNavItemClickListener listener) {
         this.mDrawerLayout = drawerLayout;
@@ -83,9 +62,9 @@ public class NavigationDrawerOnlineFragment extends BaseFragment implements View
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                     mDrawerLayout.setScrimColor(Color.TRANSPARENT);
-                    float moveFactor = mFragment.getWidth() * slideOffset;
-                    getActivity().findViewById(R.id.rl_parent).setTranslationX(moveFactor);
+                mDrawerLayout.setScrimColor(Color.TRANSPARENT);
+                float moveFactor = drawerView.getWidth() * slideOffset;
+                getActivity().findViewById(R.id.rl_parent).setTranslationX(moveFactor);
             }
         };
 
@@ -96,7 +75,6 @@ public class NavigationDrawerOnlineFragment extends BaseFragment implements View
                 mToggle.syncState();
             }
         });
-
     }
 
     public void closeNavDrawer() {
@@ -107,7 +85,6 @@ public class NavigationDrawerOnlineFragment extends BaseFragment implements View
     @Override
     public void onClick(View v) {
         listener.onItemClick(v);
-        Toast.makeText(getActivity(), "abcd", Toast.LENGTH_SHORT).show();
     }
 
 

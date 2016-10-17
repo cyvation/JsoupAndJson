@@ -43,7 +43,7 @@ public class ArtistListAdapter extends RecyclerView.Adapter {
             View v = inflater.inflate(R.layout.item_loadmore, parent, false);
             return new LoadMoreView(v);
         } else {
-            View v = inflater.inflate(R.layout.item_artist, parent, false);
+            View v = inflater.inflate(R.layout.item_list_artist, parent, false);
             return new ArtistView(v);
         }
     }

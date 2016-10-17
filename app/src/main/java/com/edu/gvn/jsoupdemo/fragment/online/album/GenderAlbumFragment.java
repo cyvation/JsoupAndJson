@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.activity.HomeActivity;
-import com.edu.gvn.jsoupdemo.adapter.GenderAlbumAdapter;
+import com.edu.gvn.jsoupdemo.adapter.AlbumGenderAdapter;
 import com.edu.gvn.jsoupdemo.common.ILoadMoreOnListener;
 import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
@@ -30,7 +30,7 @@ public class GenderAlbumFragment extends BaseFragment {
     public static final String KEY_ALBUM = "key_album";
     private final static int NUMBER_COLUMN = 2;
     private RecyclerView mListAlbum;
-    private GenderAlbumAdapter mAlbumAdapter;
+    private AlbumGenderAdapter mAlbumAdapter;
     private ArrayList<AlbumModel> mGenderAlbumData;
     private ProgressBar mLoading ;
 
@@ -60,7 +60,7 @@ public class GenderAlbumFragment extends BaseFragment {
 
         mGenderAlbumData = new ArrayList<>();
         sendRequestAlbum(urlAlbum, indexPage);
-        mAlbumAdapter = new GenderAlbumAdapter(getActivity(), mGenderAlbumData);
+        mAlbumAdapter = new AlbumGenderAdapter(getActivity(), mGenderAlbumData);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class GenderAlbumFragment extends BaseFragment {
         });
 
 
-        mAlbumAdapter.setOnItemClickListener(new GenderAlbumAdapter.GenderAlbumOnItemClickListener() {
+        mAlbumAdapter.setOnItemClickListener(new AlbumGenderAdapter.GenderAlbumOnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 Log.i(TAG, "onItemClick: " + position + "--");

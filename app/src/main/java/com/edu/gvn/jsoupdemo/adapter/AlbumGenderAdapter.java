@@ -21,8 +21,8 @@ import java.util.ArrayList;
  * Created by hnc on 21/09/2016.
  */
 
-public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final String TAG = GenderAlbumAdapter.class.getSimpleName();
+public class AlbumGenderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final String TAG = AlbumGenderAdapter.class.getSimpleName();
 
     private boolean isLoading;
     private ILoadMoreOnListener onLoadMoreListener;
@@ -34,7 +34,7 @@ public class GenderAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.onItemClickListener = itemClickListener;
     }
 
-    public GenderAlbumAdapter(Context context, ArrayList<AlbumModel> mData) {
+    public AlbumGenderAdapter(Context context, ArrayList<AlbumModel> mData) {
         this.context = context;
         this.mAlbumData = mData;
     }

@@ -4,6 +4,7 @@ package com.edu.gvn.jsoupdemo.fragment.online.album;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.activity.HomeActivity;
-import com.edu.gvn.jsoupdemo.adapter.CategoryAlbumAdapter;
+import com.edu.gvn.jsoupdemo.adapter.AlbumCategoryAdapter;
 import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
 import com.edu.gvn.jsoupdemo.common.TypeView;
 import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
@@ -25,10 +26,10 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AlbumCategoryFragment extends BaseFragment implements CategoryAlbumAdapter.ICategoryOnItemClick {
+public class AlbumCategoryFragment extends BaseFragment implements AlbumCategoryAdapter.ICategoryOnItemClick {
     private Context mContext;
     private RecyclerView mListCategory;
-    private CategoryAlbumAdapter mCategoryAdapter;
+    private AlbumCategoryAdapter mCategoryAdapter;
     private ArrayList<CategoryAlbumModel> mCategoryData;
     private GridLayoutManager mGridLayoutManager;
 
@@ -43,7 +44,7 @@ public class AlbumCategoryFragment extends BaseFragment implements CategoryAlbum
         super.onCreate(savedInstanceState);
         mCategoryData = new ArrayList<>();
        // mCategoryData.addAll(getCategoryData());
-        mCategoryAdapter = new CategoryAlbumAdapter(mContext, mCategoryData);
+        mCategoryAdapter = new AlbumCategoryAdapter(mContext, mCategoryData);
     }
 
     @Override
@@ -63,7 +64,19 @@ public class AlbumCategoryFragment extends BaseFragment implements CategoryAlbum
         mListCategory.setAdapter(mCategoryAdapter);
         mCategoryAdapter.setOnItemClick(AlbumCategoryFragment.this);
 
-        new AddData().execute();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new AddData().execute();
+            }
+        },280);
+
     }
 
     private void setRecyclerItemViewType() {
@@ -135,7 +148,6 @@ public class AlbumCategoryFragment extends BaseFragment implements CategoryAlbum
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-
             mCategoryAdapter.notifyDataSetChanged();
         }
     }

@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by hnc on 23/09/2016.
  */
 
-public class DetailAlbumAdapter extends RecyclerView.Adapter<DetailAlbumAdapter.ViewHolder> {
+public class AlbumDetailAdapter extends RecyclerView.Adapter<AlbumDetailAdapter.ViewHolder> {
 
     private Context mContext;
     private LayoutInflater inflater;
@@ -25,7 +25,7 @@ public class DetailAlbumAdapter extends RecyclerView.Adapter<DetailAlbumAdapter.
     private IReyclerViewItemClickListener itemClickListener;
 
 
-    public DetailAlbumAdapter(Context context, ArrayList<DetailAlbumModel> mDetailAlbumData) {
+    public AlbumDetailAdapter(Context context, ArrayList<DetailAlbumModel> mDetailAlbumData) {
         this.mContext = context;
         this.mDetailAlbumData = mDetailAlbumData;
         inflater = LayoutInflater.from(context);

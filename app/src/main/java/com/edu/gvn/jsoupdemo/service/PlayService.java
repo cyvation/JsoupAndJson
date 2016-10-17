@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -209,9 +208,9 @@ public class PlayService extends Service {
     private void actionNotify(Intent intent) {
 
         if (intent.getAction().equals(Constants.ACTION.MAIN_ACTION)) {
-            Log.e("huutho", "actionNotify: mainAction");
+
         } else if (intent.getAction().equals(Constants.ACTION.INIT_ACTION)) {
-            Log.e("huutho", "actionNotify: INIT_ACTION");
+
         } else if (intent.getAction().equals(Constants.ACTION.PLAY_ACTION)) {
 
             if (getListData().size() != 0) {

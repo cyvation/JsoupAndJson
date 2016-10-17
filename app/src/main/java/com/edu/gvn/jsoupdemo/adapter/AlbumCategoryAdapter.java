@@ -18,13 +18,13 @@ import java.util.ArrayList;
  * Created by hnc on 05/10/2016.
  */
 
-public class CategoryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AlbumCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;
     private ArrayList<CategoryAlbumModel> mData;
     private ICategoryOnItemClick itemOnClick;
 
-    public CategoryAlbumAdapter(Context context, ArrayList<CategoryAlbumModel> mData) {
+    public AlbumCategoryAdapter(Context context, ArrayList<CategoryAlbumModel> mData) {
         this.mContext = context;
         this.mData = mData;
     }
@@ -36,9 +36,9 @@ public class CategoryAlbumAdapter extends RecyclerView.Adapter<RecyclerView.View
         return
                 (viewType == TypeView.CONTENT) ?
 
-                        (new CategoryAlbumAdapter.ItemCategory(inflater.inflate(R.layout.item_category_content, parent, false)))
+                        (new AlbumCategoryAdapter.ItemCategory(inflater.inflate(R.layout.item_category_content, parent, false)))
                         :
-                        (new CategoryAlbumAdapter.TitleCategory(inflater.inflate(R.layout.item_category_title, parent, false)));
+                        (new AlbumCategoryAdapter.TitleCategory(inflater.inflate(R.layout.item_category_title, parent, false)));
     }
 
     @Override

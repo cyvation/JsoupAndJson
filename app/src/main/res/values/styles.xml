@@ -21,7 +21,6 @@
         <item name="android:background">@drawable/button_search</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:elevation">8dp</item>
     </style>
 
 
@@ -56,7 +55,7 @@
 
     <style name="CustomTabBottom" parent="Widget.Design.TabLayout">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/text_gray_color</item>
+        <item name="android:textColor">@color/white_84_transparent</item>
 
     </style>
 </resources>
