@@ -20,6 +20,7 @@ import com.edu.gvn.jsoupdemo.activity.HomeActivity;
 import com.edu.gvn.jsoupdemo.adapter.ArtistListAdapter;
 import com.edu.gvn.jsoupdemo.common.ILoadMoreOnListener;
 import com.edu.gvn.jsoupdemo.common.IRecyclerViewOnItemClickListener;
+import com.edu.gvn.jsoupdemo.common.LogUtils;
 import com.edu.gvn.jsoupdemo.model.online.ArtistItemModel;
 import com.edu.gvn.jsoupdemo.network.XmlParser.ListArtistAsync;
 
@@ -121,6 +122,9 @@ public class ListArtistFragment extends Fragment implements ListArtistAsync.IArt
     @Override
     public void callBack(String type, ArrayList<ArtistItemModel> lists) {
 
+
+        LogUtils.e("huutho", lists.toString());
+
         if (type.equals(ARTIST_DEFAULT) && lists.size() != 0) {
             lists.remove(lists.size() - 1);
             mArtistDefaultData.addAll(lists);
@@ -189,7 +193,11 @@ public class ListArtistFragment extends Fragment implements ListArtistAsync.IArt
     private IRecyclerViewOnItemClickListener onItemClickListener = new IRecyclerViewOnItemClickListener() {
         @Override
         public void onItemClick(View v, int position) {
-            ((HomeActivity) getActivity()).replaceFragment(new ArtistDetailFragment());
+            ((HomeActivity) getActivity()).replaceFragment(
+                    ArtistDetailFragment.newInstance(
+                            mArtistBaseData.get(position).gethRef(),
+                            mArtistBaseData.get(position).getDataName(),
+                            mArtistBaseData.get(position).getImgSrc()));
         }
     };
 }

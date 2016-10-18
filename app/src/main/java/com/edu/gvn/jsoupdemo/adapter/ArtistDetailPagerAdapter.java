@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.edu.gvn.jsoupdemo.fragment.online.artist.ListAlbumOfArtistFragment;
-import com.edu.gvn.jsoupdemo.fragment.online.artist.ListSongOfArtistFragment;
+import com.edu.gvn.jsoupdemo.fragment.online.artist.AlbumOfArtistFragment;
+import com.edu.gvn.jsoupdemo.fragment.online.artist.SongOfArtistFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.artist.StoryArtistFragment;
 
 import java.util.ArrayList;
@@ -18,12 +18,12 @@ public class ArtistDetailPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> listFragment = new ArrayList<>();
     private ArrayList<String> listTitle = new ArrayList<>();
 
-    public ArtistDetailPagerAdapter(FragmentManager fm) {
+    public ArtistDetailPagerAdapter(FragmentManager fm ,String urlArtist, String name, String urlImage) {
         super(fm);
 
-        listFragment.add(new ListSongOfArtistFragment());
-        listFragment.add(new ListAlbumOfArtistFragment());
-        listFragment.add(new StoryArtistFragment());
+        listFragment.add(SongOfArtistFragment.newInstance(name,urlImage));
+        listFragment.add(AlbumOfArtistFragment.newInstance(name,urlImage));
+        listFragment.add(StoryArtistFragment.newInstance(urlArtist));
 
         listTitle.add("Song");
         listTitle.add("Album");

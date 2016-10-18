@@ -30,8 +30,6 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
 
         setupToolbar();
         setNavOnlFragment();
-
-
     }
 
     private void setNavOnlFragment() {
