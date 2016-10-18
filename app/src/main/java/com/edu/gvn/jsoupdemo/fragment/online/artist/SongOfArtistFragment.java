@@ -12,7 +12,7 @@ import com.edu.gvn.jsoupdemo.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListSongOfArtistFragment extends Fragment {
+public class SongOfArtistFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

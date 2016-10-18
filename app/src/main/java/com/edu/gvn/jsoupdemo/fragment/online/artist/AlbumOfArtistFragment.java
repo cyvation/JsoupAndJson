@@ -12,10 +12,10 @@ import com.edu.gvn.jsoupdemo.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListAlbumOfArtistFragment extends Fragment {
+public class AlbumOfArtistFragment extends Fragment {
 
 
-    public ListAlbumOfArtistFragment() {
+    public AlbumOfArtistFragment() {
         // Required empty public constructor
     }
 
