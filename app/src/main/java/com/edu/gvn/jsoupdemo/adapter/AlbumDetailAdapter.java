@@ -22,7 +22,7 @@ public class AlbumDetailAdapter extends RecyclerView.Adapter<AlbumDetailAdapter.
     private Context mContext;
     private LayoutInflater inflater;
     private ArrayList<DetailAlbumModel> mDetailAlbumData;
-    private IReyclerViewItemClickListener itemClickListener;
+    private IRecyclerMenuItemClick itemClickListener;
 
 
     public AlbumDetailAdapter(Context context, ArrayList<DetailAlbumModel> mDetailAlbumData) {
@@ -95,11 +95,11 @@ public class AlbumDetailAdapter extends RecyclerView.Adapter<AlbumDetailAdapter.
         }
     }
 
-    public void setItemClickListener(IReyclerViewItemClickListener itemClickListener) {
+    public void setItemClickListener(IRecyclerMenuItemClick itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
-    public interface IReyclerViewItemClickListener {
+    public interface IRecyclerMenuItemClick {
         void onItemClick(View v, int position);
 
         void onDownloadClick(View v, int position);

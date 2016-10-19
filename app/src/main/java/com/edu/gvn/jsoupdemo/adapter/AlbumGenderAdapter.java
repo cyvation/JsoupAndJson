@@ -2,7 +2,6 @@ package com.edu.gvn.jsoupdemo.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +20,7 @@ import java.util.ArrayList;
  * Created by hnc on 21/09/2016.
  */
 
-public class AlbumGenderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final String TAG = AlbumGenderAdapter.class.getSimpleName();
+public class  AlbumGenderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private boolean isLoading;
     private ILoadMoreOnListener onLoadMoreListener;
@@ -64,7 +62,6 @@ public class AlbumGenderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             @Override
             public void onClick(View v) {
                 onItemClickListener.onItemClick(v, position);
-                Log.i(TAG, "onClick: " + position);
             }
         });
     }

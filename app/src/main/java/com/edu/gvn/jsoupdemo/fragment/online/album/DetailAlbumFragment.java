@@ -33,7 +33,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class DetailAlbumFragment extends BaseFragment implements DetailAlbumAsync.DetailAlbumCallback,
-        AlbumDetailAdapter.IReyclerViewItemClickListener {
+        AlbumDetailAdapter.IRecyclerMenuItemClick {
 
     private static final String TAG = DetailAlbumFragment.class.getSimpleName();
     public static final String KEY_ALBUM = "key.album";

@@ -16,6 +16,8 @@ import com.edu.gvn.jsoupdemo.fragment.online.artist.ArtistFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.hot.HotMusicFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.rank.RankFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.search.SearchFragment;
+import com.edu.gvn.jsoupdemo.fragment.online.top100.Top100Fragment;
+import com.edu.gvn.jsoupdemo.network.JsonParser.Top100Async;
 
 
 public class HomeActivity extends BaseActivity implements NavigationDrawerOnlineFragment.GetNavItemClickListener {
@@ -30,6 +32,8 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
 
         setupToolbar();
         setNavOnlFragment();
+        Top100Async top100Async = new Top100Async();
+        top100Async.execute("http://mp3.zing.vn/xhr/song?op=get-top&start=0&length=20&id=IWZ9Z08B");
     }
 
     private void setNavOnlFragment() {
@@ -157,6 +161,12 @@ public class HomeActivity extends BaseActivity implements NavigationDrawerOnline
                 }
                 break;
             case R.id.option_top_ten:
+                if (!isFirstLoad)
+                    replaceFragment(new Top100Fragment());
+                else {
+                    addFragment(new Top100Fragment());
+                    isFirstLoad = false;
+                }
                 break;
             case R.id.option_lyric_screen:
                 break;

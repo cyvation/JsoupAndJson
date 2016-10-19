@@ -21,8 +21,8 @@ public class ArtistDetailPagerAdapter extends FragmentPagerAdapter {
     public ArtistDetailPagerAdapter(FragmentManager fm ,String urlArtist, String name, String urlImage) {
         super(fm);
 
-        listFragment.add(SongOfArtistFragment.newInstance(name,urlImage));
-        listFragment.add(AlbumOfArtistFragment.newInstance(name,urlImage));
+        listFragment.add(SongOfArtistFragment.newInstance(urlArtist,name,urlImage));
+        listFragment.add(AlbumOfArtistFragment.newInstance(urlArtist,name,urlImage));
         listFragment.add(StoryArtistFragment.newInstance(urlArtist));
 
         listTitle.add("Song");

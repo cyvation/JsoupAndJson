@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="3dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/fragment_detail_album_song_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="10"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="Ngày này năm trước"
+            android:textColor="@color/text_dark_gray_color" />
+
+
+        <ImageView
+            android:id="@+id/btn_download"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="15dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_download" />
+
+
+        <ImageView
+            android:id="@+id/btn_add"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="8dp"
+            android:padding="5dp"
+            android:src="@drawable/add" />
+
+        <ImageView
+            android:id="@+id/btn_to_player"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="10dp"
+            android:layout_marginLeft="8dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_arrow_right_play" />
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

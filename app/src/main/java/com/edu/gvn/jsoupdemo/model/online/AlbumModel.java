@@ -75,6 +75,11 @@ public class AlbumModel implements Parcelable {
 
     @Override
     public String toString() {
-        return href + "\n" + img_src + "\n" + title;
+        return "AlbumModel{" +
+                "view=" + view +
+                ", href='" + href + '\'' +
+                ", img_src='" + img_src + '\'' +
+                ", title='" + title + '\'' +
+                '}';
     }
 }
