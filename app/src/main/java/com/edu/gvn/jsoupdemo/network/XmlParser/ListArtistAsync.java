@@ -3,7 +3,6 @@ package com.edu.gvn.jsoupdemo.network.XmlParser;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.edu.gvn.jsoupdemo.common.LogUtils;
 import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
 import com.edu.gvn.jsoupdemo.common.TypeView;
 import com.edu.gvn.jsoupdemo.fragment.online.artist.ListArtistFragment;
@@ -59,7 +58,6 @@ public class ListArtistAsync extends AsyncTask<String, Void, ArrayList<ArtistIte
                 }
             }
         }
-        LogUtils.e("huutho", urlBuilder.toString());
         ArrayList<ArtistItemModel> data = new ArrayList<ArtistItemModel>();
         try {
             Document root = Jsoup.connect(urlBuilder.toString()).get();

@@ -5,8 +5,6 @@ import android.os.AsyncTask;
 import android.text.Html;
 import android.text.TextUtils;
 
-import com.edu.gvn.jsoupdemo.common.LogUtils;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -37,7 +35,6 @@ public class ArtistStoryAsync extends AsyncTask<String, Void, String> {
             String story = content.html();
             story = story.replaceAll("<li>", "<br>");
             story = Html.fromHtml(story).toString();
-            LogUtils.e("huutho", story);
 
             return story;
 

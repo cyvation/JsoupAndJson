@@ -57,18 +57,15 @@ public class SearchParserAsync extends AsyncTask<String, Void, SearchModel> {
                 while ((reponse = reader.readLine()) != null) {
                     reponseBuilder.append(reponse);
                 }
-                Log.i(TAG, "doInBackground: " + reponseBuilder.toString());
 
                 int firstJsonObjectIndex = reponseBuilder.indexOf("{");
                 int lastJsonObjectIndex = reponseBuilder.lastIndexOf(")");
 
                 String jsonReponseStandar = reponseBuilder.substring(firstJsonObjectIndex, lastJsonObjectIndex);
-                Log.i(TAG, "doInBackground: " + jsonReponseStandar);
 
                 SearchModel searchModel = new Gson().fromJson(jsonReponseStandar, SearchModel.class);
                 for (int i = 0; i < searchModel.data.get(SearchModel.INDEX_SONG).song.size(); i++) {
                     String str = searchModel.data.get(SearchModel.INDEX_SONG).song.get(i).toString();
-                    Log.i(TAG, "doInBackground: " + str);
                 }
                 return searchModel;
             }
@@ -89,7 +86,6 @@ public class SearchParserAsync extends AsyncTask<String, Void, SearchModel> {
     protected void onPostExecute(SearchModel searchModel) {
         super.onPostExecute(searchModel);
         if (searchModel!=null){
-            Log.i(TAG, "onPostExecute: not null");
             callBack.callData(searchModel);
         }
 

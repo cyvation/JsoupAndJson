@@ -41,7 +41,6 @@ public class ArtistAlbumsAsync extends AsyncTask<String, Void, ArrayList<AlbumMo
             urlBuilder.append("?&page=");
             urlBuilder.append(params[1]);
 
-            LogUtils.e("huutho",urlBuilder.toString());
 
             Document root = Jsoup.connect(urlBuilder.toString()).get();
 

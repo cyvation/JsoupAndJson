@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.edu.gvn.jsoupdemo.R;
+import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
 
 import java.util.ArrayList;
 
@@ -77,14 +78,14 @@ public class Top100Fragment extends Fragment {
         private ArrayList<String> listTitle = new ArrayList<>();
         public TabPagerAdapter(FragmentManager fm) {
             super(fm);
-            listFragment.add(new Top100DetailFragment());
-            listFragment.add(new Top100DetailFragment());
-            listFragment.add(new Top100DetailFragment());
-            listFragment.add(new Top100DetailFragment());
+            listFragment.add(Top100DetailFragment.newInstance(Mp3ZingBaseUrl.ID_VN_NHAC_TRE));
+            listFragment.add(Top100DetailFragment.newInstance(Mp3ZingBaseUrl.ID_US_POP));
+            listFragment.add(Top100DetailFragment.newInstance(Mp3ZingBaseUrl.ID_ASIAN_HAN_QUOC));
+            listFragment.add(Top100DetailFragment.newInstance(Mp3ZingBaseUrl.ID_HT_PIANO));
 
             listTitle.add("Việt nam");
             listTitle.add("Âu mỹ");
-            listTitle.add("Châu á");
+            listTitle.add("Hàn quốc");
             listTitle.add("Hòa tấu");
         }
 

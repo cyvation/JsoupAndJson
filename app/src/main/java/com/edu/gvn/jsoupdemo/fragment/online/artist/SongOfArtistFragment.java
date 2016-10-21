@@ -68,7 +68,7 @@ public class SongOfArtistFragment extends Fragment {
         listSong = new ArrayList<>();
         sendRequest(mUrlArtist, indexPage);
         mArtistListSongAdapter = new ArtistListSongAdapter(getActivity(), listSong);
-        if (listSong.size() == 0) mLoading.setVisibility(View.VISIBLE);
+        if (mLoading!=null &&listSong.size() == 0) mLoading.setVisibility(View.VISIBLE);
 
     }
 

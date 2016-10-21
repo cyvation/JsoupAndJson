@@ -48,10 +48,16 @@ public class StoryArtistFragment extends Fragment implements ArtistStoryAsync.Ar
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_story_artist, container, false);
         mStory = (TextView) v.findViewById(R.id.fragment_story_artist_story);
-        mStory.setText(saved);
+
         return v;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mStory.setText(saved);
+
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -66,6 +72,5 @@ public class StoryArtistFragment extends Fragment implements ArtistStoryAsync.Ar
 
     private void getDataBundle(Bundle savedInstanceState) {
         urlArtist = savedInstanceState.getString(_BUNDLE_ARTIST);
-
     }
 }

@@ -6,10 +6,10 @@ package com.edu.gvn.jsoupdemo.common;
 public class Mp3ZingBaseUrl {
     public static final String BASE_ZING_MP3 = "http://mp3.zing.vn";
     public static final String LINK_SONG = "/link/song/";
-    public static final String LINK_ALBUMS= "/link/album/";
-    public static final String LINK_AVATAR ="view-source:http://image.mp3.zdn.vn/thumb/165_165";
-
-    public static final String LINK_SEARCH="http://ac.mp3.zing.vn/complete?type=artist,album,video,song&num=3&callback=jQuery21005823772231107524_1473818636580&query=";
+    public static final String LINK_ALBUMS = "/link/album/";
+    public static final String LINK_AVATAR = "view-source:http://image.mp3.zdn.vn/thumb/165_165";
+    public static final String LINK_IMAGE_BASE = "http://image.mp3.zdn.vn";
+    public static final String LINK_SEARCH = "http://ac.mp3.zing.vn/complete?type=artist,album,video,song&num=3&callback=jQuery21005823772231107524_1473818636580&query=";
     /*
     Hot music
      */
@@ -64,7 +64,7 @@ public class Mp3ZingBaseUrl {
     /*
     Top
      */
-    public static final String TOP_MUSIC = "http://mp3.zing.vn/xhr/song?op=get-top&start=0&length=20&id=";
+    public static final String TOP_MUSIC = "http://mp3.zing.vn/xhr/song?op=get-top&start=0&length=100&id=";
 
     //vn
     public static final String ID_VN_NHAC_TRE = "IWZ9Z088";

@@ -2,7 +2,6 @@ package com.edu.gvn.jsoupdemo.network.XmlParser;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
 import com.edu.gvn.jsoupdemo.model.online.AlbumModel;
@@ -35,8 +34,6 @@ public class HotMusicParserAsync extends AsyncTask<String, Void, ArrayList<Album
         ArrayList<AlbumModel> data = new ArrayList<>();
         StringBuilder url = new StringBuilder();
         url.append(Mp3ZingBaseUrl.BASE_ZING_MP3).append("/").append(params[0]);
-
-        Log.i(TAG, "doInBackground: " + url.toString());
 
         Document document;
         try {

@@ -2,7 +2,6 @@ package com.edu.gvn.jsoupdemo.network.XmlParser;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
 import com.edu.gvn.jsoupdemo.common.SlipTitleMp3;
@@ -16,8 +15,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by HuuTho on 10/9/2016.
@@ -39,7 +36,6 @@ public class RankAsync extends AsyncTask<String, Void, List<RankModel>> {
             StringBuilder urlBuilder = new StringBuilder();
             urlBuilder.append(Mp3ZingBaseUrl.BASE_ZING_MP3);
             urlBuilder.append(params[0]);
-            Log.i(TAG, "doInBackground: " + urlBuilder.toString());
             Document root = Jsoup.connect(urlBuilder.toString()).get();
             Elements tableBody = root.select("div.table-body > ul > li");
 
