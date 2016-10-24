@@ -87,7 +87,8 @@ public class PlayerFragment extends BaseFragment implements View.OnClickListener
         mNameSong.setText(BaseActivity.mPlayService.getNameSong());
         mArtistSong.setText(BaseActivity.mPlayService.getArtistSong());
 
-        mMusicProgress.setValue(percentMusicProgress(BaseActivity.mPlayService.getCurrentPosition(), BaseActivity.mPlayService.getMaxDuration()));
+        mMusicProgress.setValue(percentMusicProgress(BaseActivity.mPlayService.getCurrentPosition(),
+                BaseActivity.mPlayService.getMaxDuration()));
         mVolume.setProgress(BaseActivity.mPlayService.getVolume());
 
         mVolume.setOnSeekBarChangeListener(volumeChangeListener);
@@ -99,16 +100,13 @@ public class PlayerFragment extends BaseFragment implements View.OnClickListener
 
         BaseActivity.mPlayService.setOnComplete(this);
 
-        // setImage bằng asynctask giúp main thread k quá nặng
-        ImageTask imageTask = new ImageTask();
-        imageTask.execute();
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
+        ImageTask imageTask = new ImageTask();
+        imageTask.execute();
     }
 
     @Override
@@ -257,5 +255,5 @@ public class PlayerFragment extends BaseFragment implements View.OnClickListener
         }
     }
 
-    ;
+
 }

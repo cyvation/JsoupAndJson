@@ -53,14 +53,18 @@ public class ArtistFragment extends Fragment implements TabLayout.OnTabSelectedL
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        TextView tabTitle = (TextView) (((LinearLayout) ((LinearLayout) mTabArtist.getChildAt(0)).getChildAt(tab.getPosition())).getChildAt(1));
+        TextView tabTitle = (TextView) (((LinearLayout) ((LinearLayout)
+                mTabArtist.getChildAt(0)).getChildAt(tab.getPosition())).getChildAt(1));
+
         tabTitle.startAnimation(zoomInAnim);
 
     }
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-        TextView tabTitle = (TextView) (((LinearLayout) ((LinearLayout) mTabArtist.getChildAt(0)).getChildAt(tab.getPosition())).getChildAt(1));
+        TextView tabTitle = (TextView) (((LinearLayout) ((LinearLayout)
+                mTabArtist.getChildAt(0)).getChildAt(tab.getPosition())).getChildAt(1));
+
         tabTitle.startAnimation(zoomOutAnim);
     }
 

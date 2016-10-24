@@ -1,9 +1,11 @@
 package com.edu.gvn.jsoupdemo.adapter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.fragment.online.rank.KoreaRankFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.rank.UsUkRankFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.rank.VietnamRankFragment;
@@ -19,7 +21,7 @@ public class RankPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> mListFragment;
     private ArrayList<String> mListTitleFragment;
 
-    public RankPagerAdapter(FragmentManager fm) {
+    public RankPagerAdapter(Context context ,FragmentManager fm) {
         super(fm);
 
         mListFragment = new ArrayList<>();
@@ -28,9 +30,9 @@ public class RankPagerAdapter extends FragmentPagerAdapter {
         mListFragment.add(new KoreaRankFragment());
 
         mListTitleFragment= new ArrayList<>();
-        mListTitleFragment.add("Vietnam");
-        mListTitleFragment.add("Us-Uk");
-        mListTitleFragment.add("Korea");
+        mListTitleFragment.add(context.getString(R.string.rank_pager_title_vietnam));
+        mListTitleFragment.add(context.getString(R.string.rank_pager_title_usuk));
+        mListTitleFragment.add(context.getString(R.string.rank_pager_title_korean));
 
     }
 

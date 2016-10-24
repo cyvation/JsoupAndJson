@@ -21,8 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:ems="2"
             android:padding="10dp"
-            android:text="01"
             android:textSize="18sp" />
 
         <ImageView
@@ -42,7 +42,6 @@
             android:layout_toRightOf="@+id/img_up"
             android:maxEms="2"
             android:minEms="2"
-            android:text="01"
             android:textSize="12sp" />
 
 
@@ -60,15 +59,15 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:text="Hello" />
+       />
 
             <TextView
                 android:id="@+id/txt_artist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:lines="1"
-                android:text="Hello" />
+                android:ems="2"
+                 />
         </LinearLayout>
 
         <ImageView

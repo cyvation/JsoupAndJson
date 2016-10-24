@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activity.HomeActivity">
 
-
-
     <RelativeLayout
         android:id="@+id/main_with_toolbar"
         android:layout_width="match_parent"
@@ -22,16 +20,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar"
+            android:clipToPadding="false"
             android:orientation="vertical" />
-
-
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_nav"
         android:layout_width="280dp"
         android:layout_height="match_parent"
-        android:layout_gravity="left|start">
+        android:layout_gravity="start">
 
         <include
             android:id="@+id/frg_nav_drawer_onl"

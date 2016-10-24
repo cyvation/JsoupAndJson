@@ -12,12 +12,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.edu.gvn.jsoupdemo.R;
+import com.edu.gvn.jsoupdemo.activity.BaseActivity;
+import com.edu.gvn.jsoupdemo.activity.HomeActivity;
 import com.edu.gvn.jsoupdemo.adapter.SearchAdater;
 import com.edu.gvn.jsoupdemo.fragment.BaseFragment;
+import com.edu.gvn.jsoupdemo.fragment.PlayerFragment;
+import com.edu.gvn.jsoupdemo.model.online.DetailAlbumModel;
 import com.edu.gvn.jsoupdemo.model.online.SearchModel;
 import com.edu.gvn.jsoupdemo.network.JsonParser.SearchParserAsync;
 
@@ -28,7 +33,7 @@ import java.util.TimerTask;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends BaseFragment {
+public class SearchFragment extends BaseFragment implements AdapterView.OnItemClickListener {
 
     private static final String TAG = SearchFragment.class.getSimpleName();
     private Activity mActivity;
@@ -50,6 +55,7 @@ public class SearchFragment extends BaseFragment {
         View v = inflater.inflate(R.layout.fragment_search, container, false);
         mListSearch = (ListView) v.findViewById(R.id.list_search);
         mEditSearch = (EditText) v.findViewById(R.id.edt_search);
+        mListSearch.setOnItemClickListener(this);
         return v;
     }
 
@@ -74,9 +80,6 @@ public class SearchFragment extends BaseFragment {
 
             @Override
             public void afterTextChanged(final Editable s) {
-
-                Log.i(TAG, "afterTextChanged: " + s);
-
                 timer.cancel();
                 timer = new Timer();
                 timer.schedule(new TimerTask() {
@@ -101,10 +104,28 @@ public class SearchFragment extends BaseFragment {
         mListSearch.setAdapter(mAdapter);
     }
 
-    public void setRequestFocusEdittext(){
+    public void setRequestFocusEdittext() {
         mEditSearch.requestFocus();
-        if (mEditSearch.requestFocus()){
+        if (mEditSearch.requestFocus()) {
             mActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        BaseActivity.mPlayService.setListAlbum(convertData());
+        BaseActivity.mPlayService.playIndex(position);
+        ((HomeActivity) getActivity()).replaceFragment(new PlayerFragment());
+    }
+
+    private ArrayList<DetailAlbumModel> convertData() {
+        ArrayList<DetailAlbumModel> datas = new ArrayList<>();
+        for (int i = 0; i < mDataSong.size(); i++) {
+            String order = String.valueOf(i + 1);
+            String id = mDataSong.get(i).mId;
+            String name = mDataSong.get(i).mName;
+            datas.add(new DetailAlbumModel(order, id, name));
+        }
+        return datas;
     }
 }

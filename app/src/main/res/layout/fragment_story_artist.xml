@@ -1,27 +1,41 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/img_bg"
-    android:background="@drawable/bg_app_test"
+
     tools:context="com.edu.gvn.jsoupdemo.fragment.online.artist.StoryArtistFragment">
 
     <RelativeLayout
-        android:padding="20dp"
-        android:background="#53dddddd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_bg"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bg_app_test"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#b0000000"/>
+    </RelativeLayout>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
 
         <TextView
             android:id="@+id/fragment_story_artist_story"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tiểu sử"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
-    </RelativeLayout>
+    </ScrollView>
 
 
-</ScrollView>
+</RelativeLayout>

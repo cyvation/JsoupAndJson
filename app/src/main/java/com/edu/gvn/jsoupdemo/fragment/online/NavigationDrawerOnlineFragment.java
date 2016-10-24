@@ -1,7 +1,6 @@
 package com.edu.gvn.jsoupdemo.fragment.online;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -62,9 +61,9 @@ public class NavigationDrawerOnlineFragment extends BaseFragment implements View
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                mDrawerLayout.setScrimColor(Color.TRANSPARENT);
-                float moveFactor = drawerView.getWidth() * slideOffset;
-                getActivity().findViewById(R.id.rl_parent).setTranslationX(moveFactor);
+              //  mDrawerLayout.setScrimColor(Color.TRANSPARENT);
+              //  float moveFactor = drawerView.getWidth() * slideOffset;
+              //  getActivity().findViewById(R.id.rl_parent).setTranslationX(moveFactor);
             }
         };
 

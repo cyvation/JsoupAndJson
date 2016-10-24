@@ -5,12 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 
 import com.edu.gvn.jsoupdemo.common.Constants;
 import com.edu.gvn.jsoupdemo.service.PlayService;
+
+import java.util.Locale;
 
 /**
  * Created by hnc on 30/09/2016.
@@ -35,6 +40,17 @@ public class BaseActivity extends AppCompatActivity {
             firstRunAppPref.edit().putBoolean(KEY_FIRST_RUN, false).apply();
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Locale mLocal = new Locale("vi");
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = mLocal;
+        res.updateConfiguration(conf,dm);
     }
 
     @Override

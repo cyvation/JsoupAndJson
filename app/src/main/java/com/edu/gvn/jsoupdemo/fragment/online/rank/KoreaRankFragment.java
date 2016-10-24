@@ -62,7 +62,7 @@ public class KoreaRankFragment extends BaseFragment implements View.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_rank_general, container, false);
 
-        ((TextView) v.findViewById(R.id.fragment_rank_general_name)).setText("Bảng xếp hạng bài hát Hàn Quốc");
+        ((TextView) v.findViewById(R.id.fragment_rank_general_name)).setText(R.string.rank_korean);
         mPlayAll = (ImageView) v.findViewById(R.id.img_play_all);
         mRankList = (RecyclerView) v.findViewById(R.id.fragment_rank_general_rank);
         mLoading = (ProgressBar) v.findViewById(R.id.loading);

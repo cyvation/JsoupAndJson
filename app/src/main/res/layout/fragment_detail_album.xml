@@ -61,18 +61,6 @@
                 android:orientation="vertical"
                 android:padding="7dp">
 
-                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
-                    android:id="@+id/fragment_detail_album_artist_name"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/fragment_detail_album_name"
-                    android:layout_below="@+id/fragment_detail_album_name"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:text="Shipper đẹp trai"
-                    android:textColor="@color/text_dark_gray_color"
-                    android:textSize="12sp" />
-
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="35dp"
@@ -99,10 +87,21 @@
                     android:shadowColor="#000"
                     android:shadowDx="1.5"
                     android:shadowDy="2"
-                    android:text="Hihi Đồ ngốc"
                     android:textColor="#000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
+
+                <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
+                    android:id="@+id/fragment_detail_album_artist_name"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textColor="@color/text_dark_gray_color"
+                    android:textSize="12sp"
+                    android:layout_below="@+id/fragment_detail_album_name"
+                    android:layout_alignLeft="@+id/fragment_detail_album_name"
+                    android:layout_alignStart="@+id/fragment_detail_album_name" />
 
             </RelativeLayout>
 

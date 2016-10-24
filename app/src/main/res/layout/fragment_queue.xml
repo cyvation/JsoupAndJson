@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.edu.gvn.jsoupdemo.fragment.QueueFragment">
+
+    <TextView
+        android:id="@+id/toPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:elevation="4dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/playing_list"
+        android:drawableRight="@drawable/ic_arrow_right_play"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <ListView
+        android:scrollbars="none"
+        android:id="@+id/list_queue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/edt_search"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:divider="@color/colorAccent"
+        android:dividerHeight="1dp" />
+
+</LinearLayout>

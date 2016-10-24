@@ -35,7 +35,8 @@ public class AlbumOfArtistFragment extends Fragment {
     public static final int NUMBER_COLUMN = 2;
     private String mName, mUrlImage, mUrlAritst;
 
-    private ImageView mCoverArtist, mAvatar;
+    private ImageView mCoverArtist;
+    private ImageView mShufflePlay ;
     private TextView mArtistName, mHide;
     private ProgressBar mLoading;
     private RecyclerView mListSong;
@@ -66,18 +67,21 @@ public class AlbumOfArtistFragment extends Fragment {
         listAlbum = new ArrayList<>();
         sendRequest(mUrlAritst,indexPage);
         mAlbumGenderAdapter  = new AlbumGenderAdapter(getActivity(),listAlbum);
+
+        if (mLoading!=null && listAlbum.size()!=0) mLoading.setVisibility(View.GONE);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_album_of_artist, container, false);
         mCoverArtist = (ImageView) v.findViewById(R.id.fragment_detail_album_image_album);
-        mAvatar = (ImageView) v.findViewById(R.id.imageView);
         mLoading = (ProgressBar) v.findViewById(R.id.loading);
         mListSong = (RecyclerView) v.findViewById(R.id.fragment_detail_album_list_song_of_album);
         mArtistName = (TextView) v.findViewById(R.id.fragment_detail_album_name);
         mHide = (TextView) v.findViewById(R.id.fragment_detail_album_artist_name);
         mHide.setVisibility(View.GONE);
+        mShufflePlay = (ImageView) v.findViewById(R.id.imageView);
+        mShufflePlay.setVisibility(View.GONE);
 
         return v;
     }

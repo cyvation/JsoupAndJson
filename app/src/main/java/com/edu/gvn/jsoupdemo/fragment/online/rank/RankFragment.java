@@ -28,7 +28,7 @@ public class RankFragment extends BaseFragment implements TabLayout.OnTabSelecte
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mRankAdapter = new RankPagerAdapter(getActivity().getSupportFragmentManager());
+        mRankAdapter = new RankPagerAdapter(getActivity(),getActivity().getSupportFragmentManager());
         zoomInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.tab_zoom_in);
         zoomOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.tab_zoom_out);
     }

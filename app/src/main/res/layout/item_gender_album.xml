@@ -33,7 +33,6 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:lines="1"
-            android:text="ABC"
             android:textColor="@color/text_dark_gray_color"
             android:textSize="14sp" />
 
@@ -43,7 +42,6 @@
             android:layout_alignLeft="@+id/txt_fragment_online_gender_album_title"
             android:layout_below="@+id/txt_fragment_online_gender_album_title"
             android:lines="1"
-            android:text="ABC"
             android:textSize="12sp"
             android:id="@+id/txt_fragment_online_gender_album_name_artist"
             android:layout_marginBottom="8dp"

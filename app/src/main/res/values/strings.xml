@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">JsoupDemo</string>
 
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="nav_open">Open</string>
@@ -45,7 +44,7 @@
     <string name="asia">Asia</string>
     <string name="k_pop">K-pop</string>
     <string name="jav">Jav</string>
-    <string name="china">Khựa</string>
+    <string name="china">China</string>
 
     <!--String connection network-->
     <string name="connection_time_out">Connection Time Out</string>
@@ -53,10 +52,39 @@
     <string name="msg_time_out_dialog_conn">Connection is time out, check your connection ?</string>
 
     <!--Category artist-->
-    <string name="artist_vietnam">Việt nam</string>
-    <string name="artist_us">Âu mỹ</string>
-    <string name="artist_korea">Hàn quốc</string>
-    <string name="artist_jav">Nhật bản</string>
-    <string name="artist_china">Trung hoa</string>
-    <string name="artist_concert">Hòa tấu</string>
+    <string name="artist_vietnam">Vietnam</string>
+    <string name="artist_us">U.S. UK</string>
+    <string name="artist_korea">Korea</string>
+    <string name="artist_jav">Japan</string>
+    <string name="artist_china">China</string>
+    <string name="artist_concert">Concert</string>
+
+    <string name="artist_detail_fragment_title_song">Song</string>
+    <string name="artist_detail_fragment_title_album">Album</string>
+    <string name="artist_detail_fragment_title_story">Story</string>
+
+    <string name="hot_music_pager_adapter_title_vietnam">Vietnam</string>
+    <string name="hot_music_pager_adapter_title_usuk">U.S. UK</string>
+    <string name="hot_music_pager_adapter_title_korean">Korea</string>
+    <string name="hot_music_pager_adapter_title_rap_vietnam">Rap Viet</string>
+
+    <string name="rank_pager_title_vietnam">Vietnam</string>
+    <string name="rank_pager_title_usuk">U.S. UK</string>
+    <string name="rank_pager_title_korean">Korea</string>
+
+    <string name="rank_korean">Songs charts Korea</string>
+    <string name="rank_us_uk">Songs charts U.S. UK</string>
+    <string name="rank_vietnnam">Songs charts Vietnam</string>
+
+    <string name="top100_adapter_title_vietnam">Vietnam</string>
+    <string name="top100_adapter_title_us">U.S. UK</string>
+    <string name="top100_adapter_title_korean">Korea</string>
+    <string name="top100_adapter_title_concert">Concert</string>
+
+
+    <string name="choose_song">Choose song</string>
+    <string name="waiting">Watiing ...</string>
+    <string name="play_all">Play all</string>
+    <string name="playing_list">Playing list</string>
+    <string name="search_artist">Search artist....</string>
 </resources>

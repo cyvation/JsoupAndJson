@@ -8,7 +8,6 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +58,6 @@ public class DetailAlbumFragment extends BaseFragment implements DetailAlbumAsyn
 
     private void getDataBundleInstance(Bundle saveInstanceState) {
         mHolderDetailAlbum = saveInstanceState.getParcelable(KEY_ALBUM);
-        Log.i(TAG, "getDataBundleInstance: " + mHolderDetailAlbum.getTitle());
     }
 
     @Override
@@ -101,8 +99,6 @@ public class DetailAlbumFragment extends BaseFragment implements DetailAlbumAsyn
 
         Picasso.with(getActivity()).load(mHolderDetailAlbum.getImg_src()).into(mImageAlbum);
 
-        Log.i(TAG, "onViewCreated: " + mHolderDetailAlbum.getTitle());
-
         int indexLastDash = mHolderDetailAlbum.getTitle().indexOf("-");
         String title = mHolderDetailAlbum.getTitle().substring(0, indexLastDash - 1);
         String name = mHolderDetailAlbum.getTitle().substring(indexLastDash + 2);
@@ -121,7 +117,6 @@ public class DetailAlbumFragment extends BaseFragment implements DetailAlbumAsyn
 
         if (mDetailData.size() != (BaseActivity.mPlayService.getListData()).size()) {
             BaseActivity.mPlayService.setListAlbum(mDetailData);
-            Log.i(TAG, "onItemClick: play set");
         }
     }
 

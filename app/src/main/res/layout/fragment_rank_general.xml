@@ -20,11 +20,12 @@
 
         <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
             android:id="@+id/fragment_rank_general_name"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
+            android:ellipsize="end"
+            android:lines="1"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:text="BXH Vietnam"
             android:textSize="18sp" />
 
         <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
@@ -34,7 +35,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:text="Nghe tất cả" />
+            android:text="@string/play_all" />
 
         <ImageView
             android:id="@+id/img_play_all"

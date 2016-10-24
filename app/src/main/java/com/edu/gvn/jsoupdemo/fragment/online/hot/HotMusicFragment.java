@@ -30,7 +30,7 @@ public class HotMusicFragment extends BaseFragment implements TabLayout.OnTabSel
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHotAdapter = new HotMusicPagerAdapter(this.getChildFragmentManager());
+        mHotAdapter = new HotMusicPagerAdapter(getActivity(),this.getChildFragmentManager());
         zoomInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.tab_zoom_in);
         zoomOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.tab_zoom_out);
     }

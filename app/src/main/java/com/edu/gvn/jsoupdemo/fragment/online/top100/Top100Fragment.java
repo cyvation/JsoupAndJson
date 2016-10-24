@@ -83,10 +83,10 @@ public class Top100Fragment extends Fragment {
             listFragment.add(Top100DetailFragment.newInstance(Mp3ZingBaseUrl.ID_ASIAN_HAN_QUOC));
             listFragment.add(Top100DetailFragment.newInstance(Mp3ZingBaseUrl.ID_HT_PIANO));
 
-            listTitle.add("Việt nam");
-            listTitle.add("Âu mỹ");
-            listTitle.add("Hàn quốc");
-            listTitle.add("Hòa tấu");
+            listTitle.add(getString(R.string.top100_adapter_title_vietnam));
+            listTitle.add(getString(R.string.top100_adapter_title_us));
+            listTitle.add(getString(R.string.top100_adapter_title_korean));
+            listTitle.add(getString(R.string.top100_adapter_title_concert));
         }
 
         @Override

@@ -42,13 +42,10 @@ public class PlayService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //   startForeground(startId, new Notification());
         createNotification();
         if (intent != null) {
             actionNotify(intent);
         }
-
-
         return START_STICKY;
     }
 
@@ -169,20 +166,25 @@ public class PlayService extends Service {
 
         Intent mainIntent = new Intent(this, PlayerFragment.class);
         mainIntent.setAction(Constants.ACTION.MAIN_ACTION);
+
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent mainPendingIntent = PendingIntent.getService(this, Constants.SERVICE_REQUEST_CODE, mainIntent, Constants.SERVICE_FLAG);
+        PendingIntent mainPendingIntent = PendingIntent
+                .getService(this, Constants.SERVICE_REQUEST_CODE, mainIntent, Constants.SERVICE_FLAG);
 
         Intent prevIntent = new Intent(this, PlayService.class);
         prevIntent.setAction(Constants.ACTION.PREV_ACTION);
-        PendingIntent prevPendingIntent = PendingIntent.getService(this, Constants.SERVICE_REQUEST_CODE, prevIntent, Constants.SERVICE_FLAG);
+        PendingIntent prevPendingIntent = PendingIntent
+                .getService(this, Constants.SERVICE_REQUEST_CODE, prevIntent, Constants.SERVICE_FLAG);
 
         Intent playPauseIntent = new Intent(this, PlayService.class);
         playPauseIntent.setAction(Constants.ACTION.PLAY_ACTION);
-        PendingIntent playPausePendingIntent = PendingIntent.getService(this, Constants.SERVICE_REQUEST_CODE, playPauseIntent, Constants.SERVICE_FLAG);
+        PendingIntent playPausePendingIntent = PendingIntent
+                .getService(this, Constants.SERVICE_REQUEST_CODE, playPauseIntent, Constants.SERVICE_FLAG);
 
         Intent nextIntent = new Intent(this, PlayService.class);
         nextIntent.setAction(Constants.ACTION.NEXT_ACTION);
-        PendingIntent nextPendingIntent = PendingIntent.getService(this, Constants.SERVICE_REQUEST_CODE, nextIntent, Constants.SERVICE_FLAG);
+        PendingIntent nextPendingIntent = PendingIntent
+                .getService(this, Constants.SERVICE_REQUEST_CODE, nextIntent, Constants.SERVICE_FLAG);
 
         views.setOnClickPendingIntent(R.id.status_bar_previous, prevPendingIntent);
         views.setOnClickPendingIntent(R.id.status_bar_play, playPausePendingIntent);
@@ -192,8 +194,8 @@ public class PlayService extends Service {
 
         views.setImageViewResource(R.id.status_bar_album_art, R.drawable.background_nav);
 
-        views.setTextViewText(R.id.status_bar_track_name, "Hello");
-        views.setTextViewText(R.id.status_bar_artist_name, "Adele");
+        views.setTextViewText(R.id.status_bar_track_name, "Play >>>");
+        views.setTextViewText(R.id.status_bar_artist_name, "Wating ....");
 
         notification = new Notification.Builder(this).build();
         notification.contentView = views;
@@ -208,7 +210,6 @@ public class PlayService extends Service {
     private void actionNotify(Intent intent) {
 
         if (intent.getAction().equals(Constants.ACTION.MAIN_ACTION)) {
-
         } else if (intent.getAction().equals(Constants.ACTION.INIT_ACTION)) {
 
         } else if (intent.getAction().equals(Constants.ACTION.PLAY_ACTION)) {
@@ -223,10 +224,10 @@ public class PlayService extends Service {
 
         } else if (intent.getAction().equals(Constants.ACTION.PREV_ACTION)) {
             if (getListData().size() != 0)
-            forward();
+                forward();
         } else if (intent.getAction().equals(Constants.ACTION.NEXT_ACTION)) {
             if (getListData().size() != 0)
-            next();
+                next();
         }
     }
 }

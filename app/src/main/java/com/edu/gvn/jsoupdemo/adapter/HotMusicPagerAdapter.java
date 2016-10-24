@@ -1,9 +1,11 @@
 package com.edu.gvn.jsoupdemo.adapter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.fragment.online.hot.KoreaFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.hot.UsUkFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.hot.VietNamFragment;
@@ -20,7 +22,7 @@ public class HotMusicPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> mListFragment;
     private ArrayList<String> mListTitle;
 
-    public HotMusicPagerAdapter(FragmentManager fm) {
+    public HotMusicPagerAdapter(Context context , FragmentManager fm) {
         super(fm);
         mListFragment = new ArrayList<>();
         mListFragment.add(new VietNamFragment());
@@ -29,10 +31,10 @@ public class HotMusicPagerAdapter extends FragmentPagerAdapter {
         mListFragment.add(new VietRapFragment());
 
         mListTitle = new ArrayList<>();
-        mListTitle.add("Việt nam");
-        mListTitle.add("Âu mỹ");
-        mListTitle.add("Hàn quốc");
-        mListTitle.add("Rap Việt");
+        mListTitle.add(context.getString(R.string.hot_music_pager_adapter_title_vietnam));
+        mListTitle.add(context.getString(R.string.hot_music_pager_adapter_title_usuk));
+        mListTitle.add(context.getString(R.string.hot_music_pager_adapter_title_korean));
+        mListTitle.add(context.getString(R.string.hot_music_pager_adapter_title_rap_vietnam));
 
     }
 

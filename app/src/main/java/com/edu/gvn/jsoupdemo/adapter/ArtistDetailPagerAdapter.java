@@ -1,9 +1,11 @@
 package com.edu.gvn.jsoupdemo.adapter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.edu.gvn.jsoupdemo.R;
 import com.edu.gvn.jsoupdemo.fragment.online.artist.AlbumOfArtistFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.artist.SongOfArtistFragment;
 import com.edu.gvn.jsoupdemo.fragment.online.artist.StoryArtistFragment;
@@ -18,16 +20,16 @@ public class ArtistDetailPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> listFragment = new ArrayList<>();
     private ArrayList<String> listTitle = new ArrayList<>();
 
-    public ArtistDetailPagerAdapter(FragmentManager fm ,String urlArtist, String name, String urlImage) {
+    public ArtistDetailPagerAdapter(Context context, FragmentManager fm , String urlArtist, String name, String urlImage) {
         super(fm);
 
         listFragment.add(SongOfArtistFragment.newInstance(urlArtist,name,urlImage));
         listFragment.add(AlbumOfArtistFragment.newInstance(urlArtist,name,urlImage));
-        listFragment.add(StoryArtistFragment.newInstance(urlArtist));
+        listFragment.add(StoryArtistFragment.newInstance(urlArtist,urlImage));
 
-        listTitle.add("Song");
-        listTitle.add("Album");
-        listTitle.add("Story");
+        listTitle.add(context.getString(R.string.artist_detail_fragment_title_song));
+        listTitle.add(context.getString(R.string.artist_detail_fragment_title_album));
+        listTitle.add(context.getString(R.string.artist_detail_fragment_title_story));
     }
 
     @Override

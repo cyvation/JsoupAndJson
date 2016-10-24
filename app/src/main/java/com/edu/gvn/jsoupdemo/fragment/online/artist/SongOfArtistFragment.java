@@ -26,16 +26,17 @@ import com.edu.gvn.jsoupdemo.network.XmlParser.ArtistSongsAsync;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SongOfArtistFragment extends Fragment {
+public class SongOfArtistFragment extends Fragment implements View.OnClickListener {
 
     public static final String _BUNDLE_URL = "bundle.url";
     public static final String _BUNDLE_NAME = "bundle.name";
     public static final String _BUNDLE_IMAGE = "bundle.image";
-    private ImageView mCoverArtist, mAvatar;
+    private ImageView mCoverArtist, mShufflePlay;
     private TextView mArtistName, mHide;
     private ProgressBar mLoading;
     private RecyclerView mListSong;
@@ -68,7 +69,7 @@ public class SongOfArtistFragment extends Fragment {
         listSong = new ArrayList<>();
         sendRequest(mUrlArtist, indexPage);
         mArtistListSongAdapter = new ArtistListSongAdapter(getActivity(), listSong);
-        if (mLoading!=null &&listSong.size() == 0) mLoading.setVisibility(View.VISIBLE);
+
 
     }
 
@@ -76,13 +77,16 @@ public class SongOfArtistFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_song_of_artist, container, false);
         mCoverArtist = (ImageView) v.findViewById(R.id.fragment_detail_album_image_album);
-        mAvatar = (ImageView) v.findViewById(R.id.imageView);
+        mShufflePlay = (ImageView) v.findViewById(R.id.imageView);
         mLoading = (ProgressBar) v.findViewById(R.id.loading);
         mListSong = (RecyclerView) v.findViewById(R.id.fragment_detail_album_list_song_of_album);
         mArtistName = (TextView) v.findViewById(R.id.fragment_detail_album_name);
         mHide = (TextView) v.findViewById(R.id.fragment_detail_album_artist_name);
         mHide.setVisibility(View.GONE);
 
+        mShufflePlay.setOnClickListener(this);
+
+        if (mLoading != null && listSong.size() != 0) mLoading.setVisibility(View.GONE);
 
         return v;
     }
@@ -150,8 +154,8 @@ public class SongOfArtistFragment extends Fragment {
 
 
             ArrayList<DetailAlbumModel> detailAlbumModels = new ArrayList<>();
-            for (int i=0;i<listSong.size();i++){
-                DetailAlbumModel model = new DetailAlbumModel(String.valueOf(i),listSong.get(i).getDataIdSong(),listSong.get(i).getTitle());
+            for (int i = 0; i < listSong.size(); i++) {
+                DetailAlbumModel model = new DetailAlbumModel(String.valueOf(i), listSong.get(i).getDataIdSong(), listSong.get(i).getTitle());
                 detailAlbumModels.add(model);
             }
 
@@ -163,5 +167,28 @@ public class SongOfArtistFragment extends Fragment {
     private void sendRequest(String url, int indexPage) {
         ArtistSongsAsync artistSongsAsync = new ArtistSongsAsync(getActivity(), songsAsyncCallBack);
         artistSongsAsync.execute(url, String.valueOf(indexPage));
+    }
+
+    @Override
+    public void onClick(View v) {
+        BaseActivity.mPlayService.setListAlbum(convertData());
+       if (v == mShufflePlay){
+           Random random = new Random();
+           int number = random.nextInt();
+
+           BaseActivity.mPlayService.playIndex(number);
+       }
+    }
+
+    private ArrayList<DetailAlbumModel> convertData(){
+        ArrayList<DetailAlbumModel> data = new ArrayList<>();
+        for (int i=0;i<listSong.size();i++){
+            String order = String.valueOf(i);
+            String id = listSong.get(i).getDataIdSong();
+            String name = listSong.get(i).getTitle();
+            data.add(new DetailAlbumModel(order,id,name));
+
+        }
+        return data;
     }
 }

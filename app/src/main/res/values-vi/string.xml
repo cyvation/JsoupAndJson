@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Zing Mp3 app</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="nav_open">Mở</string>
+    <string name="nav_close">Đóng</string>
+
+    <string name="nav_subtitle_zing_mp3">Zing mp3</string>
+    <string name="nav_subtitle_tools">Công cụ</string>
+    <string name="nav_item_settings">Cài đặt</string>
+    <string name="nav_lyric_on_screen">Lời trên màn hình</string>
+    <string name="nav_voice_search">Tìm kiếm bằng giọng nói</string>
+    <string name="nav_search">Tìm kiếm</string>
+    <string name="nav_hot_music">Nhạc hot</string>
+    <string name="nav_rank">Bảng xếp hạng</string>
+    <string name="nav_albums">Albums</string>
+    <string name="nav_artists">Nghệ sĩ</string>
+    <string name="nav_top_10">Top 100</string>
+
+
+    <!--Category album-->
+    <string name="viet_nam">Việt nam</string>
+    <string name="v_pop">V-pop</string>
+    <string name="vn_romance">Trữ tình</string>
+    <string name="vn_rap_hiphop">Rap-HipHop</string>
+    <string name="vn_trinh_cong_son">Trịnh Công Sơn</string>
+    <string name="vn_chidrent">Nhạc thiếu nhi</string>
+    <string name="vn_rock">Nhạc Rock</string>
+    <string name="vn_dance">Nhạc Dance</string>
+    <string name="vn_country">Nhạc quê hương</string>
+    <string name="vn_red">Nhạc cách mạng</string>
+
+    <string name="us_uk">Âu mỹ</string>
+    <string name="us_pop">Pop</string>
+    <string name="us_rok">Rock</string>
+    <string name="us_rap_hiphop">Rap-HipHop</string>
+    <string name="us_country">Country</string>
+    <string name="us_edm">Nhạc điện tử</string>
+    <string name="us_r_b">R/B soul</string>
+    <string name="us_trance_house_techno">Trance/House/Techno</string>
+    <string name="us_blue_jazz">Blue/Jazz</string>
+
+    <string name="asia">Châu á</string>
+    <string name="k_pop">Hàn quốc</string>
+    <string name="jav">Nhật bản</string>
+    <string name="china">Khựa</string>
+
+    <!--String connection network-->
+    <string name="connection_time_out">Connection Time Out</string>
+    <string name="title_time_out_dialog_conn">Connection time out</string>
+    <string name="msg_time_out_dialog_conn">Connection is time out, check your connection ?</string>
+
+    <!--Category artist-->
+    <string name="artist_vietnam">Việt nam</string>
+    <string name="artist_us">Âu mỹ</string>
+    <string name="artist_korea">Hàn quốc</string>
+    <string name="artist_jav">Nhật bản</string>
+    <string name="artist_china">Trung quốc</string>
+    <string name="artist_concert">Hòa âm</string>
+
+    <string name="artist_detail_fragment_title_song">Bài hát</string>
+    <string name="artist_detail_fragment_title_album">Album</string>
+    <string name="artist_detail_fragment_title_story">Tiểu sử</string>
+
+    <string name="hot_music_pager_adapter_title_vietnam">Việt nam</string>
+    <string name="hot_music_pager_adapter_title_usuk">Âu mỹ</string>
+    <string name="hot_music_pager_adapter_title_korean">Hàn quốc</string>
+    <string name="hot_music_pager_adapter_title_rap_vietnam">Rap Việt</string>
+
+    <string name="rank_pager_title_vietnam">Việt nam</string>
+    <string name="rank_pager_title_usuk">Âu mỹ</string>
+    <string name="rank_pager_title_korean">Hàn quốc</string>
+
+    <string name="rank_korean">BXH Hàn quốc</string>
+    <string name="rank_us_uk">BXH Âu mỹ</string>
+    <string name="rank_vietnnam">BXH Việt nam</string>
+
+    <string name="top100_adapter_title_vietnam">Việt nam</string>
+    <string name="top100_adapter_title_us">Âu mỹ</string>
+    <string name="top100_adapter_title_korean">Hàn quốc</string>
+    <string name="top100_adapter_title_concert">Hòa âm</string>
+
+
+    <string name="choose_song">Chọn bài hát</string>
+    <string name="waiting">Đang chòw ...</string>
+    <string name="play_all">Chơi tất cả</string>
+    <string name="playing_list">Danh sách đang phát</string>
+    <string name="search_artist">Tìm kiếm nghệ sĩ...</string>
+
+
+</resources>

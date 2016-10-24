@@ -3,7 +3,6 @@ package com.edu.gvn.jsoupdemo.common;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.util.Log;
 
 import com.edu.gvn.jsoupdemo.model.online.DetailAlbumModel;
 import com.edu.gvn.jsoupdemo.model.online.SongOnlModel;
@@ -70,8 +69,7 @@ public class Player implements MediaPlayer.OnCompletionListener {
     }
 
     public void playIndex(int index) {
-        Log.i(TAG, "playIndex: " + mListSongs.get(index).toString());
-        System.gc();
+       LogUtils.i(TAG, "playIndex: " + mListSongs.get(index).toString());
         indexSong = index;
         nameSong = "Loading ...";
         artistSong = "...";
@@ -97,6 +95,7 @@ public class Player implements MediaPlayer.OnCompletionListener {
 
                 if (onComplete != null) {
                     onComplete.notifiDataSetChange(nameSong, artistSong, linkCover);
+                    onComplete.onComplete();
                 }
 
             }
@@ -112,7 +111,7 @@ public class Player implements MediaPlayer.OnCompletionListener {
     }
 
     public void next() {
-        Log.i(TAG, "next: next");
+        LogUtils.i(TAG, "next: next");
 
         if (isShuffle) {
             indexSong = mRandom.nextInt(mListSongs.size() - 1);
@@ -128,13 +127,13 @@ public class Player implements MediaPlayer.OnCompletionListener {
     }
 
     public void forward() {
-        Log.i(TAG, "forward: forward");
+        LogUtils.i(TAG, "forward: forward");
 
         if (isShuffle) {
             indexSong = mRandom.nextInt(mListSongs.size() - 1);
         } else {
             if (indexSong == 0)
-                indexSong = mListSongs.size() - 1;
+                indexSong = mListSongs.size() - 2;
             else
                 indexSong--;
         }
@@ -243,7 +242,7 @@ public class Player implements MediaPlayer.OnCompletionListener {
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        Log.i(TAG, "onCompletion: complete");
+        LogUtils.i(TAG, "onCompletion: complete");
         switch (mRepeat) {
             case REPEAT_OFF:
 
@@ -287,7 +286,6 @@ public class Player implements MediaPlayer.OnCompletionListener {
 
     public interface MediaPlayerOnComplete {
         void onComplete();
-
         void notifiDataSetChange(String name, String artist, String image);
     }
 

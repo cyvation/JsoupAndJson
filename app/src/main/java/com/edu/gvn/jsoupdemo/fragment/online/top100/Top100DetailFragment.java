@@ -11,12 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edu.gvn.jsoupdemo.R;
+import com.edu.gvn.jsoupdemo.activity.BaseActivity;
 import com.edu.gvn.jsoupdemo.activity.HomeActivity;
 import com.edu.gvn.jsoupdemo.adapter.AlbumDetailAdapter;
 import com.edu.gvn.jsoupdemo.adapter.Top100DetailAdapter;
-import com.edu.gvn.jsoupdemo.common.LogUtils;
 import com.edu.gvn.jsoupdemo.common.Mp3ZingBaseUrl;
 import com.edu.gvn.jsoupdemo.fragment.PlayerFragment;
+import com.edu.gvn.jsoupdemo.model.online.DetailAlbumModel;
 import com.edu.gvn.jsoupdemo.model.online.Top100;
 import com.edu.gvn.jsoupdemo.network.JsonParser.Top100Async;
 
@@ -90,14 +91,16 @@ public class Top100DetailFragment extends Fragment implements AlbumDetailAdapter
         @Override
         public void callBack(Top100 top) {
             top100Data.addAll(top.data);
-            LogUtils.v("huutho", top.data.size() + "");
             mTop100Adapter.notifyDataSetChanged();
         }
     };
 
     @Override
     public void onItemClick(View v, int position) {
-
+        BaseActivity.mPlayService.setListAlbum(convertData());
+        if (position != BaseActivity.mPlayService.getIndexSong()) {
+            BaseActivity.mPlayService.playIndex(position);
+        }
     }
 
     @Override
@@ -113,5 +116,18 @@ public class Top100DetailFragment extends Fragment implements AlbumDetailAdapter
     @Override
     public void onToPlayerClick(View v, int position) {
         ((HomeActivity) getActivity()).replaceFragmentWithToolbar(PlayerFragment.newInstance());
+    }
+
+
+    private ArrayList<DetailAlbumModel> convertData() {
+        ArrayList<DetailAlbumModel> data = new ArrayList<>();
+        for (int i = 0; i < top100Data.size(); i++) {
+            String order = top100Data.get(i).order;
+            String id = top100Data.get(i).id;
+            String songName = top100Data.get(i).name;
+
+            data.add(new DetailAlbumModel(order, id, songName));
+        }
+        return data;
     }
 }

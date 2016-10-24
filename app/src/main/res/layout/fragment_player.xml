@@ -8,18 +8,17 @@
     tools:context="com.edu.gvn.jsoupdemo.fragment.PlayerFragment">
 
 
-    <info.abdolahi.CircularMusicProgressBar
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <info.abdolahi.CircularMusicProgressBar xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fragment_player_progress_bar"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/player_progressbar_margin_top"
+        android:scaleType="centerCrop"
         android:src="@drawable/album_asia_japan"
         app:border_color="#878787"
         app:border_overlay="true"
-        android:scaleType="centerCrop"
         app:border_width="5dp"
         app:centercircle_diammterer="3"
         app:progress_color="@color/colorAccent"
@@ -28,14 +27,14 @@
 
     <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
         android:id="@+id/fragment_player_song_title"
-        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fragment_player_progress_bar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/title_song_margin_top"
+        android:gravity="center"
         android:shadowColor="@color/text_dark_gray_color"
-        android:text="Hello world !"
+        android:text="Choose song"
         android:textColor="@color/white"
         android:textSize="@dimen/player_title_text_size"
         android:textStyle="bold" />
@@ -44,12 +43,13 @@
     <com.edu.gvn.jsoupdemo.custom.UbuntuTextView
         android:id="@+id/fragment_player_song_artist"
         android:layout_width="wrap_content"
-        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fragment_player_song_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:text="Hello world"
+        android:gravity="center"
+        android:lines="1"
+        android:text="wating..."
         android:textColor="@color/white"
         android:textSize="@dimen/player_artist_text_size" />
 

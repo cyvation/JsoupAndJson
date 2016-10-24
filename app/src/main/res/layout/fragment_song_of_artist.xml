@@ -3,6 +3,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.edu.gvn.jsoupdemo.fragment.online.artist.SongOfArtistFragment">
-
     <include layout="@layout/fragment_detail_album"/>
 </FrameLayout>

@@ -11,7 +11,7 @@
         android:drawableLeft="@drawable/ic_search"
         android:drawablePadding="20dp"
         android:drawableTint="@color/colorPrimary"
-        android:hint="Search artist...."
+        android:hint="@string/search_artist"
         android:paddingLeft="20dp"
         android:background="@android:color/transparent"
         android:paddingRight="10dp"

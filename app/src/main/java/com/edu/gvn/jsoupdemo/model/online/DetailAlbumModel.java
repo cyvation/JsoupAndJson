@@ -5,6 +5,7 @@ package com.edu.gvn.jsoupdemo.model.online;
  */
 
 public class DetailAlbumModel {
+    private boolean nowPlay ;
     private String mOrder;
     private String mIDSong;
     private String mSongName;
@@ -13,6 +14,14 @@ public class DetailAlbumModel {
         this.mOrder = mOrder;
         this.mSongName = mSongName;
         this.mIDSong = mIDSong;
+    }
+
+    public boolean isNowPlay() {
+        return nowPlay;
+    }
+
+    public void setNowPlay(boolean nowPlay) {
+        this.nowPlay = nowPlay;
     }
 
     public String getmSongName() {

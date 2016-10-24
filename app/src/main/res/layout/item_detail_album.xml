@@ -23,8 +23,9 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:ems="2"
             android:gravity="center"
-            android:text="1" />
+   />
 
 
         <TextView
@@ -35,7 +36,6 @@
             android:layout_weight="10"
             android:ellipsize="end"
             android:lines="1"
-            android:text="Ngày này năm trước"
             android:textColor="@color/text_dark_gray_color" />
 
 
